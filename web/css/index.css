@@ -1,0 +1,13 @@
+/*Estilos formulario acceso*/
+#main form{width: 30%;margin: 1% auto 0 auto;font-size: 110%;}
+#main fieldset div{padding: 10%;}
+#main form legend{font-weight: bold;text-shadow: #B39217 1px 1px 1px;color: #132B5A;}
+#main form label{text-align: center;text-shadow: #B39217 1px 1px 1px;color: #132B5A;}
+
+/*Estilos errores*/
+#error{width: 20%;margin: 3% auto 0 auto;}
+#error span{margin-left: 20px;text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87}
+#error img{float: left;width: 8%;height: 8%;}
+
+/*Estilos extras*/
+.smart-blue{border:none !important;}

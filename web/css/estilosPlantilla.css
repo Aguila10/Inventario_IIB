@@ -1,0 +1,38 @@
+*{padding: 0px;}
+html,body{height:100%; font-family: Arial, Helvetica, sans-serif;}
+
+/*Estilos encabezado página*/
+#encabezado{height: 8%;width: 90%;margin:0 auto 0 auto;background-image: url('../img/fondoAzul.jpg');}
+#imagenUnam{margin-left: 9%;}
+#imagenCiencias{margin-top: 8%;}
+#barra{width: 90%;margin:0 auto 0 auto;background:  #E1B715 url('../img/barra-amarilla.png');}
+
+/*Estilos Login*/
+#login{font: normal normal normal 11px/normal Verdana, 'DejaVu Sans', 'Bitstream Vera Sans', sans-serif;text-decoration: none;float: right;margin-bottom: 3px;margin-right: 1%;}
+#login p{margin-top: 0px;margin-bottom: 0px;}
+#loginUsuario{font-weight: bold;}
+
+/*Estilos contenido principal*/
+#main{width: 90%;height: auto;min-height:87%;margin:0 auto 0 auto;}
+
+/*Estilos menú*/
+#menu {text-align: center;font-size: 85%;}
+#menu ul {list-style-type: none;}
+#menu ul li {width: 70%;}
+#menu ul li {border-top: solid 1px white;}
+#menu ul li a {display: block;text-decoration: none;color: #fff;background-color: #132B5A;border: solid 1px white;padding: 8px;position: relative;}
+#menu ul li:hover {position: relative;font-weight: bold;text-shadow: 0 0 10px #808FA1;}
+#menu ul li a:hover{background-color: #132B5A;color: white;position: relative;}
+#menu ul li:hover a{background-color: #B8BEC9;}
+#menu ul li a {display: block!important;display: none;}
+#menu ul li ul {display: none;}
+#menu ul li a:hover ul, #menu ul li:hover ul {display: block;position: absolute;left: 101%;top:-1px!important;width: 60%;}
+#menu ul li ul li a {width: 200%;}
+#menu ul li ul li a:hover {position: relative;background-color: #132B5A;color: white;}
+#reporte{background:  #E1B715 url('../img/barra-amarilla.png'); color:black !important;}
+.seleccionado{background-color: #B8BEC9 !important;font-weight: bold;}
+
+/*Estilos pie de página*/
+#pie{height: 5%;width: 90%;margin:0 auto 1% auto;background-image: url('../img/fondoAzul.jpg');}
+#pie p{height: 50%;font-size:65%;color: white;text-align: center;}
+
