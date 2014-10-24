@@ -34,15 +34,14 @@ public class altaEquipo extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       response.getWriter().print("hola");
-       /*
+       
         boolean edo = registraEquipo(request,response);
         
         if(edo) {
             mandaMensaje("Registro Exitoso ",response);
         } else {
             mandaMensaje("No se pudo guardar ",response);
-        }*/
+        }
     }
     
     public boolean registraEquipo(HttpServletRequest request, HttpServletResponse response) throws IOException{

@@ -118,57 +118,18 @@ public class ConexionBD{
         return lista;
     }
  
- 
-    /**
-     * Metodo que regresa el el login pedido
-     *
-     * @param login parametro a buscar en la tabla registro
-     * @return el login si lo encontro
-     */
-    public boolean buscaLoginB(String login) {
-        boolean res = true;
-        String consulta = "";
-        try {
-            Class.forName(driver);
-            Connection con = DriverManager.getConnection(connectString, user, password);
-            PreparedStatement query = con.prepareStatement("select login from registro where login =?");
-            query.setString(1, login);
-            ResultSet rset = query.executeQuery();
-            while (rset.next()) {
-                consulta = (rset.getString(1));
-            }
-            if (consulta != "") {
-                res = true;
-            }
-            
-            else{
-            res = false;
-            }
-        } catch (SQLException | java.lang.ClassNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
- 
-        return res;
-    } 
-     
-     
- 
-   
-   
-   
-   
   
     public static void main(String[] args) {
        
        ConexionBD con = new ConexionBD();
-//       System.out.println(con.insertaEquipo(2, 2, "aaaasdsr", 0, 0, null,0,
-//                0, 0, 0, 0, 0, 0, 0, 0, 0, null, 0));
-//       
-//               System.out.println( con.insertaUsuario("rene_sec", "holamundo", "rene", "Secretaria"));
-//        System.out.println( con.insertaUsuario("rene_aca", "holamundo", "rene", "Tecnico Academico"));
-//        System.out.println( con.insertaUsuario("rene_inv", "holamundo", "rene", "Jefe de inventario"));
-//
-//        System.out.println(con.buscaLogin("rene_adm", "holamundo"));
+       System.out.println(con.insertaEquipo(2, 2, "aaaasdsr", 0, 0, null,0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, null, 0));
+       
+               System.out.println( con.insertaUsuario("rene_sec", "holamundo", "rene", "Secretaria"));
+        System.out.println( con.insertaUsuario("rene_aca", "holamundo", "rene", "Tecnico Academico"));
+        System.out.println( con.insertaUsuario("rene_inv", "holamundo", "rene", "Jefe de inventario"));
+
+        System.out.println(con.buscaLogin("rene_adm", "holamundo"));
     }
     
     
