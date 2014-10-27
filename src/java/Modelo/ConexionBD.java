@@ -120,7 +120,7 @@ public class ConexionBD{
  
   
     public static void main(String[] args) {
-       
+       /*
        ConexionBD con = new ConexionBD();
        System.out.println(con.insertaEquipo(2, 2, "aaaasdsr", 0, 0, null,0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, null, 0));
@@ -130,6 +130,7 @@ public class ConexionBD{
         System.out.println( con.insertaUsuario("rene_inv", "holamundo", "rene", "Jefe de inventario"));
 
         System.out.println(con.buscaLogin("rene_adm", "holamundo"));
+               */
     }
     
     
