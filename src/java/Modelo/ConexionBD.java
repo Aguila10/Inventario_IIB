@@ -130,7 +130,15 @@ public class ConexionBD{
         System.out.println( con.insertaUsuario("rene_inv", "holamundo", "rene", "Jefe de inventario"));
 
         System.out.println(con.buscaLogin("rene_adm", "holamundo"));
+        
+        
+        
                */
+        
+        
+        
+        
+   
     }
     
     
