@@ -68,6 +68,10 @@ function buscaEquipo() {
     
     
     var x = document.getElementById("campoBusqueda").value;
+    if (x == "" || x == null) {
+        document.getElementById("errorBusqueda").innerHMTL="EL campo de busqueda es vacio";
+        return;
+    }
     
     $.post("BuscaEquipo", {
 		campoBusqueda : x

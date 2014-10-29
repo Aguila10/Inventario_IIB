@@ -125,7 +125,7 @@ public class ConexionBD{
        System.out.println(con.insertaEquipo(2, 2, "aaaasdsr", 0, 0, null,0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, null, 0));
        
-               System.out.println( con.insertaUsuario("rene_sec", "holamundo", "rene", "Secretaria"));
+        System.out.println( con.insertaUsuario("rene_sec", "holamundo", "rene", "Secretaria"));
         System.out.println( con.insertaUsuario("rene_aca", "holamundo", "rene", "Tecnico Academico"));
         System.out.println( con.insertaUsuario("rene_inv", "holamundo", "rene", "Jefe de inventario"));
 

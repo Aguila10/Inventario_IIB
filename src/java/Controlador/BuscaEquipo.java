@@ -44,22 +44,6 @@ public class BuscaEquipo extends HttpServlet {
     
     public String obtenFormulario(String campoDeBusqueda){
         String form = "";
-        /*
-        String divColumna = "<div class=\"dosColumnas\">" +"\n";
-        String divFin = "</div>" + "\n";
-        String divColumnaDer = "<div class=\"dosColumnas derecha\">" + "\n";
-        
-        
-        form += PRIMERA_LINEA + "\n";
-        
-        form += divColumna;
-        form += "activoFijo";
-        form += divFin;
-        
-        String activoFijo1 = "<label for=\"activoFijo\">Clave activo fijo:</label>";
-        String activoFijo2 = "<input type=\"text\" id=\"activoFijo\" name=\"activoFijo\">";
-        int num_equipo = Integer.parseInt(campoDeBusqueda);
-        */
         String cad = "cadena";
         form += PRIMERA_LINEA;
         form += "<div class=\"dosColumnas\">\n" +
