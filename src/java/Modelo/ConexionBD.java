@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class ConexionBD{
 
     String driver = "org.postgresql.Driver";
-    String connectString = "jdbc:postgresql://localhost:5432/Inventario";
+    String connectString = "jdbc:postgresql://localhost:5432/inventario";
     String user = "darktech";
     String password = "darktech";
    
@@ -120,7 +120,7 @@ public class ConexionBD{
  
   
     public static void main(String[] args) {
-       /*
+       
        ConexionBD con = new ConexionBD();
        System.out.println(con.insertaEquipo(2, 2, "aaaasdsr", 0, 0, null,0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, null, 0));
@@ -133,7 +133,7 @@ public class ConexionBD{
         
         
         
-               */
+               
         
         
         

@@ -73,19 +73,23 @@ public class Formularios extends HttpServlet {
         case "equipoAlta":
             form = llenaFormularioAltaEquipo();
             break;
-        case "movimientoEquipoAsignacion": // Tiene catalogos
+        case "equipoActualizar": // Tiene catalogos
+            form = obtenFormularioSinCatalogos("equipoActualizar");
             break;
-        case "movimientoEquipoBaja": // Tiene catalogos
+        case "catalogoAltaRegistro": // Tiene catalogos
+            form = obtenFormularioSinCatalogos("catalogoAltaRegistro");
             break;
-        case "movimientoEquipoDesuso": // Tiene catalogos
+        case "catalogoVer": // Tiene catalogos
+            form = obtenFormularioSinCatalogos("catalogoVer");
             break;
-        case "movimientoEquipoFalla": //
-            break;
-        case "movimientoEquipoRenovacion":  //
+        case "movimientoEquipo": //
+            form = obtenFormularioSinCatalogos("movimientoEquipo");
             break;
         case "usuarioAlta": // No tiene catalogos
+            form = obtenFormularioSinCatalogos("usuarioAlta");
             break;
         case "usuarioBaja": // No tiene catalogos
+            form = obtenFormularioSinCatalogos("usuarioBaja");
             break;
         }
     return form;
@@ -176,6 +180,33 @@ public class Formularios extends HttpServlet {
             }
         }
         return form;
+    }
+    
+    
+    
+    /**
+     * 
+     */
+    public String obtenFormularioSinCatalogos(String formulario){
+        String form = "";
+        ServletContext context = getServletContext();
+        InputStream is = context.getResourceAsStream("/WEB-INF/formularios/"+formulario+".html");
+        if (is != null) {
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader reader = new BufferedReader(isr);
+            String text="";
+            try {
+                while ((text = reader.readLine()) != null) {                    
+                    
+                    form+=text;                        
+                    
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Formularios.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return form;
+        
     }
     /**
      * Metodo que genera un catalogo en codigo html por ejemplo:

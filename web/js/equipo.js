@@ -68,6 +68,7 @@ function buscaEquipo() {
     
     
     var x = document.getElementById("campoBusqueda").value;
+    
     $.post("BuscaEquipo", {
 		campoBusqueda : x
 	},function(data){
