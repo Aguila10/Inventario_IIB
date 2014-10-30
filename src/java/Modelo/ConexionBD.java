@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class ConexionBD{
 
     String driver = "org.postgresql.Driver";
-    String connectString = "jdbc:postgresql://localhost:5432/inventario";
+    String connectString = "jdbc:postgresql://localhost:5432/Inventario";
     String user = "darktech";
     String password = "darktech";
    
@@ -72,9 +72,9 @@ public class ConexionBD{
         return res;
     }
  
-    public boolean insertaEquipo(int numeroInveInterInfo, int numInvUnam, String descrip,
-    int modelo, int marca,  String serie , int familia , int tipo , int prove , int clase ,  int uso ,
-    int nivel , int edoFisico , int area , int institu, int persoAsig  ,String fecha, int responsable ) {
+   public boolean insertaEquipo(int numeroInveInterInfo, int numInvUnam, String descrip,
+    String modelo, String marca,  String serie , String familia , String tipo , String prove , String clase ,  String uso ,
+    String nivel , String edoFisico , String   area , String institu ,String fecha, String responsable ) {
         boolean res =false ;
         Statement statement;
         ResultSet resultSet;
@@ -83,9 +83,9 @@ public class ConexionBD{
             Connection con = DriverManager.getConnection(connectString, user, password);
             statement = con.createStatement();
             resultSet = statement.executeQuery("SELECT * from agregaEquipo(" + numeroInveInterInfo +" , "
-                 + numInvUnam + "," + "'"+ descrip+ "'," +  null+ "," +null+ "," + null
-            + "," +null+ "," +null+ "," +null+ "," +null+ "," +null+ "," +null
-                    + "," +null+ "," +null+ "," +null+ "," +null+ "," +null+ "," +null + ");");
+                 + numInvUnam + "," + "'"+ descrip+ "','" + modelo+ "','" +marca+ "','" + serie
+            + "','" +familia+ "','" +tipo+ "','" +prove+ "','" +clase+ "','" +uso+ "','" +nivel
+                    + "','" +edoFisico+ "','" +area+ "','" +institu+"','" +fecha+ "','" +responsable+ "');");
  
             while (resultSet.next()) {
                 res = resultSet.getBoolean(1);
@@ -122,8 +122,6 @@ public class ConexionBD{
     public static void main(String[] args) {
        
        ConexionBD con = new ConexionBD();
-       System.out.println(con.insertaEquipo(2, 2, "aaaasdsr", 0, 0, null,0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, null, 0));
        
         System.out.println( con.insertaUsuario("rene_sec", "holamundo", "rene", "Secretaria"));
         System.out.println( con.insertaUsuario("rene_aca", "holamundo", "rene", "Tecnico Academico"));
@@ -131,6 +129,24 @@ public class ConexionBD{
 
         System.out.println(con.buscaLogin("rene_adm", "holamundo"));
         
+       System.out.println(con.insertaEquipo(
+123 ,
+123 ,
+"Descripcion12",
+"12hffg",
+"ACTECK" , 
+"12345" ,
+"INTEL PENTIUM D|COREDUO|CORE2DU| AMD ATHLON| X2DUAL| CR2QUAD| CR2 Y EQUIVALENTE" ,
+"Computadora portátil" ,
+"FOTO DEL RECUERDO"  ,
+"Equipo en prestamo de proveedor",
+"Bajo (Personal Académico y/o investigadores)",
+"Seminuevo (Windows Server | MAC y linux)" ,
+"Malo (equipo requiere incrementos | memoria |disco)",
+"CATALOGACIÓN FR-BNM" ,
+"CENTRO CERRADO DE TELEVICION Y MONITOREO" ,
+"12/12/12" ,
+"ALFREDO HIDALGO"));
         
         
                

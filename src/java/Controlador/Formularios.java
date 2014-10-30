@@ -220,6 +220,7 @@ public class Formularios extends HttpServlet {
         String opcion_ = "/>";
         String res = "";
         for(String elem:elementos){
+            
             res+=opcion+elem+"' "+"value='"+elem+"' "+opcion_+"\n";
         }
         return res;

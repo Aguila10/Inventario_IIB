@@ -6,6 +6,7 @@
 
 package Controlador;
 
+import Modelo.ConexionBD;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -22,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 public class BuscaEquipo extends HttpServlet {
 
     
-    
+    ConexionBD bd = new ConexionBD();
     public static final String PRIMERA_LINEA = "<form name=\"actualizacion\" action=\"\" class=\"smart-blue\" method=\"post\" onsubmit=\"\">";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,12 +39,20 @@ public class BuscaEquipo extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String campoDeBusqueda = request.getParameter("campoBusqueda");
-            out.print(obtenFormulario(campoDeBusqueda));
+            out.print(obtenTabla(campoDeBusqueda));
         }
     }
     
+    public String obtenTabla(String busqueda){
+        
+        //ArrayList<Equipo> lista = bd.buscaEquipo(Integer.parseInt(busqueda));
+        String t = "";
+        
+        return t;
+    }
     public String obtenFormulario(String campoDeBusqueda){
         String form = "";
+        /*
         String cad = "cadena";
         form += PRIMERA_LINEA;
         form += "<div class=\"dosColumnas\">\n" +
@@ -153,6 +162,7 @@ public class BuscaEquipo extends HttpServlet {
 "\n" +
 "			<input type=\"submit\" value=\"Aceptar\" class=\"button\">\n" +
 "		</form>";
+        */
         
         return form;
     }
