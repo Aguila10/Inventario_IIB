@@ -80,3 +80,13 @@ function buscaEquipo() {
 	});
     
 }
+
+function obtenCatalogo(){
+    var cat = document.getElementById("verCatalogo").value;
+    $.post("MuestraCatalogos", {
+		catalogo : cat
+	},function(data){
+		$("#resultadoBusqueda").html(data);
+	});
+    
+}

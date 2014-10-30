@@ -9,6 +9,7 @@ package Controlador;
 import Modelo.ConexionBD;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,10 +46,30 @@ public class BuscaEquipo extends HttpServlet {
     
     public String obtenTabla(String busqueda){
         
-        //ArrayList<Equipo> lista = bd.buscaEquipo(Integer.parseInt(busqueda));
-        String t = "";
+        ArrayList<String> lista = new ArrayList();//bd.buscaEquipo(Integer.parseInt(busqueda));
         
-        return t;
+        lista.add("uno");
+        lista.add("dos");
+        lista.add("tres");
+        
+        String tablaIn = "<table style=\"width:100%\">";
+        String tablaFin = "</table>";
+        String tr1 = "<tr>";
+        String tr2 = "</tr>";
+        String td1 = "<td>";
+        String td2 = "</td>";
+        
+        String tabla = "";
+        tabla+=tablaIn;
+        for(String elem:lista){
+            tabla+=tr1;
+            tabla+=td1;
+            tabla+=elem;
+            tabla+=td2;
+            tabla+=tr2;
+        }
+        tabla+=tablaFin;
+        return tabla;
     }
     public String obtenFormulario(String campoDeBusqueda){
         String form = "";
