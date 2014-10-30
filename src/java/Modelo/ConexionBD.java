@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class ConexionBD {
 
     String driver = "org.postgresql.Driver";
-    String connectString = "jdbc:postgresql://localhost:5432/Inventario_IIB";
+    String connectString = "jdbc:postgresql://localhost:5432/Inventario";
     String user = "darktech";
     String password = "darktech";
     
