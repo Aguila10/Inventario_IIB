@@ -49,10 +49,11 @@ public class ConexionBD {
 
     
     
-     public String buscaNombreLogin(String login_nombre) {
+     public ArrayList<String> buscaNombreLogin(String login_nombre) {
         String res = "error";
         Statement statement;
         ResultSet resultSet;
+        ArrayList<String> resultado = new ArrayList<String>();
 
         try {
             Connection con = DriverManager.getConnection(connectString, user, password);
@@ -61,12 +62,13 @@ public class ConexionBD {
 
             while (resultSet.next()) {
                 res = resultSet.getString(1) +"     " +resultSet.getString(2);
+             resultado.add(res);
             }
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
-        return res;
+        return resultado;
     }
     
     
