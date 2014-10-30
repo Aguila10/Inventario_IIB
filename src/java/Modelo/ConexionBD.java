@@ -47,6 +47,29 @@ public class ConexionBD {
         return res;
     }
 
+    
+    
+     public String buscaNombreLogin(String login_nombre) {
+        String res = "error";
+        Statement statement;
+        ResultSet resultSet;
+
+        try {
+            Connection con = DriverManager.getConnection(connectString, user, password);
+            statement = con.createStatement();
+            resultSet = statement.executeQuery("SELECT * from  buscaNombreLogin('" + login_nombre + "');");
+
+            while (resultSet.next()) {
+                res = resultSet.getString(1) +"     " +resultSet.getString(2);
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return res;
+    }
+    
+    
     public boolean insertaUsuario(String login, String pass, String nombre, String categoria) {
         boolean res = false;
         Statement statement;
@@ -197,11 +220,14 @@ public class ConexionBD {
 //                "12/12/12",
 //                "ALFREDO HIDALGO"));
         
-        ArrayList<Equipo> a = con.buscaEquipo(111);
-        
-        for (int i = 0; i < a.size(); i++) {
-            System.out.println( a.get(i).getClave_activo_fijo());
-        }
+//        ArrayList<Equipo> a = con.buscaEquipo(111);
+//        
+//        for (int i = 0; i < a.size(); i++) {
+//            System.out.println( a.get(i).getClave_activo_fijo());
+       //}
+    
+        System.out.println(con.buscaNombreLogin("caen"));
+    
 
     }
 
