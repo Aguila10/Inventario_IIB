@@ -1,109 +1,109 @@
 <form name="alta" action="altaEquipo" class="smart-blue" method="post" onsubmit="return validaCampos()">
-			<h3>Equipo: Dar alta</h3>
-			<div class="dosColumnas">
-				<label for="activoFijo">Clave activo fijo:</label>
-				<input type="text" id="activoFijo" name="activoFijo">
-                                <label id="errorActivoFijo" class="errorFormulario"></label>
-			</div>
-			<div class="dosColumnas derecha">
-				<label for="descripcion">Descripción: <i>(Número de inventario UNAM)</i></label>
-				<input type="text" id="descripcion" name="descripcion">
-				<label for="descripcion" id="errorDescripcion" class="errorFormulario"></label>
-			</div>
-			<div style="margin-top: 12%;">
-				<label for="descripcionExtendida">Descricpión extendida: <i>(Se hace la indicación de que incluye teclado y mouse u otros aditamentos, agregar aquí números de inventario de los aditamentos, en caso de tenerlo)</i></label>
-				<textarea maxlength = "500" style="height:30%;" id="descripcionExtendida" name="descripcionExtendida" cols="30" rows="10"></textarea>
-				<label id="errorDescripcionExtendida" class="errorFormulario"></label>
-			</div>
+    <h3>Equipo: Dar alta</h3>
+    <div class="dosColumnas">
+        <label for="activoFijo">Clave activo fijo:</label>
+        <input type="text" id="activoFijo" name="activoFijo">
+        <label id="errorActivoFijo" class="errorFormulario"></label>
+    </div>
+    <div class="dosColumnas derecha">
+        <label for="descripcion">Descripción: <i>(Número de inventario UNAM)</i></label>
+        <input type="text" id="descripcion" name="descripcion">
+        <label for="descripcion" id="errorDescripcion" class="errorFormulario"></label>
+    </div>
+    <div style="margin-top: 12%;">
+        <label for="descripcionExtendida">Descricpión extendida: <i>(Se hace la indicación de que incluye teclado y mouse u otros aditamentos, agregar aquí números de inventario de los aditamentos, en caso de tenerlo)</i></label>
+        <textarea maxlength = "500" style="height:30%;" id="descripcionExtendida" name="descripcionExtendida" cols="30" rows="10"></textarea>
+        <label id="errorDescripcionExtendida" class="errorFormulario"></label>
+    </div>
 
 
-			<div class="dosColumnas">
-				<label for="marca">Marca:</label>
-				<!--Cátalogo BD-->
-                                <input type="text" list="marca" name="marca"/>
-				<datalist id="marca" name="marca">
-                                                            
-				</datalist>
-				<!--<label id="errorMarca" class="errorFormulario">Esto es un error</label>-->
-				<label for="numeroSerie">Número de serie:</label>
-				<input type="text" id="numeroSerie" name="numeroSerie">
-				<!--<label id="errorNumeroSerie" class="errorFormulario">Esto es un error</label>-->
-				<label for="clase">Clase:</label>
-				<!--Cátalogo BD-->
-                                <input type="text" list="clase" name="clase"/>
-					<datalist id="clase" name="clase">
-						
-					</datalist>
-				<!--<label id="errorClase" class="errorFormulario">Esto es un error</label>-->
-				<label for="uso">Uso:</label>
-				<!--Cátalogo BD-->
-                                <input type="text" list="uso" name="uso"/>
-				<datalist id="uso" name="uso">
-					
-				</datalist>
-				<!--<label id="errorUso" class="errorFormulario">Esto es un error</label>-->
-				<label for="estadoFisico">Estado físico:</label>
-				<!--Cátalogo BD-->
-                                <input type="text" list="estadoFisico" name="estadoFisico"/>
-				<datalist id="estadoFisico" name="estadoFisico">
-					
-				</datalist>
-				<!--<label id="errorEstadoFisico" class="errorFormulario">Esto es un error</label>-->
-				<label for="ubicacion">Ubicación:</label>
-				<!--Cátalogo BD-->
-                                <input type="text" list="ubicacion" name="ubicacion"/>
-				<datalist id="ubicacion" name="ubicacion">
-					
-				</datalist>
-				<!--<label id="errorUbicacion" class="errorFormulario">Esto es un error</label>-->
-			</div>
+    <div class="dosColumnas">
+        <label for="marca">Marca:</label>
+        <!--Cátalogo BD-->
+        <input type="text" list="marca" name="marca"/>
+        <datalist id="marca" name="marca">
+
+        </datalist>
+        <!--<label id="errorMarca" class="errorFormulario">Esto es un error</label>-->
+        <label for="numeroSerie">Número de serie:</label>
+        <input type="text" id="numeroSerie" name="numeroSerie">
+        <!--<label id="errorNumeroSerie" class="errorFormulario">Esto es un error</label>-->
+        <label for="clase">Clase:</label>
+        <!--Cátalogo BD-->
+        <input type="text" list="clase" name="clase"/>
+        <datalist id="clase" name="clase">
+
+        </datalist>
+        <!--<label id="errorClase" class="errorFormulario">Esto es un error</label>-->
+        <label for="uso">Uso:</label>
+        <!--Cátalogo BD-->
+        <input type="text" list="uso" name="uso"/>
+        <datalist id="uso" name="uso">
+
+        </datalist>
+        <!--<label id="errorUso" class="errorFormulario">Esto es un error</label>-->
+        <label for="estadoFisico">Estado físico:</label>
+        <!--Cátalogo BD-->
+        <input type="text" list="estadoFisico" name="estadoFisico"/>
+        <datalist id="estadoFisico" name="estadoFisico">
+
+        </datalist>
+        <!--<label id="errorEstadoFisico" class="errorFormulario">Esto es un error</label>-->
+        <label for="ubicacion">Ubicación:</label>
+        <!--Cátalogo BD-->
+        <input type="text" list="ubicacion" name="ubicacion"/>
+        <datalist id="ubicacion" name="ubicacion">
+
+        </datalist>
+        <!--<label id="errorUbicacion" class="errorFormulario">Esto es un error</label>-->
+    </div>
 
 
-			<div class="dosColumnas derecha">
-				<label for="modelo">Modelo:</label>
-				<input type="text" id="modelo" name="modelo"/>
-				<!--<label id="errorModelo" class="errorFormulario">Esto es un error</label>-->
-				<label for="familia">Familia:</label>
-				<!--Cátalogo BD-->
-                                <input type="text" list="familia" name="familia"/>
-				<datalist id="familia" name="familia">
-					
-				</datalist>
-				<!--<label id="errorFamilia" class="errorFormulario">Esto es un error</label>-->
-				<label for="tipoActivoFijo">Tipo activo fijo:</label>
-				<!--Cátalogo BD-->
-                                <input type="text" list="tipoActivoFijo" name="tipoActivoFijo"/>
-				<datalist id="tipoActivoFijo" name="tipoActivoFijo">
-					
-				</datalist>
-				<!--<label id="errorActivoFijo" class="errorFormulario">Esto es un error</label>-->
-				<label for="nivelObsolencia">Nivel de obsolencia:</label>
-				<!--Cátalogo BD-->
-                                <input type="text" list="nivelObsolencia" name="nivelObsolencia"/>
-				<datalist id="nivelObsolencia" name="nivelObsolencia">
-					
-				</datalist>
-				<!--<label id="errorNivelObsolencia" class="errorFormulario">Esto es un error</label>-->
-				<label for="centroCosto">Centro de costo:</label>
-				<!--Cátalogo BD-->
-                                <input type="text" list="centroCosto" name="centroCosto"/>
-				<datalist id="centroCosto" name="centroCosto">
-					
-				</datalist>
-				<!--<label id="errorCentroCosto" class="errorFormulario">Esto es un error</label>-->
-				<label for="proveedor">Proveedor:</label>
-				<!--Cátalogo BD-->
-                                <input type="text" list="proveedor" name="proveedor"/>
-				<datalist id="proveedor" name="proveedor">
-					
-				</datalist>
-				<!--<label id="errorProveedor" class="errorFormulario">Esto es un error</label>-->
-			</div>
-			<label for="responsable">Responsable: <i>(Usuario)</i></label>
-			<input type="text">
-			<label for="fechaResguardo">Fecha de resguardo: <i>(Fecha en la que se hizo la verificación)</i></label>
-			<input type="date" id="fechaResguardo" name="fechaResguardo" requiered>
-			<!--<label id="errorFechaResguardo" class="errorFormulario">Esto es un error</label>-->
+    <div class="dosColumnas derecha">
+        <label for="modelo">Modelo:</label>
+        <input type="text" id="modelo" name="modelo"/>
+        <!--<label id="errorModelo" class="errorFormulario">Esto es un error</label>-->
+        <label for="familia">Familia:</label>
+        <!--Cátalogo BD-->
+        <input type="text" list="familia" name="familia"/>
+        <datalist id="familia" name="familia">
 
-			<input type="submit" value="Aceptar" class="button">
-		</form>
+        </datalist>
+        <!--<label id="errorFamilia" class="errorFormulario">Esto es un error</label>-->
+        <label for="tipoActivoFijo">Tipo activo fijo:</label>
+        <!--Cátalogo BD-->
+        <input type="text" list="tipoActivoFijo" name="tipoActivoFijo"/>
+        <datalist id="tipoActivoFijo" name="tipoActivoFijo">
+
+        </datalist>
+        <!--<label id="errorActivoFijo" class="errorFormulario">Esto es un error</label>-->
+        <label for="nivelObsolencia">Nivel de obsolencia:</label>
+        <!--Cátalogo BD-->
+        <input type="text" list="nivelObsolencia" name="nivelObsolencia"/>
+        <datalist id="nivelObsolencia" name="nivelObsolencia">
+
+        </datalist>
+        <!--<label id="errorNivelObsolencia" class="errorFormulario">Esto es un error</label>-->
+        <label for="centroCosto">Centro de costo:</label>
+        <!--Cátalogo BD-->
+        <input type="text" list="centroCosto" name="centroCosto"/>
+        <datalist id="centroCosto" name="centroCosto">
+
+        </datalist>
+        <!--<label id="errorCentroCosto" class="errorFormulario">Esto es un error</label>-->
+        <label for="proveedor">Proveedor:</label>
+        <!--Cátalogo BD-->
+        <input type="text" list="proveedor" name="proveedor"/>
+        <datalist id="proveedor" name="proveedor">
+
+        </datalist>
+        <!--<label id="errorProveedor" class="errorFormulario">Esto es un error</label>-->
+    </div>
+    <label for="responsable">Responsable: <i>(Usuario)</i></label>
+    <input type="text">
+    <label for="fechaResguardo">Fecha de resguardo: <i>(Fecha en la que se hizo la verificación)</i></label>
+    <input type="date" id="fechaResguardo" name="fechaResguardo" requiered>
+    <!--<label id="errorFechaResguardo" class="errorFormulario">Esto es un error</label>-->
+
+    <input type="submit" value="Aceptar" class="button">
+</form>

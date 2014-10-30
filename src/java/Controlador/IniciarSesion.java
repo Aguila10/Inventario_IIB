@@ -37,7 +37,7 @@ public class IniciarSesion extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            out.println(revisarSesion(request,response));
+            out.println(revisarSesion(request, response));
             // revisarSesion(request, response);
         }
     }
@@ -90,18 +90,16 @@ public class IniciarSesion extends HttpServlet {
         Boolean validacion = true;
         String tipo_usuario;
         HttpSession sesion;
-        
-        
-        validacion = validacion && Validacion.valida_login(usuario);      
+
+        validacion = validacion && Validacion.valida_login(usuario);
         validacion = validacion && Validacion.valida_contrasenia(contrasenia, contrasenia);
-          
+
         if (validacion) {
             tipo_usuario = bd.buscaLogin(usuario, contrasenia);
             try {
-            
-           
+
                 if (!(tipo_usuario.equals("false"))) {
-                    
+
                     sesion = request.getSession(true);
 
                     switch (tipo_usuario) {
@@ -128,17 +126,17 @@ public class IniciarSesion extends HttpServlet {
                             response.sendRedirect("administrador.jsp");
                             break;
                     }
-                }                       
-            } catch (IOException ex) {       
+                }
+            } catch (IOException ex) {
                 //error en servidor
                 Logger.getLogger(IniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
-        
+
         //Regresa error
         return "No pasa";
-        
+
     }
 
 }

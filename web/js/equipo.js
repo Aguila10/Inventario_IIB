@@ -6,87 +6,87 @@
 
 
 
-function validaCampos(){
-    
+function validaCampos() {
+
     var reg = "[0-9]+$";
-    
+
     var claveAF = document.forms["alta"]["activoFijo"].value;
     var numInvUNAM = document.forms["alta"]["descripcion"].value;
     var descripcion = document.forms["alta"]["descripcionExtendida"].value;
-    
-    if(claveAF == "" || claveAF == null){
-        if(numInvUNAM == "" || numInvUNAM == null){
+
+    if (claveAF == "" || claveAF == null) {
+        if (numInvUNAM == "" || numInvUNAM == null) {
             //alert("Debes meter alguno de los campos");
-            document.getElementById("errorActivoFijo").innerHTML="campo inválido";
-            document.getElementById("errorDescripcion").innerHTML="campo inválido";
-            document.getElementById("errorDescripcionExtendida").innerHTML="";
+            document.getElementById("errorActivoFijo").innerHTML = "campo inválido";
+            document.getElementById("errorDescripcion").innerHTML = "campo inválido";
+            document.getElementById("errorDescripcionExtendida").innerHTML = "";
             return false;
         }
         // claveAF = null y numInvUNAM != null
-    var con = numInvUNAM.match(reg);
-    if(con == null){
-            document.getElementById("errorDescripcion").innerHTML="Este campo debe ser un numero";
+        var con = numInvUNAM.match(reg);
+        if (con == null) {
+            document.getElementById("errorDescripcion").innerHTML = "Este campo debe ser un numero";
             return false;
-    }
-
- 
-        if (descripcion == null || descripcion == ""){
-            document.getElementById("errorDescripcionExtendida").innerHTML="Este campo no debe ser vacío";
-            return false;
-        
         }
-    return true;
+
+
+        if (descripcion == null || descripcion == "") {
+            document.getElementById("errorDescripcionExtendida").innerHTML = "Este campo no debe ser vacío";
+            return false;
+
+        }
+        return true;
     }
 
     //claveAF != null
-    
+
     //checar si claveAF es numero
 
-        var con = claveAF.match(reg);
-    if(con == null){
-            document.getElementById("errorActivoFijo").innerHTML="Este campo debe ser un numero";
-            return false;
+    var con = claveAF.match(reg);
+    if (con == null) {
+        document.getElementById("errorActivoFijo").innerHTML = "Este campo debe ser un numero";
+        return false;
     }
-    if(numInvUNAM != ""){
+    if (numInvUNAM != "") {
         var r = numInvUNAM.match(reg)
-            if(r == null){
-            document.getElementById("errorDescripcion").innerHTML="Este caaaampo debe ser un numero";
-            return false;
-    }
-    }
-    
-    if (descripcion == null || descripcion == ""){
-            document.getElementById("errorDescripcionExtendida").innerHTML="Este campo no debe ser vacío";
+        if (r == null) {
+            document.getElementById("errorDescripcion").innerHTML = "Este caaaampo debe ser un numero";
             return false;
         }
-    
+    }
+
+    if (descripcion == null || descripcion == "") {
+        document.getElementById("errorDescripcionExtendida").innerHTML = "Este campo no debe ser vacío";
+        return false;
+    }
+
     return true;
-    
+
 }
 
 function buscaEquipo() {
-    
-    
+
+
     var x = document.getElementById("campoBusqueda").value;
     if (x == "" || x == null) {
-        document.getElementById("errorBusqueda").innerHMTL="EL campo de busqueda es vacio";
+        document.getElementById("errorBusqueda").innerHMTL = "EL campo de busqueda es vacio";
         return;
     }
-    
+
     $.post("BuscaEquipo", {
-		campoBusqueda : x
-	},function(data){
-		$("#resultadoBusqueda").html(data);
-	});
-    
+        campoBusqueda: x
+    }, function (data) {
+        $("#resultadoBusqueda").html(data);
+    });
+
 }
 
-function obtenCatalogo(){
+function obtenCatalogo() {
     var cat = document.getElementById("verCatalogo").value;
     $.post("MuestraCatalogos", {
-		catalogo : cat
-	},function(data){
-		$("#resultadoBusqueda").html(data);
-	});
-    
+        catalogo: cat
+    }, function (data) {
+        $("#resultadoBusqueda").html(data);
+    });
+
 }
