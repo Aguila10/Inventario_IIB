@@ -72,7 +72,12 @@ function buscaEquipo() {
         document.getElementById("errorBusqueda").innerHMTL="EL campo de busqueda es vacio";
         return;
     }
-    
+    var reg = "[0-9]+$";
+    var con = x.match(reg);
+    if(con == null){
+            document.getElementById("errorBusqueda").innerHTML="Debe ser un numero";
+            return;
+    }
     $.post("BuscaEquipo", {
 		campoBusqueda : x
 	},function(data){

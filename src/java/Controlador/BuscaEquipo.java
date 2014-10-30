@@ -63,9 +63,19 @@ public class BuscaEquipo extends HttpServlet {
         tabla+=tablaIn;
         for(String elem:lista){
             tabla+=tr1;
+            
             tabla+=td1;
             tabla+=elem;
             tabla+=td2;
+            
+            tabla+=td1;
+            tabla+=elem;
+            tabla+=td2;
+            
+            tabla+=td1;
+            tabla+=elem;
+            tabla+=td2;
+            
             tabla+=tr2;
         }
         tabla+=tablaFin;
