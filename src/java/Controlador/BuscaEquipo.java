@@ -7,9 +7,15 @@
 package Controlador;
 
 import Modelo.ConexionBD;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +46,7 @@ public class BuscaEquipo extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String campoDeBusqueda = request.getParameter("campoBusqueda");
-            out.print(obtenTabla(campoDeBusqueda));
+            out.print(obtenFormulario(campoDeBusqueda));
         }
     }
     
@@ -78,9 +84,42 @@ public class BuscaEquipo extends HttpServlet {
         return tabla;
     }
     public String obtenFormulario(String campoDeBusqueda){
+        ArrayList<Equipo> lista = bd.buscaEquipo(Integer.parseInt(campoDeBusqueda));
+        
         String form = "";
-        /*
+        if(lista.size() != 0){
+            Equipo equipo = lista.get(0);
+           
+            form = llenaFormularioAltaEquipo();
+            
+          
+            form = form.replace("action=\"altaEquipo\"","action=\"\"");
+            form = form.replace("method=\"post\" onsubmit=\"return validaCampos()\"","");
+            form = form.replace("<h3>Equipo: Dar alta</h3>","");
+            form = form.replace("<input type=\"submit\" value=\"Aceptar\" class=\"button\">","");
+            
+            form = form.replace("id=\"activoFijo\" name=\"activoFijo\"","id=\"activoFijo\" name=\"activoFijo\" value=\""+equipo.getClave_activo_fijo()+"\"");
+            form = form.replace("id=\"descripcion\" name=\"descripcion\"","id=\"descripcion\" name=\"descripcion\" value=\"" +equipo.getNum_inv_unam()+"\"");
+ 
+            form = form.replace("></textarea>",">"+equipo.getClave_descripcion()+"</textarea>");
+            form = form.replace("list=\"marca\" name=\"marca\"","list=\"marca\" name=\"marca\" value=\""+equipo.getClave_marcar()+"\"");
+            form = form.replace("id=\"numeroSerie\" name=\"numeroSerie\"","id=\"numeroSerie\" name=\"numeroSerie\" value=\""+equipo.getSerie()+"\"");
+            form = form.replace("list=\"clase\" name=\"clase\"","list=\"clase\" name=\"clase\" value=\""+equipo.getClase()+"\"");
+            form = form.replace("list=\"uso\" name=\"uso\"","list=\"uso\" name=\"uso\" value=\""+equipo.getUso()+"\"");
+            form = form.replace("list=\"estadoFisico\" name=\"estadoFisico\"","list=\"estadoFisico\" name=\"estadoFisico\" value=\""+equipo.getEstado_físico()+"\"");
+            form = form.replace("list=\"ubicacion\" name=\"ubicacion\"","list=\"ubicacion\" name=\"ubicacion\" value=\""+equipo.getClave_area()+"\"");
+            form = form.replace("id=\"modelo\" name=\"modelo\"","id=\"modelo\" name=\"modelo\" value=\""+equipo.getClave_modelo()+"\"");
+            form = form.replace("list=\"familia\" name=\"familia\"","list=\"familia\" name=\"familia\" value=\""+equipo.getClave_familia()+"\"");
+            form = form.replace("list=\"tipoActivoFijo\" name=\"tipoActivoFijo\"","list=\"tipoActivoFijo\" name=\"tipoActivoFijo\" value=\""+equipo.getClave_tipo()+"\"");
+            form = form.replace("list=\"nivelObsolencia\" name=\"nivelObsolencia\"","list=\"nivelObsolencia\" name=\"nivelObsolencia\" value=\""+equipo.getNivel_de_obsolescencia()+"\"");
+            form = form.replace("list=\"centroCosto\" name=\"centroCosto\"","list=\"centroCosto\" name=\"centroCosto\" value=\""+equipo.getClave_institucion()+"\"");
+            form = form.replace("list=\"proveedor\" name=\"proveedor\"","list=\"proveedor\" name=\"proveedor\" value=\""+equipo.getClave_proveedor()+"\"");
+            form = form.replace("id=\"responsable\" name=\"responsable\"","id=\"responsable\" name=\"responsable\" value=\""+equipo.getResponsable()+"\"");
+            form = form.replace("id=\"fechaResguardo\" name=\"fechaResguardo\"","id=\"fechaResguardo\" name=\"fechaResguardo\" value=\""+equipo.getFecha_de_resguardo()+"\"");
+        System.out.print(form);
+            /*    
         String cad = "cadena";
+        
         form += PRIMERA_LINEA;
         form += "<div class=\"dosColumnas\">\n" +
 "				<label for=\"activoFijo\">Clave activo fijo:</label>\n" +
@@ -189,9 +228,130 @@ public class BuscaEquipo extends HttpServlet {
 "\n" +
 "			<input type=\"submit\" value=\"Aceptar\" class=\"button\">\n" +
 "		</form>";
-        */
+            */
+            
+        }
+        
         
         return form;
+    }
+    /**
+     * Metodo que llena los catalogos del formulario equipoAlta antes de que se
+     * le muestre al usuario.
+     *
+     * @return form El formulario con los catalogos llenos.
+     */
+    public String llenaFormularioAltaEquipo() {
+        String form = "";
+        ServletContext context = getServletContext();
+        InputStream is = context.getResourceAsStream("/WEB-INF/formularios/equipoAlta.html");
+        if (is != null) {
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader reader = new BufferedReader(isr);
+            String text = "";
+            try {
+                while ((text = reader.readLine()) != null) {
+
+                    if (text.contains("<datalist id=\"marca\" name=\"marca\">")) {
+                        form += text;
+                        text = reader.readLine(); // <option>----</option>
+                        form += llenaCatalogo(getCatalogo("catalogo_marca"));
+                        continue;
+                    }
+                    if (text.contains("<datalist id=\"familia\" name=\"familia\">")) {
+                        form += text;
+                        text = reader.readLine(); // <option>----</option>
+                        form += llenaCatalogo(getCatalogo("catalogo_familia"));
+                        continue;
+                    }
+                    if (text.contains("<datalist id=\"clase\" name=\"clase\">")) {
+                        form += text;
+                        text = reader.readLine(); // <option>----</option>
+                        form += llenaCatalogo(getCatalogo("catalogo_clase"));
+                        continue;
+                    }
+                    if (text.contains("<datalist id=\"tipoActivoFijo\" name=\"tipoActivoFijo\">")) {
+                        form += text;
+                        text = reader.readLine(); // <option>----</option>
+                        form += llenaCatalogo(getCatalogo("catalogo_tipo_equipo"));
+                        continue;
+                    }
+                    if (text.contains("<datalist id=\"uso\" name=\"uso\">")) {
+                        form += text;
+                        text = reader.readLine(); // <option>----</option>
+                        form += llenaCatalogo(getCatalogo("catalogo_uso"));
+                        continue;
+                    }
+                    if (text.contains("<datalist id=\"nivelObsolencia\" name=\"nivelObsolencia\">")) {
+                        form += text;
+                        text = reader.readLine(); // <option>----</option>
+                        form += llenaCatalogo(getCatalogo("catalogo_nivel"));
+                        continue;
+                    }
+                    if (text.contains("<datalist id=\"estadoFisico\" name=\"estadoFisico\">")) {
+                        form += text;
+                        text = reader.readLine(); // <option>----</option>
+                        form += llenaCatalogo(getCatalogo("catalogo_estado_fisico"));
+                        continue;
+                    }
+                    if (text.contains("<datalist id=\"centroCosto\" name=\"centroCosto\">")) {
+                        form += text;
+                        text = reader.readLine(); // <option>----</option>
+                        form += llenaCatalogo(getCatalogo("catalogo_institucion"));
+                        continue;
+                    }
+                    if (text.contains("<datalist id=\"ubicacion\" name=\"ubicacion\">")) {
+                        form += text;
+                        text = reader.readLine(); // <option>----</option>
+                        form += llenaCatalogo(getCatalogo("catalogo_area"));
+                        continue;
+                    }
+                    if (text.contains("<datalist id=\"proveedor\" name=\"proveedor\">")) {
+                        form += text;
+                        text = reader.readLine(); // <option>----</option>
+                        form += llenaCatalogo(getCatalogo("catalogo_proveedor"));
+                        continue;
+                    }
+
+                    form += text;
+
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Formularios.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return form;
+    }
+
+/**
+     * Metodo que genera un catalogo en codigo html por ejemplo:
+     * <option> elem1 </option>
+     * <option> elem2 </option>
+     *
+     * @param elementos Un arraylist con elementos de un catalogo
+     * @return res El catalogo en codigo html
+     */
+    public String llenaCatalogo(ArrayList<String> elementos) {
+        String opcion = "<option label='";
+        String opcion_ = "/>";
+        String res = "";
+        for (String elem : elementos) {
+
+            res += opcion + elem + "' " + "value='" + elem + "' " + opcion_ + "\n";
+        }
+        return res;
+    }
+
+    /**
+     * Metodo que obtiene un catalogo de la base de datos y regresa los
+     * elementos de ese catalogo en un arraylist.
+     *
+     * @param catalogo El nombre del catalogo que se necesita
+     * @return cat . El arraylist con los elementos del catalogo.
+     */
+    public ArrayList getCatalogo(String catalogo) {
+        ArrayList<String> cat = bd.regresaCatalogo(catalogo);
+        return cat;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
