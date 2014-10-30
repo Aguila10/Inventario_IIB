@@ -1,6 +1,6 @@
 <!--Inicio búsqueda usuario a eliminar-->
 <div id="busqueda">
-    <input type="text" id="campoBusqueda" placeholder="Búsqueda nombre o login"/>
+    <input type="text" id="campoBusqueda" name="campoBusqueda" placeholder="Búsqueda nombre o login"/>
     <button><img src="img/search.png" ></button>
 </div>
 <!--Fin búsqueda usuario a eliminar-->
@@ -8,6 +8,7 @@
     <h3>Usuario: Dar Baja</h3>
     <!--Inicio resultados búsqueda-->
     <div id="resultadoBusqueda">
+        <%@include file="theJspToInclude.jsp" %>
         <span>No se ha seleccionado ningún usuario</span>
     </div>
     <!--Fin resultados búsqueda-->

@@ -61,7 +61,7 @@
             <!--fin formulario inicio de sesión-->
 
             <!--Inicio error-->
-            <div class="section group" id="error">
+            <div class="section group" id="error" hidden>
                 <p>
                     <!--Imagen error-->
                     <img src="img/error.png" alt="error">

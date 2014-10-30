@@ -16,12 +16,11 @@ import java.util.ArrayList;
 public class ConexionBD {
 
     String driver = "org.postgresql.Driver";
-    String connectString = "jdbc:postgresql://localhost:5432/Inventario";
+    String connectString = "jdbc:postgresql://localhost:5432/Inventario_IIB";
     String user = "darktech";
     String password = "darktech";
-
-    /**
-     * Metodo que regresa el el login pedido
+    
+     /* Metodo que regresa el el login pedido
      *
      * @param login parametro a buscar en la tabla registro
      * @return el login si lo encontro

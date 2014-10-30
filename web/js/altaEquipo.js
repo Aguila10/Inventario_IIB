@@ -50,7 +50,7 @@ function validaCampos() {
     if (numInvUNAM != "") {
         var r = numInvUNAM.match(reg)
         if (r == null) {
-            document.getElementById("errorDescripcion").innerHTML = "Este caaaampo debe ser un numero";
+            document.getElementById("errorDescripcion").innerHTML = "Este campo debe ser un numero";
             return false;
         }
     }

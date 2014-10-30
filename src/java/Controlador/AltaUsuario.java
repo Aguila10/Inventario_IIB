@@ -8,8 +8,6 @@ package Controlador;
 import Modelo.ConexionBD;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,8 +19,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author rae
  */
-@WebServlet(name = "IniciarSesion", urlPatterns = {"/IniciarSesion"})
-public class IniciarSesion extends HttpServlet {
+@WebServlet(name = "AltaUsuario", urlPatterns = {"/AltaUsuario"})
+public class AltaUsuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,7 +34,7 @@ public class IniciarSesion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-            revisarSesion(request, response);
+            registraUsuario(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -78,63 +76,65 @@ public class IniciarSesion extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void revisarSesion(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void registraUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         ConexionBD bd = new ConexionBD();
-
-        String usuario = request.getParameter("login");
-        String contrasenia = request.getParameter("contrasenia");
-        Boolean validacion = true;
-        String tipo_usuario;
+        String categoria = request.getParameter("categoria");
+        String nombre = request.getParameter("nombre");
+        String login = request.getParameter("login");
+        String correo = request.getParameter("correo");
+        String contraseniaUno = request.getParameter("contraseniaUno");
+        String contraseniaDos = request.getParameter("contraseniaDos");
         HttpSession sesion;
 
-        validacion = validacion && Validacion.valida_login(usuario);
-        validacion = validacion && Validacion.valida_contrasenia(contrasenia, contrasenia);
+        Boolean validacion = true;
+
+        validacion = validacion && Validacion.valida_nombre(nombre);
+        validacion = validacion && Validacion.valida_login(login);
+        validacion = validacion && Validacion.valida_mail(correo);
+        validacion = validacion && Validacion.valida_contrasenia(contraseniaUno, contraseniaDos);
 
         if (validacion) {
-            tipo_usuario = bd.buscaLogin(usuario, contrasenia);
- 
-                if (!(tipo_usuario.equals("false"))) {
+            bd.insertaUsuario(login, contraseniaUno, nombre, categoria);
+            sesion = request.getSession(true);
 
-                    sesion = request.getSession(true);
+            switch (categoria) {
+                case "Administrador":
+                    sesion.setAttribute("identidad", "administrador");
+                    sesion.setAttribute("login", login);
+                    response.sendRedirect("administrador.jsp");
+                    break;
+                case "Secretaria":
+                    sesion.setAttribute("identidad", "secretaria");
+                    sesion.setAttribute("login", login);
+                    response.sendRedirect("administrador.jsp");
+                    break;
 
-                    switch (tipo_usuario) {
-                        case "Administrador":
-                            sesion.setAttribute("identidad", "administrador");
-                            sesion.setAttribute("login", usuario);
-                            response.sendRedirect("administrador.jsp");
-                            break;
-                        case "Secretaria":
-                            sesion.setAttribute("identidad", "secretaria");
-                            sesion.setAttribute("login", usuario);
-                            response.sendRedirect("administrador.jsp");
-                            break;
+                case "Tecnico Academico":
+                    sesion.setAttribute("identidad", "tecnico academico");
+                    sesion.setAttribute("login", login);
+                    response.sendRedirect("administrador.jsp");
+                    break;
 
-                        case "Tecnico Academico":
-                            sesion.setAttribute("identidad", "tecnico academico");
-                            sesion.setAttribute("login", usuario);
-                            response.sendRedirect("administrador.jsp");
-                            break;
+                case "Jefe de inventario":
+                    sesion.setAttribute("identidad", "jefe de inventario");
+                    sesion.setAttribute("login", login);
+                    response.sendRedirect("administrador.jsp");
+                    break;
+            }
 
-                        case "Jefe de inventario":
-                            sesion.setAttribute("identidad", "jefe de inventario");
-                            sesion.setAttribute("login", usuario);
-                            response.sendRedirect("administrador.jsp");
-                            break;
-                    }
-                }
-        }else{
-         
-            mandaMensaje("Error al iniciar sesion",response);
+        } else {
             
+                mandaMensaje("Error Registrando Usuario",response);
+
         }
+
     }
-    
-        public void mandaMensaje(String mensaje, HttpServletResponse response) throws IOException {
+
+    public void mandaMensaje(String mensaje, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            //response.sendRedirect("administrador.jsp?mensaje=" + mensaje);
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("administrador.jsp?mensaje=" + mensaje);
         }
     }
 

@@ -30,9 +30,9 @@
         <!--Scripts página-->
         <script src="js/jquery-1.10.1.min.js"></script>
         <script src="js/ajaxFormularios.js"></script>
-        <script src="js/equipo.js"></script>
-
-
+        <script src="js/altaEquipo.js"></script>
+        <script src="js/iniciarSesion.js"></script> 
+        <script src="js/altaUsuario.js"></script>
 
     </head>
     <body>

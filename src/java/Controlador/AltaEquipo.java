@@ -90,9 +90,7 @@ public class AltaEquipo extends HttpServlet {
     public void mandaMensaje(String mensaje, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
             response.sendRedirect("administrador.jsp?mensaje=" + mensaje);
-
         }
     }
 
