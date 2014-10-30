@@ -4,7 +4,7 @@
 .smart-blue label {display: block;margin: 0px 0px 1%;}
 .smart-blue label>span{float: left;margin-top: 2%;}
 .smart-blue input[type="password"],.smart-blue input[type="url"],.smart-blue input[type="number"],.smart-blue input[type="date"], .smart-blue input[type="text"], .smart-blue input[type="email"], .smart-blue textarea, .smart-blue select {
-color: black;height: 30px;width: 100%;padding: 0px 0px 0px 1%;margin-top: 2px;border: 1px solid #E5E5E5;background: #FBFBFB;-webkit-box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);}
+    color: black;height: 30px;width: 100%;padding: 0px 0px 0px 1%;margin-top: 2px;border: 1px solid #E5E5E5;background: #FBFBFB;-webkit-box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);}
 .smart-blue .button {background-color: #132B5A;border-radius: 5px;-webkit-border-radius: 5px;-moz-border-border-radius: 5px;border: none;padding: 2% 3% 2% 3%;color: #FFF;margin-top: 3%; margin-left: 40%;}
 .smart-blue .button:hover {background-color:#B8BEC9;}
 .errorFormulario{color:red;font-style: italic;}

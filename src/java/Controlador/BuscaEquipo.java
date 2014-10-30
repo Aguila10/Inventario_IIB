@@ -46,11 +46,7 @@ public class BuscaEquipo extends HttpServlet {
     
     public String obtenTabla(String busqueda){
         
-        ArrayList<String> lista = new ArrayList();//bd.buscaEquipo(Integer.parseInt(busqueda));
-        
-        lista.add("uno");
-        lista.add("dos");
-        lista.add("tres");
+        ArrayList<Equipo> lista = bd.buscaEquipo(Integer.parseInt(busqueda));
         
         String tablaIn = "<table style=\"width:100%\">";
         String tablaFin = "</table>";
@@ -61,19 +57,19 @@ public class BuscaEquipo extends HttpServlet {
         
         String tabla = "";
         tabla+=tablaIn;
-        for(String elem:lista){
+        for(Equipo elem:lista){
             tabla+=tr1;
             
             tabla+=td1;
-            tabla+=elem;
+            tabla+=String.valueOf(elem.getClave_activo_fijo());
             tabla+=td2;
             
             tabla+=td1;
-            tabla+=elem;
+            tabla+=String.valueOf(elem.getNum_inv_unam());
             tabla+=td2;
             
             tabla+=td1;
-            tabla+=elem;
+            tabla+=elem.getClave_descripcion();
             tabla+=td2;
             
             tabla+=tr2;

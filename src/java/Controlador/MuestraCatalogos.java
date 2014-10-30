@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Controlador;
 
 import java.io.IOException;
@@ -35,30 +34,30 @@ public class MuestraCatalogos extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           String catalogo = request.getParameter("catalogo");
-           Formularios f = new Formularios();
-           ArrayList<String> cats = f.getCatalogo(catalogo);
+            String catalogo = request.getParameter("catalogo");
+            Formularios f = new Formularios();
+            ArrayList<String> cats = f.getCatalogo(catalogo);
             out.print(generaTabla(cats));
-           }
         }
-    
+    }
+
     /**
-     * 
+     *
      * @param cat. Un arraylist con los elementos de un catalogo
      * @return tabla. La tabla en html.
      */
-    public String generaTabla(ArrayList<String> cat){
+    public String generaTabla(ArrayList<String> cat) {
         String tabla = "";
-        tabla+= "<table style=\"width=100%\">";
-        
-        for(String elem:cat){
-            tabla+="<tr>";
-            tabla+="<td>";
-            tabla+=elem;
-            tabla+="</td>";
-            tabla+="</tr>";
+        tabla += "<table style=\"width=100%\">";
+
+        for (String elem : cat) {
+            tabla += "<tr>";
+            tabla += "<td>";
+            tabla += elem;
+            tabla += "</td>";
+            tabla += "</tr>";
         }
-        tabla+="</table>";
+        tabla += "</table>";
         return tabla;
     }
 
