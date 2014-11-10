@@ -48,7 +48,7 @@ public class ConexionBD {
 
     
     
-     public ArrayList<String[]> buscaNombreLogin(String login_nombre) {
+     public ArrayList<String[]>  buscaNombreLogin(String login_nombre) {
         String res = "error";
         Statement statement;
         ResultSet resultSet;
@@ -61,9 +61,15 @@ public class ConexionBD {
             resultSet = statement.executeQuery("SELECT * from  buscaNombreLogin('" + login_nombre + "');");
 
             while (resultSet.next()) {
-                nombre[0]=resultSet.getString(1);
-                nombre[1]=resultSet.getString(2);
-            resultado.add(nombre);
+                nombre[0] = resultSet.getString(1);
+                nombre[1]= resultSet.getString(2);
+                
+               // System.out.println(  nombre[0] +" , " + nombre[1]);
+               String[] nuevo = new String[2];
+               nuevo[0]= nombre[0];
+               nuevo[1]= nombre[1];
+                resultado.add(nuevo);
+                
             }
 
         } catch (SQLException ex) {
@@ -197,41 +203,20 @@ public class ConexionBD {
     public static void main(String[] args) {
 
         ConexionBD con = new ConexionBD();
-//       
-//        System.out.println( con.insertaUsuario("rene_sec", "holamundo", "rene", "Secretaria"));
-//        System.out.println( con.insertaUsuario("rene_aca", "holamundo", "rene", "Tecnico Academico"));
-//        System.out.println( con.insertaUsuario("rene_inv", "holamundo", "rene", "Jefe de inventario"));
-//
-//        System.out.println(con.buscaLogin("rene_adm", "holamundo"));
-
-//        System.out.println(con.insertaEquipo(
-//                111,
-//                111,
-//                "Descripcion12",
-//                "12hffg",
-//                "ACTECK",
-//                "12345",
-//                "INTEL PENTIUM D|COREDUO|CORE2DU| AMD ATHLON| X2DUAL| CR2QUAD| CR2 Y EQUIVALENTE",
-//                "Computadora portátil",
-//                "FOTO DEL RECUERDO",
-//                "Equipo en prestamo de proveedor",
-//                "Bajo (Personal Académico y/o investigadores)",
-//                "Seminuevo (Windows Server | MAC y linux)",
-//                "Malo (equipo requiere incrementos | memoria |disco)",
-//                "CATALOGACIÓN FR-BNM",
-//                "CENTRO CERRADO DE TELEVICION Y MONITOREO",
-//                "12/12/12",
-//                "ALFREDO HIDALGO"));
+//   
+    
+        ArrayList<String[]> lista =  con.buscaNombreLogin("caen");
         
-//        ArrayList<Equipo> a = con.buscaEquipo(111);
-//        
-//        for (int i = 0; i < a.size(); i++) {
-//            System.out.println( a.get(i).getClave_activo_fijo());
-       //}
-    
-        System.out.println(con.buscaNombreLogin("caen"));
-    
-
+        for (int i = 0; i < lista.size(); i++) {
+         
+        System.out.println(lista.get(i)[0] + " , " + lista.get(i)[1] );
+           
+        }
+        
+        
+        
+        
+        
     }
 
 }

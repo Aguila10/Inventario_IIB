@@ -64,7 +64,7 @@ public class ConexionBDTest {
         String login_nombre = "";
         ConexionBD instance = new ConexionBD();
         ArrayList<String> expResult = null;
-        ArrayList<String> result = instance.buscaNombreLogin(login_nombre);
+        ArrayList<String[]> result = instance.buscaNombreLogin(login_nombre);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
