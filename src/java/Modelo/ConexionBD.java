@@ -48,11 +48,12 @@ public class ConexionBD {
 
     
     
-     public ArrayList<String> buscaNombreLogin(String login_nombre) {
+     public ArrayList<String[]> buscaNombreLogin(String login_nombre) {
         String res = "error";
         Statement statement;
         ResultSet resultSet;
-        ArrayList<String> resultado = new ArrayList<String>();
+        ArrayList<String[]> resultado = new ArrayList<String[]>();
+        String [] nombre = new String[2];
 
         try {
             Connection con = DriverManager.getConnection(connectString, user, password);
@@ -60,8 +61,9 @@ public class ConexionBD {
             resultSet = statement.executeQuery("SELECT * from  buscaNombreLogin('" + login_nombre + "');");
 
             while (resultSet.next()) {
-                res = resultSet.getString(1) +"     " +resultSet.getString(2);
-             resultado.add(res);
+                nombre[0]=resultSet.getString(1);
+                nombre[1]=resultSet.getString(2);
+            resultado.add(nombre);
             }
 
         } catch (SQLException ex) {
