@@ -169,6 +169,12 @@ public class Formularios extends HttpServlet {
                         form += llenaCatalogo(getCatalogo("catalogo_proveedor"));
                         continue;
                     }
+                    if (text.contains("<datalist id=\"responsable\" name=\"responsable\">")) {
+                        form += text;
+                        text = reader.readLine(); // <option>----</option>
+                        form += llenaCatalogo(getCatalogo("catalogo_responsable"));
+                        continue;
+                    }
 
                     form += text;
 

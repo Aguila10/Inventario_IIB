@@ -46,7 +46,7 @@ public class BuscaEquipo extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String campoDeBusqueda = request.getParameter("campoBusqueda");
-            out.print(obtenFormulario(campoDeBusqueda));
+            out.print(obtenTabla(campoDeBusqueda));
         }
     }
     
@@ -60,9 +60,13 @@ public class BuscaEquipo extends HttpServlet {
         String tr2 = "</tr>";
         String td1 = "<td>";
         String td2 = "</td>";
+        String boton = "<button onclick=\"\" >Actualizar</button>";
         
         String tabla = "";
         tabla+=tablaIn;
+        
+        tabla+="<th> <td>Clave Activo Fijo</td> <td> Num. inventario </td> <td>Serie</td>"
+                + "<td>Marca</td>  <td>Tipo Activo</td> <td>Selección</td> </th>";
         for(Equipo elem:lista){
             tabla+=tr1;
             
@@ -75,14 +79,28 @@ public class BuscaEquipo extends HttpServlet {
             tabla+=td2;
             
             tabla+=td1;
-            tabla+=elem.getClave_descripcion();
+            tabla+=elem.getSerie();
+            tabla+=td2;
+            
+            tabla+=td1;            
+            tabla+=elem.getClave_marcar();
+            tabla+=td2;
+            
+            tabla+=td1;
+            tabla+=elem.getClave_tipo();
+            tabla+=td2;
+            
+            tabla+=td1;
+            tabla+="<input type=\"radio\" value=\"inventario\"/>";
             tabla+=td2;
             
             tabla+=tr2;
         }
         tabla+=tablaFin;
+        tabla+=boton;
         return tabla;
     }
+    
     public String obtenFormulario(String campoDeBusqueda){
         ArrayList<Equipo> lista = bd.buscaEquipo(Integer.parseInt(campoDeBusqueda));
         
