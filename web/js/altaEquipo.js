@@ -19,7 +19,11 @@ function validaCampos() {
             //alert("Debes meter alguno de los campos");
             document.getElementById("errorActivoFijo").innerHTML = "campo inválido";
             document.getElementById("errorDescripcion").innerHTML = "campo inválido";
-            document.getElementById("errorDescripcionExtendida").innerHTML = "";
+            if(descripcion == ""){
+                document.getElementById("errorDescripcionExtendida").innerHTML = "Debes llenar este campo";
+            } else {
+                document.getElementById("errorDescripcionExtendida").innerHTML = "";                
+            }
             return false;
         }
         // claveAF = null y numInvUNAM != null

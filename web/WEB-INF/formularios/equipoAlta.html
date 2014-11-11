@@ -6,7 +6,7 @@
         <label id="errorActivoFijo" class="errorFormulario"></label>
     </div>
     <div class="dosColumnas derecha">
-        <label for="descripcion">Descripción: <i>(Número de inventario UNAM)</i></label>
+        <label for="descripcion">Número de inventario UNAM</label>
         <input type="text" id="descripcion" name="descripcion">
         <label for="descripcion" id="errorDescripcion" class="errorFormulario"></label>
     </div>
@@ -56,6 +56,10 @@
 
         </datalist>
         <!--<label id="errorUbicacion" class="errorFormulario">Esto es un error</label>-->
+        
+        <label for="fechaResguardo">Fecha de resguardo:</label>    
+    <input type="date" id="fechaResguardo" name="fechaResguardo" requiered>
+    <!--<label id="errorFechaResguardo" class="errorFormulario">Esto es un error</label>-->
     </div>
 
 
@@ -97,13 +101,15 @@
         <datalist id="proveedor" name="proveedor">
 
         </datalist>
+   
         <!--<label id="errorProveedor" class="errorFormulario">Esto es un error</label>-->
+        
+         <label for="responsable">Responsable: <i>(Usuario)</i></label>
+    <input type="text" list="responsable" name="responsable">
+    <datalist id="responsable" name="responsable">
+        </datalist>
+    
     </div>
-    <label for="responsable">Responsable: <i>(Usuario)</i></label>
-    <input type="text" id="responsable" name="responsable">
-    <label for="fechaResguardo">Fecha de resguardo: <i>(Fecha en la que se hizo la verificación)</i></label>
-    <input type="date" id="fechaResguardo" name="fechaResguardo" requiered>
-    <!--<label id="errorFechaResguardo" class="errorFormulario">Esto es un error</label>-->
 
     <input type="submit" value="Aceptar" class="button">
 </form>
