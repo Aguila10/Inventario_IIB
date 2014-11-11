@@ -159,14 +159,14 @@ public class ConexionBD {
                 estado_físico = resultSet.getString(14);
                 clave_area = resultSet.getString(15);
                 clave_institucion = resultSet.getString(16);
-                id_usuario_asignado = resultSet.getString(17);
-                fecha_de_resguardo = resultSet.getString(18);
-                responsable = resultSet.getString(19);
-                estado = resultSet.getBoolean(20);
+               
+                fecha_de_resguardo = resultSet.getString(17);
+                responsable = resultSet.getString(18);
+                estado = resultSet.getBoolean(19);
 
                 Equipo a = new Equipo(id_equipo, clave_activo_fijo, num_inv_unam,
                         clave_descripcion, clave_modelo, clave_marcar, serie, clave_familia, clave_tipo, clave_proveedor, clase,
-                        uso, nivel_de_obsolescencia, estado_físico, clave_area, clave_institucion, id_usuario_asignado,
+                        uso, nivel_de_obsolescencia, estado_físico, clave_area, clave_institucion, 
                         fecha_de_resguardo, responsable, estado);
             
            res.add(a); 
@@ -199,23 +199,105 @@ public class ConexionBD {
 
         return lista;
     }
+    
+    
+     public Equipo regresaEquipo(int id_equipo) {
+        String res = "";
+        int id_equipo1, clave_activo_fijo, num_inv_unam;
+        String clave_descripcion, clave_modelo, clave_marcar, serie,
+                clave_familia, clave_tipo, clave_proveedor, clase,
+                uso, nivel_de_obsolescencia, estado_físico,
+                clave_area, clave_institucion, id_usuario_asignado,
+                fecha_de_resguardo, responsable;
+        boolean estado;
+        Equipo a = null;
+        try {
+            Class.forName(driver);
+            Connection con = DriverManager.getConnection(connectString, user, password);
+            PreparedStatement query = con.prepareStatement("select * from equipo where id_equipo = " + id_equipo);
+
+            ResultSet resultSet = query.executeQuery();
+            while (resultSet.next()) {
+                 id_equipo1 = resultSet.getInt(1);
+                clave_activo_fijo = resultSet.getInt(2);
+                num_inv_unam = resultSet.getInt(3);
+                clave_descripcion = resultSet.getString(4);
+                clave_modelo = resultSet.getString(5);
+                clave_marcar = resultSet.getString(6);
+                serie = resultSet.getString(7);
+                clave_familia = resultSet.getString(8);
+                clave_tipo = resultSet.getString(9);
+                clave_proveedor = resultSet.getString(10);
+                clase = resultSet.getString(11);
+                uso = resultSet.getString(12);
+                nivel_de_obsolescencia = resultSet.getString(13);
+                estado_físico = resultSet.getString(14);
+                clave_area = resultSet.getString(15);
+                clave_institucion = resultSet.getString(16);
+                fecha_de_resguardo = resultSet.getString(17);
+                responsable = resultSet.getString(18);
+                estado = resultSet.getBoolean(19);
+
+                 a = new Equipo(id_equipo1, clave_activo_fijo, num_inv_unam,
+                        clave_descripcion, clave_modelo, clave_marcar, serie, clave_familia, clave_tipo, clave_proveedor, clase,
+                        uso, nivel_de_obsolescencia, estado_físico, clave_area, clave_institucion, 
+                        fecha_de_resguardo, responsable, estado);
+            }
+        } catch (SQLException | java.lang.ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return a;
+    }
+    
+    
+    
+     public boolean  eliminaUsuario(String login) {
+        boolean res = true;
+        Statement statement;
+        ResultSet resultSet;
+       
+       
+
+        try {
+            Connection con = DriverManager.getConnection(connectString, user, password);
+            statement = con.createStatement();
+            resultSet = statement.executeQuery("SELECT * from  eliminaUsuario('" + login + "');");
+
+            while (resultSet.next()) {
+                 res = resultSet.getBoolean(1);
+                
+                
+            
+                
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return res;
+    }
+     
+     
+     
+     
 
     public static void main(String[] args) {
 
         ConexionBD con = new ConexionBD();
 //   
     
-        ArrayList<String[]> lista =  con.buscaNombreLogin("caen");
+//        ArrayList<String[]> lista =  con.buscaNombreLogin("caen");
+//        
+//        for (int i = 0; i < lista.size(); i++) {
+//         
+//        System.out.println(lista.get(i)[0] + " , " + lista.get(i)[1] );
+//           
+//        }
         
-        for (int i = 0; i < lista.size(); i++) {
-         
-        System.out.println(lista.get(i)[0] + " , " + lista.get(i)[1] );
-           
-        }
+       /// System.out.println(con.eliminaUsuario("rene"));
         
-        
-        
-        
+        System.out.println(con.regresaEquipo(1).getClave_area());
         
     }
 
