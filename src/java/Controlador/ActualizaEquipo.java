@@ -37,9 +37,9 @@ public class ActualizaEquipo extends HttpServlet {
             
             
             if(actualizaEquipo(request,response)){
-                out.print("Actualización exitosa");
+                mandaMensaje("Acttualización exitosa",response);
             } else {
-                out.print("Actualización fallida");                
+                mandaMensaje("Actualización fallida",response);                
             }
                 
 
@@ -48,20 +48,21 @@ public class ActualizaEquipo extends HttpServlet {
         
     private boolean actualizaEquipo(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
-        int activoFij = Integer.parseInt(request.getParameter("activoFij"));
+        //int activoFij = Integer.parseInt(request.getParameter("activoFij"));
+        String activoFij = request.getParameter("activoFijo");
         String descripcion = request.getParameter("descripcion");
-        String descripcionExt = request.getParameter("descripcionExt");
-        String numeroSer = request.getParameter("numeroSer");
+        String descripcionExt = request.getParameter("descripcionExtendida");
+        String numeroSer = request.getParameter("numeroSerie");
         String clase = request.getParameter("clase");
         String uso = request.getParameter("uso");
-        String estado = request.getParameter("estado");
+        String estado = request.getParameter("estadoFisico");
         String ubicacion = request.getParameter("ubicacion");
-        String fechaRes=request.getParameter("fechaRes");  
+        String fechaRes=request.getParameter("fechaResguardo");  
         String modelo=request.getParameter("modelo");
         String familia=request.getParameter("familia");
-        String tipoActivo=request.getParameter("tipoAct");
-        String nivelObs=request.getParameter("nivelObs");
-        String centroCos=request.getParameter("centroCos");
+        String tipoActivo=request.getParameter("tipoActivoFijo");
+        String nivelObs=request.getParameter("nivelObsolencia");
+        String centroCos=request.getParameter("centroCosto");
         String proveedor=request.getParameter("proveedor");
         String responsable=request.getParameter("responsable");
         
@@ -83,7 +84,12 @@ public class ActualizaEquipo extends HttpServlet {
         System.out.println(responsable);
     return true;
     }
-
+    public void mandaMensaje(String mensaje, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            response.sendRedirect("administrador.jsp?mensaje=" + mensaje);
+        }
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -158,10 +158,11 @@ function muestraFormulario(){
 }
 
 function actualizaEquipo() {
-    if(!validaCampos(null,"algo")){
-        return;
+    if(!validaCampos("si","actualiza")){
+        return false;
     }
-    
+    return true;
+    /*
     var activo = document.getElementById("activoFijo").value;
     var descrip = document.getElementById("descripcion").value;
     var descripExt = document.getElementById("descripcionExtendida").value;
@@ -180,7 +181,7 @@ function actualizaEquipo() {
    var provee = document.getElementById("proveedor").value;
    var resp = document.getElementByName("r").value;
    alert(resp);
- 
+ *//*
     $.post("ActualizaEquipo", {
         activoFij:activo,
         descripcion:descrip,
@@ -201,6 +202,7 @@ function actualizaEquipo() {
     }, function (data) {
         $("#resultadoBusqueda").html(data);
     });
+    */
 }
 function esVisible(id){
     return document.getElementById(id).style.visibility === 'visible';
