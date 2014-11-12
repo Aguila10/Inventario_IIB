@@ -30,6 +30,9 @@
 #caratula{width: 80%;}
 #enlaceBiblioteca {margin-left: -30%; margin-top: 5%; width: 70%;}
 
+/*Errores*/
+#errorBusqueda1{font-size: 70%;}
+
 
 /*Estilos para errores*/
 #errorBusqueda1{font-size: 80%;margin-left: 25%;}
