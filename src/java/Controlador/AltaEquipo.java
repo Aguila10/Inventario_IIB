@@ -64,6 +64,7 @@ public class AltaEquipo extends HttpServlet {
         String marca = (String) request.getParameter("marca");
         String numSerie = (String) request.getParameter("numeroSerie");
         String familia = (String) request.getParameter("familia");
+        System.out.println(familia);
         String tipoActivoFijo = (String) request.getParameter("tipoActivoFijo");
         String proveedor = (String) request.getParameter("proveedor");
         String clase = (String) request.getParameter("clase");

@@ -12,15 +12,18 @@ function validaCampos(hayform, form) {
     var claveAF = "";
     var numInvUNAM = "";
     var descripcion = "";
+    var fecha = "";
     
     if(hayform != null){
         claveAF = document.forms[form]["activoFijo"].value;
         numInvUNAM = document.forms[form]["descripcion"].value;
         descripcion = document.forms[form]["descripcionExtendida"].value;
+        fecha = document.forms[form]["fechaResguardo"].value;
     } else {
         claveAF = document.getElementById("activoFijo").value;
         numInvUNAM = document.getElementById("descripcion").value;
         descripcion = document.getElementById("descripcionExtendida").value;
+        fecha = document.getElementById("fechaResguardo").value;
     }
     if (claveAF == "" || claveAF == null) {
         if (numInvUNAM == "" || numInvUNAM == null) {
@@ -28,7 +31,7 @@ function validaCampos(hayform, form) {
             escribeEn("errorActivoFijo","campo inválido");
             escribeEn("errorDescripcion","campo inválido");
             if(descripcion == ""){
-                escribeEn("errorDescripcionExtendida","Debes llenar este campo");
+                escribeEn("errorDescripcionExtendida","Debes llenar este campoo");
             } else {
                 oculta("errorDescripcionExtendida");                
             }
@@ -71,6 +74,10 @@ function validaCampos(hayform, form) {
         return false;
     }
 
+    if(fecha == null || fecha == ""){
+        escribeEn("errorFechaResguardo","Debes escribir una fecha");
+        return false;
+    }
     return true;
 
 }
@@ -154,21 +161,45 @@ function actualizaEquipo() {
     if(!validaCampos(null,"algo")){
         return;
     }
-    alert("Pase validaciones");
     
-    /*
-    var = document.getElementById().value;
-    var = document.getElementById().value;
-    var = document.getElementById().value;
-    var = document.getElementById().value;
-    var = document.getElementById().value;
-    var = document.getElementById().value;
-    var = document.getElementById().value;
-    */
+    var activo = document.getElementById("activoFijo").value;
+    var descrip = document.getElementById("descripcion").value;
+    var descripExt = document.getElementById("descripcionExtendida").value;
+    var numero = document.getElementById("numeroSerie").value;
+    var clas = document.getElementById("clase").value;
+    var us = document.getElementById("uso").value;
+    var estad = document.getElementById("estadoFisico").value;
+  
+   var ubicacio = document.getElementById("ubicacion").value;
+   var fechaResguard = document.getElementById("fechaResguardo").value;
+   var model = document.getElementById("modelo").value;
+   var famili = document.getElementById("familia").value;
+   var tipoActiv = document.getElementById("tipoActivoFijo").value;
+   var nivelOb = document.getElementById("nivelObsolencia").value;
+   var centroCo = document.getElementById("centroCosto").value;
+   var provee = document.getElementById("proveedor").value;
+   var resp = document.getElementByName("r").value;
+   alert(resp);
+ 
     $.post("ActualizaEquipo", {
-        
+        activoFij:activo,
+        descripcion:descrip,
+        descripcionExt:descripExt,
+        numeroSer:numero,
+        clase:clas,
+        uso:us,
+        estado:estad,
+        ubicacion:ubicacio,
+        fechaRes:fechaResguard,
+        modelo:model,
+        familia:famili,
+        tipoActivo:tipoActiv,
+        nivelObs:nivelOb,
+        centroCos:centroCo,
+        proveedor:provee,
+        responsable:resp
     }, function (data) {
-        $("#resultadoBusqueda").html("HOLA");
+        $("#resultadoBusqueda").html(data);
     });
 }
 function esVisible(id){

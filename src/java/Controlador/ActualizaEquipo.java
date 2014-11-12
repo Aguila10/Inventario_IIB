@@ -34,17 +34,54 @@ public class ActualizaEquipo extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ActualizaEquipo</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ActualizaEquipo at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            
+            
+            if(actualizaEquipo(request,response)){
+                out.print("Actualización exitosa");
+            } else {
+                out.print("Actualización fallida");                
+            }
+                
+
         }
+    }
+        
+    private boolean actualizaEquipo(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException{
+        int activoFij = Integer.parseInt(request.getParameter("activoFij"));
+        String descripcion = request.getParameter("descripcion");
+        String descripcionExt = request.getParameter("descripcionExt");
+        String numeroSer = request.getParameter("numeroSer");
+        String clase = request.getParameter("clase");
+        String uso = request.getParameter("uso");
+        String estado = request.getParameter("estado");
+        String ubicacion = request.getParameter("ubicacion");
+        String fechaRes=request.getParameter("fechaRes");  
+        String modelo=request.getParameter("modelo");
+        String familia=request.getParameter("familia");
+        String tipoActivo=request.getParameter("tipoAct");
+        String nivelObs=request.getParameter("nivelObs");
+        String centroCos=request.getParameter("centroCos");
+        String proveedor=request.getParameter("proveedor");
+        String responsable=request.getParameter("responsable");
+        
+        System.out.println(activoFij);
+        System.out.println(descripcion);
+        System.out.println(descripcionExt);
+        System.out.println(numeroSer);
+        System.out.println(clase);
+        System.out.println(uso); 
+        System.out.println(estado);
+        System.out.println(ubicacion);
+        System.out.println(fechaRes);
+        System.out.println(modelo);
+        System.out.println(familia);
+        System.out.println(tipoActivo);
+        System.out.println(nivelObs);
+        System.out.println(centroCos);
+        System.out.println(proveedor);
+        System.out.println(responsable);
+    return true;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

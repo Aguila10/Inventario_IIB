@@ -55,9 +55,8 @@ public class BuscaEquipo extends HttpServlet {
             if(actualizar == null){
             out.print(obtenTabla(campoDeBusqueda));
             } else {
-                //out.print(obtenFormulario(request.getParameter("id")));
-                out.print(obtenFormulario("123"));
-            }
+                out.print(obtenFormulario(Integer.parseInt(request.getParameter("id"))));
+                            }
             
         }
     }
@@ -119,14 +118,11 @@ public class BuscaEquipo extends HttpServlet {
     }
     
 
-    public String obtenFormulario(String campoDeBusqueda){//int id){
+    public String obtenFormulario(int id){
 
-        ArrayList<Equipo> lista = bd.buscaEquipo(Integer.parseInt(campoDeBusqueda));
-        //Equipo e = bd.buscaEquipo(id);
+        Equipo equipo = bd.regresaEquipo(id);
         String form = "";
-        if(lista.size() != 0){
-            Equipo equipo = lista.get(0);
-           
+        
             form = llenaFormularioAltaEquipo();
           /*
             form = form.replace("action=\"altaEquipo\"","action=\"\"");
@@ -158,7 +154,7 @@ public class BuscaEquipo extends HttpServlet {
             form = form.replace("id=\"responsable\" name=\"responsable\"","id=\"responsable\" name=\"responsable\" value=\""+equipo.getResponsable()+"\"");
             form = form.replace("id=\"fechaResguardo\" name=\"fechaResguardo\"","id=\"fechaResguardo\" name=\"fechaResguardo\" value=\""+equipo.getFecha_de_resguardo()+"\"");
   
-        }
+        
         return form;
     }
     /**
@@ -236,6 +232,12 @@ public class BuscaEquipo extends HttpServlet {
                         form += text;
                         text = reader.readLine(); // <option>----</option>
                         form += llenaCatalogo(getCatalogo("catalogo_proveedor"));
+                        continue;
+                    }
+                    if (text.contains("<datalist id=\"responsable\" name=\"responsable\">")) {
+                        form += text;
+                        text = reader.readLine(); // <option>----</option>
+                        form += llenaCatalogo(getCatalogo("catalogo_responsable"));
                         continue;
                     }
 
