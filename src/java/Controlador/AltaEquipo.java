@@ -75,9 +75,9 @@ public class AltaEquipo extends HttpServlet {
         String centroCosto = (String) request.getParameter("centroCosto");
         // idusuario NULL
         String fechaResguardo = (String) request.getParameter("fechaResguardo");
-        // Responsable NULL
+        String responsable = request.getParameter("responsable");
 
-        return bd.insertaEquipo(actFijo, numInv, descripcion, modelo, marca, numSerie, familia, tipoActivoFijo, proveedor, clase, uso, nivelObsolencia, estadoFisico, ubicacion, centroCosto, fechaResguardo, "responsable");
+        return bd.insertaEquipo(actFijo, numInv, descripcion, modelo, marca, numSerie, familia, tipoActivoFijo, proveedor, clase, uso, nivelObsolencia, estadoFisico, ubicacion, centroCosto, fechaResguardo, responsable);
 
     }
 

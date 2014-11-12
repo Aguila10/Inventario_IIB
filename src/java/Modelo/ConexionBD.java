@@ -160,6 +160,30 @@ public class ConexionBD {
         return res;
     }
 
+    public boolean actualizaEquipo(int id_equipo,int numeroInveInterInfo, int numInvUnam, String descrip,
+            String modelo, String marca, String serie, String familia, String tipo, String prove, String clase, String uso,
+            String nivel, String edoFisico, String area, String institu, String fecha, String responsable) {
+        boolean res = false;
+        Statement statement;
+        ResultSet resultSet;
+
+        try {
+            Connection con = DriverManager.getConnection(connectString, user, password);
+            statement = con.createStatement();
+            resultSet = statement.executeQuery("SELECT * from actualizaEquipo("+id_equipo+","+ numeroInveInterInfo + " , "
+                    + numInvUnam + "," + "'" + descrip + "','" + modelo + "','" + marca + "','" + serie
+                    + "','" + familia + "','" + tipo + "','" + prove + "','" + clase + "','" + uso + "','" + nivel
+                    + "','" + edoFisico + "','" + area + "','" + institu + "','" + fecha + "','" + responsable + "');");
+
+            while (resultSet.next()) {
+                res = resultSet.getBoolean(1);
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return res;
+    }    
     /**
      *Metodo que busca Todos los quipos que concida el numero inventario unam
      * o el tipo activo fijo
