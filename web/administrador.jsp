@@ -97,11 +97,16 @@
                         </ul>
                     </li>
                 </ul>
+                <a href="http://www.iib.unam.mx/" target="_blank">
+                    <img src="img/biblioteca.gif" alt=" biblioteca hemeroteca unam" id="enlaceBiblioteca">
+                </a>
             </div>
             <!--Fin menú-->
 
             <!--Inicio formulario-->
             <div class="col span_3_of_4" id="formulario" >
+            <!--Caratula con marca de agua-->
+            <img src="img/caratula.jpg" alt="caratula darktech" id="caratula">
 
                 <% 
                 if(request.getParameter("mensaje") != null){

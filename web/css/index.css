@@ -1,5 +1,11 @@
+/*Estilos título del sistema*/
+#inicio{margin-top: 1%;}
+#inicio img{width: 50%;}
+#main h1{text-align: center;text-shadow: #B39217 1px 1px 1px;color: #132B5A;}
+#main p{text-align: center;}
+
 /*Estilos formulario acceso*/
-#main form{width: 30%;margin: 1% auto 0 auto;font-size: 110%;}
+#main form{margin: 1% auto 0 auto;font-size: 110%;margin-top: 7%;}
 #main fieldset div{padding: 10%;}
 #main form legend{font-weight: bold;text-shadow: #B39217 1px 1px 1px;color: #132B5A;}
 #main form label{text-align: center;text-shadow: #B39217 1px 1px 1px;color: #132B5A;}

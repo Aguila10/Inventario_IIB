@@ -18,6 +18,7 @@
         <!--Estilos plantilla-->
         <link rel="stylesheet" href="css/6cols.css">
         <link rel="stylesheet" href="css/4cols.css">
+        <link rel="stylesheet" href="css/2cols.css">
         <link rel="stylesheet" href="css/col.css">
         <link rel="stylesheet" href="css/estilosPlantilla.css">
         <link rel="stylesheet" href="css/formulario.css">
@@ -42,10 +43,23 @@
         </header>
         <!--Fin encabezado-->
 
+        <!--Inicio contenido principal-->
         <div class="section group" id="main">
-            <!--Inicio formulario inicio de sesión-->
-            <form action="IniciarSesion" id="inicio_sesion" class="smart-blue" onsubmit="return valida_inicio_sesion()">
-                <fieldset>
+            <!--Inicio descripcion del sistema-->
+            <div class="col span_1_of_2" id="inicio">
+                <h1>Inventario del Instituo de Investigaciones Bibliografícas</h1>
+                <center><img src="img/instituto.jpg" alt="instituto biblioteca"></center>
+                <p>Este sistema surgió por la necesidad de automatizar la administración
+                de los equipos que se encuentran distribuidos en <br> 
+                la Hemeroteca Nacional de México, la Biblioteca Nacional de México y el Instituto de Investigaciones Bibliografícas <br>
+                para poder tener un mejor manejo de dichos equipos.</p>
+            </div>
+            <!--Fin descripcion del sistema-->
+
+            <div class="col span_1_of_2">
+                <!--Inicio formulario inicio de sesión-->
+                <form action="IniciarSesion" id="inicio_sesion" class="smart-blue" onsubmit="return valida_inicio_sesion()">
+                    <fieldset>
                     <legend>Ingresar</legend>
                     <div>
                         <label for="usuario">Usuario:</label>
@@ -56,21 +70,23 @@
                         <br><br>
                         <input type="submit" class="button" value="Aceptar">
                     </div>
-                </fieldset>
-            </form>
-            <!--fin formulario inicio de sesión-->
-
-            <!--Inicio error-->
-            <div class="section group" id="error" hidden>
-                <p>
-                    <!--Imagen error-->
-                    <img src="img/error.png" alt="error">
-                    <!--Mensaje error-->
-                    <span>Error: Esto es un error</span>
-                </p>
+                    </fieldset>
+                </form>
+                <!--fin formulario inicio de sesión-->
+                <!--Inicio error-->
+                <div class="section group" id="error" hidden>
+                    <p>
+                        <!--Imagen error-->
+                        <img src="img/error.png" alt="error">
+                        <!--Mensaje error-->
+                        <span>Error: Esto es un error</span>
+                    </p>
+                </div>
+                <!--Fin errror-->
             </div>
-            <!--Fin errror-->
+
         </div>
+        <!--Fin contenido principal-->
 
         <!--Inicio pie-->
         <footer>

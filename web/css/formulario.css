@@ -26,5 +26,9 @@
 #busquedaCatalogos{width: 80%; text-align: center; margin-bottom: 3%;}
 #busquedaCatalogos select {width: 50%;}
 
+/*Estilos extra (caratula y gif)*/
+#caratula{width: 80%;}
+#enlaceBiblioteca {margin-left: -30%; margin-top: 5%; width: 70%;}
+
 
 
