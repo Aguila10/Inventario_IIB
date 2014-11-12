@@ -47,12 +47,6 @@ public class Formularios extends HttpServlet {
 
             /*Formulario solicitado*/
             String formulario = request.getParameter("formulario");
-
-            //obtenFormulario(formulario);
-            //getFormulario("/WEB-INF/formularios/"+formulario+".html", out);
-            //String filename = "/WEB-INF/formularios/prueba.html";
-            //getFormulario(filename, out);
-            //devuelveFormulario(obtenFormulario(formulario),out);
             out.print(obtenFormulario(formulario));
 
         }
@@ -88,7 +82,7 @@ public class Formularios extends HttpServlet {
             case "usuarioBaja": // No tiene catalogos
                 form = obtenFormularioSinCatalogos("usuarioBaja");
                 break;
-        }
+        }   
         return form;
     }
 

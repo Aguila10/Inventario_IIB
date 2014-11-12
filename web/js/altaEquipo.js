@@ -6,36 +6,43 @@
 
 
 
-function validaCampos() {
+function validaCampos(hayform, form) {
 
     var reg = "[0-9]+$";
-
-    var claveAF = document.forms["alta"]["activoFijo"].value;
-    var numInvUNAM = document.forms["alta"]["descripcion"].value;
-    var descripcion = document.forms["alta"]["descripcionExtendida"].value;
-
+    var claveAF = "";
+    var numInvUNAM = "";
+    var descripcion = "";
+    
+    if(hayform != null){
+        claveAF = document.forms[form]["activoFijo"].value;
+        numInvUNAM = document.forms[form]["descripcion"].value;
+        descripcion = document.forms[form]["descripcionExtendida"].value;
+    } else {
+        claveAF = document.getElementById("activoFijo").value;
+        numInvUNAM = document.getElementById("descripcion").value;
+        descripcion = document.getElementById("descripcionExtendida").value;
+    }
     if (claveAF == "" || claveAF == null) {
         if (numInvUNAM == "" || numInvUNAM == null) {
             //alert("Debes meter alguno de los campos");
-            document.getElementById("errorActivoFijo").innerHTML = "campo inválido";
-            document.getElementById("errorDescripcion").innerHTML = "campo inválido";
+            escribeEn("errorActivoFijo","campo inválido");
+            escribeEn("errorDescripcion","campo inválido");
             if(descripcion == ""){
-                document.getElementById("errorDescripcionExtendida").innerHTML = "Debes llenar este campo";
+                escribeEn("errorDescripcionExtendida","Debes llenar este campo");
             } else {
-                document.getElementById("errorDescripcionExtendida").innerHTML = "";                
+                oculta("errorDescripcionExtendida");                
             }
             return false;
         }
         // claveAF = null y numInvUNAM != null
         var con = numInvUNAM.match(reg);
         if (con == null) {
-            document.getElementById("errorDescripcion").innerHTML = "Este campo debe ser un numero";
+            escribeEn("errorDescripcion","Este campo debe ser un numero");
             return false;
         }
 
-
         if (descripcion == null || descripcion == "") {
-            document.getElementById("errorDescripcionExtendida").innerHTML = "Este campo no debe ser vacío";
+            escribeEn("errorDescripcionExtendida","Este campo no debe ser vacío");
             return false;
 
         }
@@ -48,19 +55,19 @@ function validaCampos() {
 
     var con = claveAF.match(reg);
     if (con == null) {
-        document.getElementById("errorActivoFijo").innerHTML = "Este campo debe ser un numero";
+        escribeEn("errorActivoFijo","Este campo debe ser un numero");
         return false;
     }
     if (numInvUNAM != "") {
         var r = numInvUNAM.match(reg)
         if (r == null) {
-            document.getElementById("errorDescripcion").innerHTML = "Este campo debe ser un numero";
+            escribeEn("errorDescripcion","Este campo debe ser un numero");
             return false;
         }
     }
 
     if (descripcion == null || descripcion == "") {
-        document.getElementById("errorDescripcionExtendida").innerHTML = "Este campo no debe ser vacío";
+        escribeEn("errorDescripcionExtendida","Este campo no debe ser vacío");
         return false;
     }
 
@@ -72,16 +79,28 @@ function buscaEquipo() {
 
 
     var x = document.getElementById("campoBusqueda").value;
-    if (x == "" || x == null) {
-        document.getElementById("errorBusqueda").innerHMTL = "EL campo de busqueda es vacio";
-        return;
+    if (x === "" || x === null) {
+           if(esVisible("errorBusqueda1")){
+            escribeEn("errorBusqueda1","EL campo de búsqueda es vacío");
+            } else {
+                escribeEn("errorBusqueda1","EL campo de búsqueda es vacío");
+                muestra("errorBusqueda1");
+            }
+            return;
     }
     var reg = "[0-9]+$";
     var con = x.match(reg);
     if(con == null){
-            document.getElementById("errorBusqueda").innerHTML="Debe ser un numero";
+            if(esVisible("errorBusqueda1")){
+            escribeEn("errorBusqueda1","La búsqueda no es un número");
+        } else {
+            escribeEn("errorBusqueda1","La búsqueda no es un número");
+            muestra("errorBusqueda1");
+        }
             return;
     }
+    oculta("errorBusqueda1");
+    
     $.post("BuscaEquipo", {
         campoBusqueda: x
     }, function (data) {
@@ -98,4 +117,69 @@ function obtenCatalogo() {
         $("#resultadoBusqueda").html(data);
     });
 
+}
+
+function muestraFormulario(){
+    
+    var sel = document.getElementsByName("seleccion");
+    var id_equipo;
+    for(i = 0; i < sel.length; i++){
+        if(sel[i].checked){
+           id_equipo = sel[i].value;
+        }
+    }
+    
+    if(id_equipo == null){
+        if(!esVisible("errorBusqueda1")){
+            muestra("errorBusqueda1");       
+        }
+        escribeEn("errorBusqueda1","No has seleccionado nada");
+        return;
+    }
+    oculta("errorBusqueda1");
+
+    var act = 1;
+    $.post("BuscaEquipo", {
+        id: id_equipo,
+        actualizar:act
+    }, function (data) {
+        $("#resultadoBusqueda").html(data);
+    });
+    
+    return;
+    
+}
+
+function actualizaEquipo() {
+    if(!validaCampos(null,"algo")){
+        return;
+    }
+    alert("Pase validaciones");
+    
+    /*
+    var = document.getElementById().value;
+    var = document.getElementById().value;
+    var = document.getElementById().value;
+    var = document.getElementById().value;
+    var = document.getElementById().value;
+    var = document.getElementById().value;
+    var = document.getElementById().value;
+    */
+    $.post("ActualizaEquipo", {
+        
+    }, function (data) {
+        $("#resultadoBusqueda").html("HOLA");
+    });
+}
+function esVisible(id){
+    return document.getElementById(id).style.visibility === 'visible';
+}
+function oculta(id){
+    document.getElementById(id).style.visibility='hidden';
+}
+function muestra(id) {
+    document.getElementById(id).style.visibility='visible';
+}
+function escribeEn(id,texto){
+    document.getElementById(id).innerHTML=texto;
 }

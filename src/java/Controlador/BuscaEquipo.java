@@ -46,27 +46,35 @@ public class BuscaEquipo extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String campoDeBusqueda = request.getParameter("campoBusqueda");
+            
+            String actualizar = request.getParameter("actualizar");
+            if(actualizar == null){
             out.print(obtenTabla(campoDeBusqueda));
+            } else {
+                //out.print(obtenFormulario(request.getParameter("id")));
+                out.print(obtenFormulario("123"));
+            }
+            
         }
     }
     
     public String obtenTabla(String busqueda){
         
         ArrayList<Equipo> lista = bd.buscaEquipo(Integer.parseInt(busqueda));
-        
-        String tablaIn = "<table style=\"width:100%\">";
+        if(lista.size() == 0) return "No se encontraron equipos";
+        String tablaIn = "<table style=\"width:100%\" id=\"tablita\">";
         String tablaFin = "</table>";
         String tr1 = "<tr>";
         String tr2 = "</tr>";
         String td1 = "<td>";
         String td2 = "</td>";
-        String boton = "<button onclick=\"\" >Actualizar</button>";
+        String boton ="<button onclick=\"muestraFormulario()\" class=\"button\">Actualizar</button>";
         
         String tabla = "";
         tabla+=tablaIn;
         
-        tabla+="<th> <td>Clave Activo Fijo</td> <td> Num. inventario </td> <td>Serie</td>"
-                + "<td>Marca</td>  <td>Tipo Activo</td> <td>Selección</td> </th>";
+        tabla+="<tr> <th>Clave Activo Fijo</th> <th> Num. inventario </th> <th>Serie</th>"
+                + "<th>Marca</th>  <th>Tipo Activo</th> <th>Selección</th> </tr>";
         for(Equipo elem:lista){
             tabla+=tr1;
             
@@ -91,7 +99,7 @@ public class BuscaEquipo extends HttpServlet {
             tabla+=td2;
             
             tabla+=td1;
-            tabla+="<input type=\"radio\" value=\"inventario\"/>";
+            tabla+="<input type=\"radio\" value=\""  +elem.getId_equipo()+  "\" name=\"seleccion\" id=\"seleccion\"/>";
             tabla+=td2;
             
             tabla+=tr2;
@@ -101,20 +109,24 @@ public class BuscaEquipo extends HttpServlet {
         return tabla;
     }
     
-    public String obtenFormulario(String campoDeBusqueda){
+    public String obtenFormulario(String campoDeBusqueda){//int id){
         ArrayList<Equipo> lista = bd.buscaEquipo(Integer.parseInt(campoDeBusqueda));
-        
+        //Equipo e = bd.buscaEquipo(id);
         String form = "";
         if(lista.size() != 0){
             Equipo equipo = lista.get(0);
            
             form = llenaFormularioAltaEquipo();
-            
-          
+          /*
             form = form.replace("action=\"altaEquipo\"","action=\"\"");
-            form = form.replace("method=\"post\" onsubmit=\"return validaCampos()\"","");
+            form = form.replace("method=\"post\" onsubmit=\"return validaCampos()\"","method=\"post\"");
+            */
+            form = form.replace("<form name=\"alta\" action=\"altaEquipo\" class=\"smart-blue\" method=\"post\" onsubmit=\"return validaCampos('true','alta')\">","");
+            form = form.replace("</form>","");
+            form = form.replace("<div style=\"margin-top: 12%;\">","<div style=\"margin-top: 5%;\">");
             form = form.replace("<h3>Equipo: Dar alta</h3>","");
-            form = form.replace("<input type=\"submit\" value=\"Aceptar\" class=\"button\">","");
+            form = form.replace("<input type=\"submit\" value=\"Aceptar\" class=\"button\">",""
+                    + "<button class=\"button\" onclick=\"actualizaEquipo()\"> Actualiza </button>");
             
             form = form.replace("id=\"activoFijo\" name=\"activoFijo\"","id=\"activoFijo\" name=\"activoFijo\" value=\""+equipo.getClave_activo_fijo()+"\"");
             form = form.replace("id=\"descripcion\" name=\"descripcion\"","id=\"descripcion\" name=\"descripcion\" value=\"" +equipo.getNum_inv_unam()+"\"");
@@ -134,123 +146,8 @@ public class BuscaEquipo extends HttpServlet {
             form = form.replace("list=\"proveedor\" name=\"proveedor\"","list=\"proveedor\" name=\"proveedor\" value=\""+equipo.getClave_proveedor()+"\"");
             form = form.replace("id=\"responsable\" name=\"responsable\"","id=\"responsable\" name=\"responsable\" value=\""+equipo.getResponsable()+"\"");
             form = form.replace("id=\"fechaResguardo\" name=\"fechaResguardo\"","id=\"fechaResguardo\" name=\"fechaResguardo\" value=\""+equipo.getFecha_de_resguardo()+"\"");
-        System.out.print(form);
-            /*    
-        String cad = "cadena";
-        
-        form += PRIMERA_LINEA;
-        form += "<div class=\"dosColumnas\">\n" +
-"				<label for=\"activoFijo\">Clave activo fijo:</label>\n" +
-"				<input type=\"text\" id=\"activoFijo\" name=\"activoFijo\" value=\""+cad+"\">\n" +
-"                                <label id=\"errorActivoFijo\" class=\"errorFormulario\"></label>\n" +
-"			</div>\n" +
-"			<div class=\"dosColumnas derecha\">\n" +
-"				<label for=\"descripcion\">Descripción: <i>(Número de inventario UNAM)</i></label>\n" +
-"				<input type=\"text\" id=\"descripcion\" name=\"descripcion\" value=\""+cad+"\">\n" +
-"				<label for=\"descripcion\" id=\"errorDescripcion\" class=\"errorFormulario\"></label>\n" +
-"			</div>\n" +
-"			<div style=\"margin-top: 12%;\">\n" +
-"				<label for=\"descripcionExtendida\">Descricpión extendida: <i>(Se hace la indicación de que incluye teclado y mouse u otros aditamentos, agregar aquí números de inventario de los aditamentos, en caso de tenerlo)</i></label>\n" +
-"				<textarea maxlength = \"500\" style=\"height:30%;\" id=\"descripcionExtendida\" name=\"descripcionExtendida\" cols=\"30\" rows=\"10\"></textarea>\n" +
-"				<label id=\"errorDescripcionExtendida\" class=\"errorFormulario\"></label>\n" +
-"			</div>\n" +
-"\n" +
-"\n" +
-"			<div class=\"dosColumnas\">\n" +
-"				<label for=\"marca\">Marca:</label>\n" +
-"				<!--Cátalogo BD-->\n" +
-"                                <input type=\"text\" list=\"marca\"  value=\"" +"MARCA"+ "\"/>\n" +
-"				<datalist id=\"marca\" name=\"marca\" >\n" +
-"                                                            \n" +
-"				</datalist>\n" +
-"				<!--<label id=\"errorMarca\" class=\"errorFormulario\">Esto es un error</label>-->\n" +
-"				<label for=\"numeroSerie\">Número de serie:</label>\n" +
-"				<input type=\"text\" id=\"numeroSerie\" name=\"numeroSerie\">\n" +
-"				<!--<label id=\"errorNumeroSerie\" class=\"errorFormulario\">Esto es un error</label>-->\n" +
-"				<label for=\"clase\">Clase:</label>\n" +
-"				<!--Cátalogo BD-->\n" +
-"                                <input type=\"text\" list=\"clase\" />\n" +
-"					<datalist id=\"clase\" name=\"clase\">\n" +
-"						\n" +
-"					</datalist>\n" +
-"				<!--<label id=\"errorClase\" class=\"errorFormulario\">Esto es un error</label>-->\n" +
-"				<label for=\"uso\">Uso:</label>\n" +
-"				<!--Cátalogo BD-->\n" +
-"                                <input type=\"text\" list=\"uso\" />\n" +
-"				<datalist id=\"uso\" name=\"uso\">\n" +
-"					\n" +
-"				</datalist>\n" +
-"				<!--<label id=\"errorUso\" class=\"errorFormulario\">Esto es un error</label>-->\n" +
-"				<label for=\"estadoFisico\">Estado físico:</label>\n" +
-"				<!--Cátalogo BD-->\n" +
-"                                <input type=\"text\" list=\"estadoFisico\" />\n" +
-"				<datalist id=\"estadoFisico\" name=\"estadoFisico\">\n" +
-"					\n" +
-"				</datalist>\n" +
-"				<!--<label id=\"errorEstadoFisico\" class=\"errorFormulario\">Esto es un error</label>-->\n" +
-"				<label for=\"ubicacion\">Ubicación:</label>\n" +
-"				<!--Cátalogo BD-->\n" +
-"                                <input type=\"text\" list=\"ubicacion\" />\n" +
-"				<datalist id=\"ubicacion\" name=\"ubicacion\">\n" +
-"					\n" +
-"				</datalist>\n" +
-"				<!--<label id=\"errorUbicacion\" class=\"errorFormulario\">Esto es un error</label>-->\n" +
-"			</div>\n" +
-"\n" +
-"\n" +
-"			<div class=\"dosColumnas derecha\">\n" +
-"				<label for=\"modelo\">Modelo:</label>\n" +
-"				<input type=\"text\" id=\"modelo\" name=\"modelo\">\n" +
-"				<!--<label id=\"errorModelo\" class=\"errorFormulario\">Esto es un error</label>-->\n" +
-"				<label for=\"familia\">Familia:</label>\n" +
-"				<!--Cátalogo BD-->\n" +
-"                                <input type=\"text\" list=\"familia\" />\n" +
-"				<datalist id=\"familia\" name=\"familia\">\n" +
-"					\n" +
-"				</datalist>\n" +
-"				<!--<label id=\"errorFamilia\" class=\"errorFormulario\">Esto es un error</label>-->\n" +
-"				<label for=\"tipoActivoFijo\">Tipo activo fijo:</label>\n" +
-"				<!--Cátalogo BD-->\n" +
-"                                <input type=\"text\" list=\"tipoActivoFijo\" />\n" +
-"				<datalist id=\"tipoActivoFijo\" name=\"tipoActivoFijo\">\n" +
-"					\n" +
-"				</datalist>\n" +
-"				<!--<label id=\"errorActivoFijo\" class=\"errorFormulario\">Esto es un error</label>-->\n" +
-"				<label for=\"nivelObsolencia\">Nivel de obsolencia:</label>\n" +
-"				<!--Cátalogo BD-->\n" +
-"                                <input type=\"text\" list=\"nivelObsolencia\" />\n" +
-"				<datalist id=\"nivelObsolencia\" name=\"nivelObsolencia\">\n" +
-"					\n" +
-"				</datalist>\n" +
-"				<!--<label id=\"errorNivelObsolencia\" class=\"errorFormulario\">Esto es un error</label>-->\n" +
-"				<label for=\"centroCosto\">Centro de costo:</label>\n" +
-"				<!--Cátalogo BD-->\n" +
-"                                <input type=\"text\" list=\"centroCosto\" />\n" +
-"				<datalist id=\"centroCosto\" name=\"centroCosto\">\n" +
-"					\n" +
-"				</datalist>\n" +
-"				<!--<label id=\"errorCentroCosto\" class=\"errorFormulario\">Esto es un error</label>-->\n" +
-"				<label for=\"proveedor\">Proveedor:</label>\n" +
-"				<!--Cátalogo BD-->\n" +
-"                                <input type=\"text\" list=\"proveedor\" />\n" +
-"				<datalist id=\"proveedor\" name=\"proveedor\">\n" +
-"					\n" +
-"				</datalist>\n" +
-"				<!--<label id=\"errorProveedor\" class=\"errorFormulario\">Esto es un error</label>-->\n" +
-"			</div>\n" +
-"			<label for=\"responsable\">Responsable: <i>(Usuario)</i></label>\n" +
-"			<input type=\"text\">\n" +
-"			<label for=\"fechaResguardo\">Fecha de resguardo: <i>(Fecha en la que se hizo la verificación)</i></label>\n" +
-"			<input type=\"date\" id=\"fechaResguardo\" name=\"fechaResguardo\" requiered>\n" +
-"			<!--<label id=\"errorFechaResguardo\" class=\"errorFormulario\">Esto es un error</label>-->\n" +
-"\n" +
-"			<input type=\"submit\" value=\"Aceptar\" class=\"button\">\n" +
-"		</form>";
-            */
-            
+  
         }
-        
-        
         return form;
     }
     /**

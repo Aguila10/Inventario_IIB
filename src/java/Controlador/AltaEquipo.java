@@ -53,32 +53,18 @@ public class AltaEquipo extends HttpServlet {
         int numInvInternoDepto = 0;
 
         String descripcion = (String) request.getParameter("descripcionExtendida");
-        System.out.println("descripcion " + descripcion);
         String modelo = (String) request.getParameter("modelo");
-        System.out.println("modelo " + modelo);
         String marca = (String) request.getParameter("marca");
-        System.out.println("marca " + marca);
         String numSerie = (String) request.getParameter("numeroSerie");
-        System.out.println("numSerie " + numSerie);
         String familia = (String) request.getParameter("familia");
-        System.out.println("familia " + familia);
         String tipoActivoFijo = (String) request.getParameter("tipoActivoFijo");
-        System.out.println("tipoActivoFijo " + tipoActivoFijo);
         String proveedor = (String) request.getParameter("proveedor");
-        System.out.println("proveedor " + proveedor);
         String clase = (String) request.getParameter("clase");
-        System.out.println("clase " + clase);
         String uso = (String) request.getParameter("uso");
-        System.out.println("uso " + uso);
         String nivelObsolencia = (String) request.getParameter("nivelObsolencia");
-        System.out.println("nivelObsolencia " + nivelObsolencia);
         String estadoFisico = (String) request.getParameter("estadoFisico");
-        System.out.println("estadoFisico " + estadoFisico);
         String ubicacion = (String) request.getParameter("ubicacion");
-        System.out.println("ubicacion " + ubicacion);
         String centroCosto = (String) request.getParameter("centroCosto");
-        System.out.println("centroCosto " + centroCosto);
-
         // idusuario NULL
         String fechaResguardo = (String) request.getParameter("fechaResguardo");
         // Responsable NULL
