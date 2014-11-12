@@ -277,8 +277,7 @@ public class ConexionBD {
 
         return resultado;
     }
-    
-    
+  
      
     /**
      *
@@ -298,7 +297,21 @@ public class ConexionBD {
         try {
             Class.forName(driver);
             Connection con = DriverManager.getConnection(connectString, user, password);
-            PreparedStatement query = con.prepareStatement("select * from equipo where id_equipo = " + id_equipo);
+            PreparedStatement query = con.prepareStatement(" select id_equipo serial, clave_activo_fijo , num_inv_unam , clave_descripcion , clave_modelo , catalogo_marca.descripcion, " +
+"serie , catalogo_familia.descripcion , catalogo_tipo_equipo.descripcion , catalogo_proveedor.descripcion, " +
+"catalogo_clase.descripcion , catalogo_uso.descripcion, catalogo_nivel.descripcion , catalogo_estado_fisico.descripcion, " +
+"catalogo_area.descripcion,catalogo_institucion.descripcion , fecha_de_resguardo ,  " +
+"catalogo_responsable.descripcion , equipo.estado from equipo join catalogo_marca on equipo.clave_marcar = catalogo_marca.clave_marcar " +
+"join catalogo_familia on equipo.clave_familia = catalogo_familia.clave_familia " +
+"join catalogo_tipo_equipo on equipo.clave_tipo = catalogo_tipo_equipo.clave_tipo " +
+"join catalogo_proveedor on equipo.clave_proveedor = catalogo_proveedor.clave_proveedor " +
+"join catalogo_clase on equipo.clase = catalogo_clase.clave_clase " +
+"join catalogo_uso on equipo.uso = catalogo_uso.clave_uso " +
+"join catalogo_nivel on equipo.nivel_de_obsolescencia = catalogo_nivel.clave_nivel\n" +
+"join catalogo_estado_fisico on equipo.estado_físico = catalogo_estado_fisico.clave_estado_fisico " +
+"join catalogo_area on equipo.clave_area = catalogo_area.clave_area " +
+"join catalogo_institucion on equipo.clave_institucion = catalogo_institucion.clave_institucion " +
+"join catalogo_responsable on equipo.responsable = catalogo_responsable.clave_responsable where  id_equipo = " + id_equipo);
 
             ResultSet resultSet = query.executeQuery();
             while (resultSet.next()) {
@@ -384,7 +397,27 @@ public class ConexionBD {
         
        /// System.out.println(con.eliminaUsuario("rene"));
         
-//       System.out.println(con.regresaEquipo(1).getClave_area());
+//      System.out.println(con.regresaEquipo(1).getClave_area());
+        
+        
+//        System.out.println(con.insertaEquipo(1231 ,
+//10 ,
+//"Descripcion12",
+//"12hffg",
+//"ACTECK" , 
+//"12345",
+//"INTEL PENTIUM D|COREDUO|CORE2DU| AMD ATHLON| X2DUAL| CR2QUAD| CR2 Y EQUIVALENTE",
+//"Computadora portátil",
+//"FOTO DEL RECUERDO" ,
+//"Equipo en prestamo de proveedor",
+//"Bajo (Personal Académico y/o investigadores)",
+//"Seminuevo (Windows Server | MAC y linux)" ,
+//"Malo (equipo requiere incrementos | memoria |disco)",
+//"CATALOGACIÓN FR-BNM" ,
+//"CENTRO CERRADO DE TELEVICION Y MONITOREO" ,
+//"12/12/12" ,
+//"ALFREDO HIDALGO"));
+//        
         
     }
 
