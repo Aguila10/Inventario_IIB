@@ -33,6 +33,7 @@
         <script src="js/altaEquipo.js"></script>
         <script src="js/iniciarSesion.js"></script> 
         <script src="js/altaUsuario.js"></script>
+        <script src="js/bajaUsuario.js"></script>
 
     </head>
     <body>
