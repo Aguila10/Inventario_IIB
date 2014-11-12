@@ -1,15 +1,14 @@
-function valida_usuario_alta(){
 
-    validacion = true;
-    validacion = validacion && revisaNombre();
-    validacion = validacion && revisaLogin();
-    validacion = validacion && revisaLogin();
-    validacion = validacion && revisaContrasenia();
+function valida_usuario_alta(){
     
-if(validacion){
-    return true;
-}   
-    return false;
+    
+    var validacion_nombre = revisaNombre();
+    var validacion_login = revisaLogin();
+    var validacion_mail = revisaMail();
+    var validacion_contrasenia = revisaContrasenia();
+
+    return validacion_nombre && validacion_login &&  validacion_mail && validacion_contrasenia;
+    
 }
 
 function revisaNombre(){

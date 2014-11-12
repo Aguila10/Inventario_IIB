@@ -111,7 +111,11 @@ function buscaEquipo() {
     $.post("BuscaEquipo", {
         campoBusqueda: x
     }, function (data) {
-        $("#resultadoBusqueda").html(data);
+        if(data==="<label id='errorBusqueda' class='errorFormulario'>No se encontraron equipos</label>"){$("#errorBusqueda").html(data);}
+            else {
+                $("#resultadoBusqueda").html(data);
+            }
+            
     });
 
 }
