@@ -69,8 +69,8 @@ public class BuscaEquipo extends HttpServlet {
     public String obtenTabla(String busqueda){
         
         ArrayList<Equipo> lista = bd.buscaEquipo(Integer.parseInt(busqueda));
-        if(lista.size() == 0) return "No se encontraron equipos";
-        String tablaIn = "<table style=\"width:100%\" id=\"tablita\">";
+        if(lista.size() == 0) return "<label id=\"errorBusqueda\" class=\"errorFormulario\">No se encontraron equipos</label>";
+        String tablaIn = "<table style=\"width:100%\" id=\"tablaResultado\">";
         String tablaFin = "</table>";
         String tr1 = "<tr>";
         String tr2 = "</tr>";
