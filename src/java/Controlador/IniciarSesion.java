@@ -36,7 +36,7 @@ public class IniciarSesion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-            revisarSesion(request, response);
+        revisarSesion(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -93,43 +93,41 @@ public class IniciarSesion extends HttpServlet {
 
         if (validacion) {
             tipo_usuario = bd.buscaLogin(usuario, contrasenia);
- 
-                if (!(tipo_usuario.equals("false"))) {
 
-                    sesion = request.getSession(true);
+            if (!(tipo_usuario.equals("false"))) {
 
-                    switch (tipo_usuario) {
-                        case "Administrador":
-                            sesion.setAttribute("identidad", "administrador");
-                            sesion.setAttribute("login", usuario);
-                            response.sendRedirect("administrador.jsp");
-                            break;
-                        case "Secretaria":
-                            sesion.setAttribute("identidad", "secretaria");
-                            sesion.setAttribute("login", usuario);
-                            response.sendRedirect("administrador.jsp");
-                            break;
+                sesion = request.getSession(true);
 
-                        case "Tecnico Academico":
-                            sesion.setAttribute("identidad", "tecnico academico");
-                            sesion.setAttribute("login", usuario);
-                            response.sendRedirect("administrador.jsp");
-                            break;
+                switch (tipo_usuario) {
+                    case "Administrador":
+                        sesion.setAttribute("identidad", "administrador");
+                        sesion.setAttribute("login", usuario);
+                        break;
+                    case "Secretaria":
+                        sesion.setAttribute("identidad", "secretaria");
+                        sesion.setAttribute("login", usuario);
+                        break;
 
-                        case "Jefe de inventario":
-                            sesion.setAttribute("identidad", "jefe de inventario");
-                            sesion.setAttribute("login", usuario);
-                            response.sendRedirect("administrador.jsp");
-                            break;
-                    }
+                    case "Tecnico Academico":
+                        sesion.setAttribute("identidad", "tecnico academico");
+                        sesion.setAttribute("login", usuario);
+                        break;
+
+                    case "Jefe de inventario":
+                        sesion.setAttribute("identidad", "jefe de inventario");
+                        sesion.setAttribute("login", usuario);
+                        break;
                 }
-        }else{
-         
-            mandaMensaje("Error al iniciar sesion",response);
-            
+                response.sendRedirect("administrador.jsp");
+            } else {
+                response.sendRedirect("index.jsp");
+            }
+        } else {
+            response.sendRedirect("index.jsp");
         }
+
     }
-    
+
     /**
      *
      * @param mensaje

@@ -1,6 +1,12 @@
 function valida_usuario_alta(){
+
+    validacion = true;
+    validacion = validacion && revisaNombre();
+    validacion = validacion && revisaLogin();
+    validacion = validacion && revisaLogin();
+    validacion = validacion && revisaContrasenia();
     
-if(revisaNombre() && revisaLogin() && revisaMail() && revisaContrasenia() ){
+if(validacion){
     return true;
 }   
     return false;

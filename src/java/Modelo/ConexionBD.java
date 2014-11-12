@@ -386,6 +386,8 @@ public class ConexionBD {
 
         ConexionBD con = new ConexionBD();
 //   
+        
+        con.insertaUsuario("rene", "holamundo","rene","Administrador");
     
 //        ArrayList<String[]> lista =  con.buscaNombreLogin("caen");
 //        
