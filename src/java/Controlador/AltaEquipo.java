@@ -42,6 +42,13 @@ public class AltaEquipo extends HttpServlet {
         }
     }
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException
+     */
     public boolean registraEquipo(HttpServletRequest request, HttpServletResponse response) throws IOException {
         ConexionBD bd = new ConexionBD();
         String activoFijo = (String) request.getParameter("activoFijo");
@@ -73,6 +80,12 @@ public class AltaEquipo extends HttpServlet {
 
     }
 
+    /**
+     *
+     * @param mensaje
+     * @param response
+     * @throws IOException
+     */
     public void mandaMensaje(String mensaje, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {

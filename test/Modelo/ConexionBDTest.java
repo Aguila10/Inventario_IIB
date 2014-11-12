@@ -39,22 +39,7 @@ public class ConexionBDTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of buscaLogin method, of class ConexionBD.
-     */
-    @Test
-    public void testBuscaLogin() {
-        System.out.println("buscaLogin");
-        String login = "";
-        String pass = "";
-        ConexionBD instance = new ConexionBD();
-        String expResult = "";
-        String result = instance.buscaLogin(login, pass);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
+    
     /**
      * Test of buscaNombreLogin method, of class ConexionBD.
      */

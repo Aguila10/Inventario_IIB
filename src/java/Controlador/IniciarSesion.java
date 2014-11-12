@@ -130,7 +130,13 @@ public class IniciarSesion extends HttpServlet {
         }
     }
     
-        public void mandaMensaje(String mensaje, HttpServletResponse response) throws IOException {
+    /**
+     *
+     * @param mensaje
+     * @param response
+     * @throws IOException
+     */
+    public void mandaMensaje(String mensaje, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             //response.sendRedirect("administrador.jsp?mensaje=" + mensaje);

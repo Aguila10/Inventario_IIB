@@ -27,14 +27,36 @@ public class Equipo {
     String estado_físico;
     String clave_area;
     String clave_institucion;
-    String id_usuario_asignado;
+    
     String fecha_de_resguardo;
     String responsable;
     boolean estado;
 
+    /**
+     *
+     * @param a
+     * @param b
+     * @param c
+     * @param d
+     * @param e
+     * @param f
+     * @param g
+     * @param h
+     * @param i
+     * @param j
+     * @param k
+     * @param l
+     * @param m
+     * @param n
+     * @param ñ
+     * @param o
+     * @param q
+     * @param r
+     * @param s
+     */
     public Equipo(int a, int b, int c,
             String d, String e, String f, String g, String h, String i, String j, String k,
-            String l, String m, String n, String ñ, String o, String p, String q, String r, boolean s) {
+            String l, String m, String n, String ñ, String o, String q, String r, boolean s) {
 
         this.id_equipo = a;
         this.clave_activo_fijo = b;
@@ -52,7 +74,7 @@ public class Equipo {
         this.estado_físico = n;
         this.clave_area = ñ;
         this.clave_institucion = o;
-        this.id_usuario_asignado = p;
+      
         this.fecha_de_resguardo = q;
         this.responsable = r;
         this.estado = s;
@@ -283,19 +305,7 @@ public class Equipo {
         this.clave_institucion = clave_institucion;
     }
 
-    /**
-     * @return the id_usuario_asignado
-     */
-    public String getId_usuario_asignado() {
-        return id_usuario_asignado;
-    }
-
-    /**
-     * @param id_usuario_asignado the id_usuario_asignado to set
-     */
-    public void setId_usuario_asignado(String id_usuario_asignado) {
-        this.id_usuario_asignado = id_usuario_asignado;
-    }
+   
 
     /**
      * @return the fecha_de_resguardo

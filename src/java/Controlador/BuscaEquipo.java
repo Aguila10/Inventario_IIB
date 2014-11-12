@@ -31,6 +31,10 @@ public class BuscaEquipo extends HttpServlet {
 
     
     ConexionBD bd = new ConexionBD();
+
+    /**
+     *
+     */
     public static final String PRIMERA_LINEA = "<form name=\"actualizacion\" action=\"\" class=\"smart-blue\" method=\"post\" onsubmit=\"\">";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -58,6 +62,11 @@ public class BuscaEquipo extends HttpServlet {
         }
     }
     
+    /**
+     *
+     * @param busqueda
+     * @return
+     */
     public String obtenTabla(String busqueda){
         
         ArrayList<Equipo> lista = bd.buscaEquipo(Integer.parseInt(busqueda));
@@ -109,7 +118,9 @@ public class BuscaEquipo extends HttpServlet {
         return tabla;
     }
     
+
     public String obtenFormulario(String campoDeBusqueda){//int id){
+
         ArrayList<Equipo> lista = bd.buscaEquipo(Integer.parseInt(campoDeBusqueda));
         //Equipo e = bd.buscaEquipo(id);
         String form = "";

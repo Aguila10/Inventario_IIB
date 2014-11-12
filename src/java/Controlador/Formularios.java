@@ -182,6 +182,8 @@ public class Formularios extends HttpServlet {
 
     /**
      *
+     * @param formulario
+     * @return 
      */
     public String obtenFormularioSinCatalogos(String formulario) {
         String form = "";
@@ -236,6 +238,11 @@ public class Formularios extends HttpServlet {
         return cat;
     }
 
+    /**
+     *
+     * @param ruta
+     * @param out
+     */
     protected void getFormulario(String ruta, PrintWriter out) {
         //    ConexionBD bd = new ConexionBD();
 
