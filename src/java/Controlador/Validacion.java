@@ -15,9 +15,17 @@ import javax.servlet.http.HttpSession;
  */
 public class Validacion {
 
+    /**
+     *
+     */
     public Validacion() {
     }
 
+    /**
+     *
+     * @param login
+     * @return
+     */
     public static boolean valida_login(String login) {
 
         String login_pat = "^[A-Za-z0-9ñ_]+$";
@@ -29,6 +37,12 @@ public class Validacion {
         return login.matches(login_pat) && login.length() >= 4 && login.length() <= 15;
     }
 
+    /**
+     *
+     * @param contraseniaUno
+     * @param contraseniaDos
+     * @return
+     */
     public static boolean valida_contrasenia(String contraseniaUno, String contraseniaDos) {
 
         String contrasenia_pat = "^[^';]+$";
@@ -41,6 +55,11 @@ public class Validacion {
                 && contraseniaUno.equals(contraseniaDos);
     }
 
+    /**
+     *
+     * @param nombre
+     * @return
+     */
     public static boolean valida_nombre(String nombre) {
 
         String nombre_pat = "^([A-Za-zñ])+([\\s]{1}[A-Za-zñ]+)?([\\s]{1}[A-Za-zñ]+)?$"; //Nombres de 2 hasta hasta 70
@@ -52,6 +71,11 @@ public class Validacion {
         return nombre.matches(nombre_pat) && nombre.length() >= 2 && nombre.length() <= 70;
     }
 
+    /**
+     *
+     * @param email
+     * @return
+     */
     public static boolean valida_mail(String email) {
         String mail_pat = "^[A-Za-z0-9_](\\.?[\\w-]+)*@[a-zA-Z]+(\\.[a-zA-z]+){1,2}$";
 
@@ -62,6 +86,10 @@ public class Validacion {
         return email.matches(mail_pat) && email.length() <= 70;
     }
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
 
         System.out.println(valida_contrasenia("holamundo", "holamundo"));

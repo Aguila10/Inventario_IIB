@@ -32,6 +32,28 @@ public class Equipo {
     String responsable;
     boolean estado;
 
+    /**
+     *
+     * @param a
+     * @param b
+     * @param c
+     * @param d
+     * @param e
+     * @param f
+     * @param g
+     * @param h
+     * @param i
+     * @param j
+     * @param k
+     * @param l
+     * @param m
+     * @param n
+     * @param ñ
+     * @param o
+     * @param q
+     * @param r
+     * @param s
+     */
     public Equipo(int a, int b, int c,
             String d, String e, String f, String g, String h, String i, String j, String k,
             String l, String m, String n, String ñ, String o, String q, String r, boolean s) {

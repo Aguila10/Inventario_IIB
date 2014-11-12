@@ -20,11 +20,15 @@ public class ConexionBD {
     String user = "darktech";
     String password = "darktech";
     
-     /* Metodo que regresa el el login pedido
-     *
-     * @param login parametro a buscar en la tabla registro
-     * @return el login si lo encontro
+    
+
+    /**
+     *Metodo que recibe 
+     * @param login
+     * @param pass
+     * @return la categoria de la persoan en otro caso regresa error
      */
+    
     public String buscaLogin(String login, String pass) {
         String res = "error";
         Statement statement;
@@ -46,9 +50,14 @@ public class ConexionBD {
         return res;
     }
 
-    
-    
-     public ArrayList<String[]>  buscaNombreLogin(String login_nombre) {
+    /**
+     *Metodo que regresa un arreglo de string con todos los nombres y
+     * login de todos los usuarios MENOS del nombre o login que recibe
+     * @param login_nombre
+     * @return en la posicion 0 esta el login
+     *  en la posicion 1 esta el nombre
+     */
+    public ArrayList<String[]>  buscaNombreLogin(String login_nombre) {
         String res = "error";
         Statement statement;
         ResultSet resultSet;
@@ -63,8 +72,6 @@ public class ConexionBD {
             while (resultSet.next()) {
                 nombre[0] = resultSet.getString(1);
                 nombre[1]= resultSet.getString(2);
-                
-               // System.out.println(  nombre[0] +" , " + nombre[1]);
                String[] nuevo = new String[2];
                nuevo[0]= nombre[0];
                nuevo[1]= nombre[1];
@@ -78,7 +85,14 @@ public class ConexionBD {
         return resultado;
     }
     
-    
+    /**
+     *Metodo que inserta un usuario
+     * @param login
+     * @param pass
+     * @param nombre
+     * @param categoria
+     * @return un boolean
+     */
     public boolean insertaUsuario(String login, String pass, String nombre, String categoria) {
         boolean res = false;
         Statement statement;
@@ -100,6 +114,27 @@ public class ConexionBD {
         return res;
     }
 
+    /**
+     *Metodo que inserta un equipo
+     * @param numeroInveInterInfo
+     * @param numInvUnam
+     * @param descrip
+     * @param modelo
+     * @param marca
+     * @param serie
+     * @param familia
+     * @param tipo
+     * @param prove
+     * @param clase
+     * @param uso
+     * @param nivel
+     * @param edoFisico
+     * @param area
+     * @param institu
+     * @param fecha
+     * @param responsable
+     * @return un boolean
+     */
     public boolean insertaEquipo(int numeroInveInterInfo, int numInvUnam, String descrip,
             String modelo, String marca, String serie, String familia, String tipo, String prove, String clase, String uso,
             String nivel, String edoFisico, String area, String institu, String fecha, String responsable) {
@@ -125,15 +160,21 @@ public class ConexionBD {
         return res;
     }
 
+    /**
+     *Metodo que busca Todos los quipos que concida el numero inventario unam
+     * o el tipo activo fijo
+     * @param clave
+     * @return lista de equipos con todos los resultados
+     */
     public ArrayList<Equipo> buscaEquipo(int clave) {
         int id_equipo, clave_activo_fijo, num_inv_unam;
         String clave_descripcion, clave_modelo, clave_marcar, serie,
                 clave_familia, clave_tipo, clave_proveedor, clase,
                 uso, nivel_de_obsolescencia, estado_físico,
-                clave_area, clave_institucion, id_usuario_asignado,
+                clave_area, clave_institucion, 
                 fecha_de_resguardo, responsable;
         boolean estado;
-        ArrayList<Equipo> res = new ArrayList<Equipo>();
+        ArrayList<Equipo> res = new ArrayList<>();
         Statement statement;
         ResultSet resultSet;
 
@@ -159,8 +200,7 @@ public class ConexionBD {
                 estado_físico = resultSet.getString(14);
                 clave_area = resultSet.getString(15);
                 clave_institucion = resultSet.getString(16);
-               
-                fecha_de_resguardo = resultSet.getString(17);
+               fecha_de_resguardo = resultSet.getString(17);
                 responsable = resultSet.getString(18);
                 estado = resultSet.getBoolean(19);
 
@@ -180,13 +220,18 @@ public class ConexionBD {
         return res;
     }
 
+    /**
+     *Metodo que solo nos regresa la descripcion de los catalogos
+     * @param catalogo
+     * @return lista con las descripciones
+     */
     public ArrayList regresaCatalogo(String catalogo) {
         String res = "";
         ArrayList lista = new ArrayList();
         try {
             Class.forName(driver);
             Connection con = DriverManager.getConnection(connectString, user, password);
-            PreparedStatement query = con.prepareStatement("select descripcion from " + catalogo);
+            PreparedStatement query = con.prepareStatement("select descripcion from " + catalogo + " order by descripcion");
 
             ResultSet rset = query.executeQuery();
             while (rset.next()) {
@@ -201,7 +246,46 @@ public class ConexionBD {
     }
     
     
-     public Equipo regresaEquipo(int id_equipo) {
+
+    /**
+     *Metodo que solo nos regresa  los catalogos
+     * @param catalogo
+     * @return lista de arreglos donde en la primera posicion esta el id 
+     * en la posicion 2 esta la descripcion
+     */
+    public ArrayList<String[]> regresaCatalogoConId(String catalogo) {
+        String res = "";
+        ArrayList<String[]> resultado = new ArrayList<>();
+        String [] nombre = new String[2];
+        try {
+            Class.forName(driver);
+            Connection con = DriverManager.getConnection(connectString, user, password);
+            PreparedStatement query = con.prepareStatement("select * from " + catalogo + " order by descripcion");
+
+            ResultSet resultSet = query.executeQuery();
+            while (resultSet.next()) {
+                nombre[0] = resultSet.getString(1);
+                nombre[1]= resultSet.getString(2);
+               String[] nuevo = new String[2];
+               nuevo[0]= nombre[0];
+               nuevo[1]= nombre[1];
+                resultado.add(nuevo);
+            }
+        } catch (SQLException | java.lang.ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return resultado;
+    }
+    
+    
+     
+    /**
+     *
+     * @param id_equipo
+     * @return
+     */
+    public Equipo regresaEquipo(int id_equipo) {
         String res = "";
         int id_equipo1, clave_activo_fijo, num_inv_unam;
         String clave_descripcion, clave_modelo, clave_marcar, serie,
@@ -250,27 +334,23 @@ public class ConexionBD {
         return a;
     }
     
-    
-    
-     public boolean  eliminaUsuario(String login) {
+    /**
+     *Metodo que elimina un usuario
+     * @param login
+     * @return un boolean
+     */
+    public boolean  eliminaUsuario(String login) {
         boolean res = true;
         Statement statement;
         ResultSet resultSet;
        
-       
-
         try {
             Connection con = DriverManager.getConnection(connectString, user, password);
             statement = con.createStatement();
             resultSet = statement.executeQuery("SELECT * from  eliminaUsuario('" + login + "');");
-
-            while (resultSet.next()) {
+ while (resultSet.next()) {
                  res = resultSet.getBoolean(1);
-                
-                
-            
-                
-            }
+             }
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -278,10 +358,17 @@ public class ConexionBD {
         return res;
     }
      
-     
-     
-     
-
+    
+    
+    
+    
+    
+    
+    
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
 
         ConexionBD con = new ConexionBD();
@@ -297,7 +384,7 @@ public class ConexionBD {
         
        /// System.out.println(con.eliminaUsuario("rene"));
         
-        System.out.println(con.regresaEquipo(1).getClave_area());
+//       System.out.println(con.regresaEquipo(1).getClave_area());
         
     }
 
