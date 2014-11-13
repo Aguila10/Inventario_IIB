@@ -173,17 +173,17 @@ function validaMovimiento(){
    var fecha = document.getElementById("fecha").value;
    if(movimiento === ""){
        if(!esVisible("errorMovimiento")){
-           escribeEn("errorMovimiento","Debes introducir un valor");
+           escribeEn("errorMovimiento","Debes introducir un valor1");
            muestra("errorMovimiento");
        } else {
-        escribeEn("errorMovimiento","Debes introducir un valor");
-        }
+        escribeEn("errorMovimiento","Debes introducir un valor2");
+        }   
     if(fecha === ""){
         if(!esVisible("errorFecha")){
-           escribeEn("errorFecha","Debes introducir una fecha");
+           escribeEn("errorFecha","Debes introducir una fecha1");
            muestra("errorFecha");
        } else {
-        escribeEn("errorFecha","debes introducir una fecha");
+        escribeEn("errorFecha","debes introducir una fecha2");
         }
 
     } else {
@@ -193,24 +193,35 @@ function validaMovimiento(){
     }
     return false
    }
-   
    if(esVisible("errorMovimiento")){
-       ocultar("errorMovimiento")
+       oculta("errorMovimiento");
    }
     if(fecha === ""){
         if(!esVisible("errorFecha")){
-           escribeEn("errorFecha","Debes introducir una fecha");
+           escribeEn("errorFecha","Debes introducir una fecha3");
            muestra("errorFecha");
        } else {
-        escribeEn("errorFecha","Debes introducir una fecha");
+        escribeEn("errorFecha","Debes introducir una fecha4");
         }
         return false;
     }
-    
     if(esVisible("errorFecha")){
-        ocultar("errorFecha");
+        oculta("errorFecha");
     }
-   
+
+    var sel = document.getElementsByName("seleccion");
+    var id_equipo;
+
+    for(i = 0; i < sel.length; i++){
+        if(sel[i].checked){
+           id_equipo = sel[i].value;
+        }
+    }
+    if(id_equipo == null){
+        escribeEn("errorBusqueda","No has seleccionado un equipo");
+        return false;
+    }
+    
    
    return true;
 }
@@ -232,4 +243,23 @@ function muestra(id) {
 }
 function escribeEn(id,texto){
     document.getElementById(id).innerHTML=texto;
+}
+function imprimeTabla(){
+    var busqueda = document.getElementById("campoBusqueda").value;
+    var reg = "^[0-9]+$";
+    if(busqueda === ""){
+    escribeEn("errorBusqueda","El campo no puede ser nulo");
+    return;
+    }
+    var con = busqueda.match(reg);
+    if(con === null){
+        escribeEn("errorBusqueda","Debe ser un número");
+        return;
+    }
+    $.post("MovimientoEquipo", {
+        equipo: busqueda
+        
+    }, function (data) {
+        $("#resultadoBusqueda").html(data);
+    });
 }

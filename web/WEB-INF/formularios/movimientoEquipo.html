@@ -1,4 +1,4 @@
-<form class="smart-blue" onsubmit="return validaMovimiento()">
+<form action="MovimientoEquipo" class="smart-blue" onsubmit="return validaMovimiento()">
     <h3>Movimiento de Equipo</h3>
     <div class="dosColumnas">
         <label for="movimiento">Movimiento originado por:</label>
@@ -14,17 +14,19 @@
     </div>
     <div class="dosColumnas derecha">
         <label for="fecha">Fecha:</label>
-    <input type="date" id="fecha">
+    <input type="date" id="fecha" name="fecha">
     <label id="errorFecha" class="errorFormulario"></label>
     </div>
 
-    
-    
-
     <label for="nombre">Nombre de usuario:</label>
-    <input type="text" id="nombre">
+    <input type="text" id="nombre" name="nombre">
     <label id="errorNombre" class="errorFormulario"></label>
-    
 
+    <center><div id="busquedaDentro">
+    <input type="text" id="campoBusqueda" placeholder="Búsqueda clave activo fijo o número inventario UNAM">    <div onclick="imprimeTabla()"><img src="img/search.png"></div>
+    <label id="errorBusqueda" class="errorFormulario"></label>
+    </div></center>
+    
+    <div id="resultadoBusqueda"></div>
     <input type="submit" value="Aceptar" class="button">
 </form>

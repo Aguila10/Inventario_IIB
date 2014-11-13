@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Modelo.ConexionBD;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,7 +20,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Modelo.ConexionBD;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -47,8 +48,15 @@ public class Formularios extends HttpServlet {
 
             /*Formulario solicitado*/
             String formulario = request.getParameter("formulario");
+            if(formulario.equals("movimientoEquipo")) {
+                String form = obtenFormulario(formulario);
+                HttpSession sesion = request.getSession();
+                form = form.replace("<input type=\"text\" id=\"nombre\" name=\"nombre\">","<input type=\"text\" id=\"nombre\" value=\""
+                        +bd.regresaNombre((String)sesion.getAttribute("login"))+ "\" disabled>");
+                out.print(form);
+            } else {
             out.print(obtenFormulario(formulario));
-
+            }
         }
     }
 
@@ -75,8 +83,6 @@ public class Formularios extends HttpServlet {
                 break;
             case "movimientoEquipo": //
                 form = obtenFormularioSinCatalogos("movimientoEquipo");
-                form = form.replace("<input type=\"text\" id=\"nombre\">","<input type=\"text\" id=\"nombre\" value=\""
-                        + "\" disabled>");
                 break;
             case "usuarioAlta": // No tiene catalogos
                 form = obtenFormularioSinCatalogos("usuarioAlta");
