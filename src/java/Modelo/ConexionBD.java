@@ -699,7 +699,7 @@ public class ConexionBD {
         //System.out.println(con.insertaCatalogo("catalogo_marca","ACERRRRRR"));
         
         
-        System.out.println(con.regresaIDNombre("caen"));
+        //System.out.println(con.regresaIDNombre("caen"));
     }
 
 }
