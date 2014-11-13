@@ -249,7 +249,31 @@ public class ConexionBD {
      * @param catalogo
      * @return lista con las descripciones
      */
-    public ArrayList regresaCatalogo(String tabla , int id_catalogo , String   descrip) {
+    public ArrayList regresaCatalogo(String catalogo) {
+        String res = "";
+        ArrayList lista = new ArrayList();
+        try {
+            Class.forName(driver);
+            Connection con = DriverManager.getConnection(connectString, user, password);
+            PreparedStatement query = con.prepareStatement("select descripcion from " + catalogo + " order by descripcion");
+
+            ResultSet rset = query.executeQuery();
+            while (rset.next()) {
+                res = (rset.getString(1));
+                lista.add(res);
+            }
+        } catch (SQLException | java.lang.ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return lista;
+    }
+    
+    
+    
+    
+    
+     public ArrayList actualizaCatalogo(String tabla , int id_catalogo , String   descrip) {
         String res = "";
         ArrayList lista = new ArrayList();
         try {
@@ -269,7 +293,6 @@ public class ConexionBD {
 
         return lista;
     }
-    
     
 
     /**
