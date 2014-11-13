@@ -112,8 +112,7 @@
 
                 <% 
                 if(request.getParameter("mensaje") != null){
-                   
-               out.print(request.getParameter("mensaje"));
+                    out.print(request.getParameter("mensaje"));
                 } else{
                     out.print("<a href='https://www.facebook.com/darktech.enterprise' target='_blank'><img src='img/caratula.jpg' alt='caratula darktech' id='caratula'></a>");
                 }

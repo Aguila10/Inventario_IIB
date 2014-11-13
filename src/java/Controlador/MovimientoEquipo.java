@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -51,12 +52,15 @@ public class MovimientoEquipo extends HttpServlet {
     }
 
     public boolean realizaMovimiento(HttpServletRequest request) {
+        HttpSession sesion = request.getSession();
         String movimiento = request.getParameter("movimiento");
         String fecha = request.getParameter("fecha");
-        String login = request.getParameter("nombre");
+        String login = (String)sesion.getAttribute("login");
         String equipo = request.getParameter("seleccion");
         System.out.println(movimiento + " " + fecha + " " + login + " " + equipo);
-        return true;
+        System.out.println(Integer.parseInt(bd.regresaIDNombre(login)));
+        System.out.println(Integer.parseInt(equipo));
+        return true;//bd.insertaMovimientos(Integer.parseInt(bd.regresaIDNombre(bd.regresaNombre(login))),Integer.parseInt(equipo),movimiento, fecha);
     }
 
     public String generaTabla(String busqueda) {
@@ -87,7 +91,7 @@ public class MovimientoEquipo extends HttpServlet {
             tabla += td2;
 
             tabla += td1;
-            tabla += "<input type=\"radio\" value=\"" + e[1] + "\" name=\"seleccion\" id=\"seleccion\"/>";
+            tabla += "<input type=\"radio\" value=\"" + e[3] + "\" name=\"seleccion\" id=\"seleccion\"/>";
             tabla += td2;
 
             tabla += tr2;
@@ -99,7 +103,7 @@ public class MovimientoEquipo extends HttpServlet {
     public void mandaMensaje(String mensaje, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            response.sendRedirect("administrador.jsp?mensaje=" + mensaje + "&formulario=equipo");
+            response.sendRedirect("administrador.jsp?mensaje=" + mensaje + "&formulario=movimientoEquipo");
         }
     }
 

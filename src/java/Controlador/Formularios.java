@@ -43,23 +43,71 @@ public class Formularios extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        String form="";
+        HttpSession sesion = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
             /*Formulario solicitado*/
             String formulario = request.getParameter("formulario");
             if (formulario.equals("movimientoEquipo")) {
-                String form = obtenFormulario(formulario);
-                HttpSession sesion = request.getSession();
-                form = form.replace("<input type=\"text\" id=\"nombre\" name=\"nombre\">", "<input type=\"text\" id=\"nombre\" value=\""
+                form = obtenFormulario(formulario);
+                form = form.replace("<input type=\"text\" id=\"nombre\" name=\"nombre\">", "<input type=\"text\" id=\"nombre\" "
+                        + "name=\"nombre\" value=\""
                         + bd.regresaNombre((String) sesion.getAttribute("login")) + "\" disabled>");
                 out.print(form);
             } else {
-                out.print(obtenFormulario(formulario));
+                if (formulario.equals("usuarioBaja")) {
+                    form = obtenFormulario(formulario);
+                    form = form.replace("<aqui va la tabla>",obten_tabla_usuarios((String)sesion.getAttribute("login")));
+                    out.print(form);
+                } else {
+                    out.print(obtenFormulario(formulario));
+                }
             }
         }
     }
 
+    private String obten_tabla_usuarios(String login){
+        
+        ConexionBD con = new ConexionBD();
+        ArrayList<String[]> usuarios = con.buscaNombreLogin(login);
+        String tabla = "";
+        
+        tabla += "<center><table style=\"width:100%\" id=\"tablaResultado\">\n" +
+"    		<tr>\n" +
+"    			<th>Login</th>\n" +
+"    			<th class=\"campoNombre\">Nombre</th>\n" +
+"    			<th>Seleccionar</th>\n" +
+"    		</tr>\n";
+        
+        for (String[] usuario : usuarios) {
+            
+            tabla+="<tr>\n" +
+"    			<td>"+ usuario[0]+"</td>\n" +
+"    			<td class=\"campoNombre\">"+usuario[1]+"</td>\n" +
+"    			<td><input type=\"checkbox\" value=\""+ usuario[0]+"\" name=\"usuarios\"></td>\n" +
+"    		</tr>\n";
+            
+        }
+        
+        tabla+= "</table></center>";
+        
+    return tabla;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * Metodo que regresa un formulario en forma de cadena
      *

@@ -4,6 +4,19 @@
     Author     : rae
 --%>
 
+<%
+    /*Obtener la sesion ya iniciada*/
+    HttpSession sesion = request.getSession(true);
+    String tipo = (String)sesion.getAttribute("identidad");
+    
+    if(sesion.getAttribute("identidad") != null){
+           if(tipo.equals("administrador")){
+               response.sendRedirect("administrador.jsp");
+           } 
+    }
+   
+%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
