@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package Controlador;
 
 import Modelo.ConexionBD;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,10 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author jpachecov
+ * @author mphb
  */
-@WebServlet(name = "MuestraCatalogos", urlPatterns = {"/MuestraCatalogos"})
-public class MuestraCatalogos extends HttpServlet {
+@WebServlet(name = "ActualizaCatalogo", urlPatterns = {"/ActualizaCatalogo"})
+public class ActualizaCatalogo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,34 +35,25 @@ public class MuestraCatalogos extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String catalogo = request.getParameter("catalogo");
-            Formularios f = new Formularios();
+            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet ActualizaCatalogo</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>Servlet ActualizaCatalogo at " + request.getContextPath() + "</h1>");
+//            out.println("</body>");
+//            out.println("</html>");
             
-            ConexionBD con = new ConexionBD();
+        String id = request.getParameter("id");
+        int idB = Integer.parseInt(id);
+        String tabla = request.getParameter("tabla");
+        String descripcion = request.getParameter("descripcion");
+        ConexionBD con = new ConexionBD();
+        
             
-            ArrayList<String[]> cats = con.regresaCatalogoConId(catalogo);
-            out.print(generaTabla(cats));
         }
-    }
-
-    /**
-     *
-     * @param cat. Un arraylist con los elementos de un catalogo
-     * @return tabla. La tabla en html.
-     */
-    public String generaTabla(ArrayList<String[]> cat) {
-        String tabla = "";
-        tabla += "<table>";
-
-        for(int i=0; i<cat.size(); i++){
-            tabla += "<tr id='padre"+cat.get(i)[0]+"'>";
-            tabla += "<td id='hijo"+cat.get(i)[0]+"' onclick='voyAeditar("+cat.get(i)[0]+")'>";
-            tabla+= cat.get(i)[1];
-            tabla += "</td>";
-            tabla += "</tr>";
-        }
-        tabla += "</table>";
-        return tabla;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -92,6 +83,7 @@ public class MuestraCatalogos extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
     }
 
     /**
