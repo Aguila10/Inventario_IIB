@@ -51,7 +51,8 @@ public class Formularios extends HttpServlet {
             if (formulario.equals("movimientoEquipo")) {
                 String form = obtenFormulario(formulario);
                 HttpSession sesion = request.getSession();
-                form = form.replace("<input type=\"text\" id=\"nombre\" name=\"nombre\">", "<input type=\"text\" id=\"nombre\" value=\""
+                form = form.replace("<input type=\"text\" id=\"nombre\" name=\"nombre\">", "<input type=\"text\" id=\"nombre\" "
+                        + "name=\"nombre\" value=\""
                         + bd.regresaNombre((String) sesion.getAttribute("login")) + "\" disabled>");
                 out.print(form);
             } else {

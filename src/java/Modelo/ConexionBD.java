@@ -700,7 +700,8 @@ public class ConexionBD {
         for(String[] e:a){
             System.out.println(e[0] + " "+e[1]+" "+e[2] + " "+e[3]);
         }
-        
+        System.out.println(con.regresaIDNombre("caen"));        
         }
+
 
 }
