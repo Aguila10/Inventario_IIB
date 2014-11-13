@@ -17,8 +17,8 @@
 
 /*Estilo para búsquedas sobre formularios*/
 #busquedaDentro{width: 90%;}
-#busquedaDentro div img{width: 20%;}
-#busquedaDentro div{width: 20%;margin-top: 7%;}
+#busquedaDentro button img{width: 20%;}
+#busquedaDentro button{width: 20%;margin-top: 7%;}
 #busqueda{margin: 3% auto 0 auto;width:90%;}
 #campoBusqueda{width: 70% !important;}
 #busqueda button img{width: 20%;}
