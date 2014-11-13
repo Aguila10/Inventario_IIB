@@ -38,9 +38,9 @@ public class ActualizaEquipo extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 
             if (actualizaEquipo(request, response)) {
-                mandaMensaje("Acttualización exitosa", response);
+                mandaMensaje("Acttualización exitosa","true", response);
             } else {
-                mandaMensaje("Actualización fallida", response);
+                mandaMensaje("Actualización fallida","false", response);
             }
 
         }
@@ -73,10 +73,10 @@ public class ActualizaEquipo extends HttpServlet {
 
     }
 
-    public void mandaMensaje(String mensaje, HttpServletResponse response) throws IOException {
+    public void mandaMensaje(String mensaje, String exito,HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            response.sendRedirect("administrador.jsp?mensaje=" + mensaje + "&formulario=equipo");
+            response.sendRedirect("administrador.jsp?mensaje=" + mensaje + "&exito="+exito);
         }
     }
 

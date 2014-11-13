@@ -56,6 +56,7 @@ public class MovimientoEquipo extends HttpServlet {
     public boolean realizaMovimiento(HttpServletRequest request) {
         HttpSession sesion = request.getSession();
         String movimiento = request.getParameter("movimiento");
+        System.out.println(movimiento);
         String fecha = request.getParameter("fecha");
         String login = (String)sesion.getAttribute("login");
         String equipo = request.getParameter("seleccion");
