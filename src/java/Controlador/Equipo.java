@@ -27,7 +27,7 @@ public class Equipo {
     String estado_físico;
     String clave_area;
     String clave_institucion;
-    
+
     String fecha_de_resguardo;
     String responsable;
     boolean estado;
@@ -74,7 +74,7 @@ public class Equipo {
         this.estado_físico = n;
         this.clave_area = ñ;
         this.clave_institucion = o;
-      
+
         this.fecha_de_resguardo = q;
         this.responsable = r;
         this.estado = s;
@@ -304,8 +304,6 @@ public class Equipo {
     public void setClave_institucion(String clave_institucion) {
         this.clave_institucion = clave_institucion;
     }
-
-   
 
     /**
      * @return the fecha_de_resguardo

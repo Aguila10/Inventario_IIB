@@ -50,9 +50,9 @@
                 <h1>Inventario del Instituo de Investigaciones Bibliografícas</h1>
                 <center><img src="img/instituto.jpg" alt="instituto biblioteca"></center>
                 <p>Este sistema surgió por la necesidad de automatizar la administración
-                de los equipos que se encuentran distribuidos en <br> 
-                la Hemeroteca Nacional de México, la Biblioteca Nacional de México y el Instituto de Investigaciones Bibliografícas <br>
-                para poder tener un mejor manejo de dichos equipos.</p>
+                    de los equipos que se encuentran distribuidos en <br> 
+                    la Hemeroteca Nacional de México, la Biblioteca Nacional de México y el Instituto de Investigaciones Bibliografícas <br>
+                    para poder tener un mejor manejo de dichos equipos.</p>
             </div>
             <!--Fin descripcion del sistema-->
 
@@ -60,16 +60,16 @@
                 <!--Inicio formulario inicio de sesión-->
                 <form action="IniciarSesion" id="inicio_sesion" class="smart-blue" onsubmit="return valida_inicio_sesion()">
                     <fieldset>
-                    <legend>Ingresar</legend>
-                    <div>
-                        <label for="usuario">Usuario:</label>
-                        <input type="text" id="usuario" name="login" value="">
-                        <br><br>
-                        <label for="contrasenia">Contraseña:</label>
-                        <input type="password" id="contrasenia"  name="contrasenia" value="">
-                        <br><br>
-                        <input type="submit" class="button" value="Aceptar">
-                    </div>
+                        <legend>Ingresar</legend>
+                        <div>
+                            <label for="usuario">Usuario:</label>
+                            <input type="text" id="usuario" name="login" value="">
+                            <br><br>
+                            <label for="contrasenia">Contraseña:</label>
+                            <input type="password" id="contrasenia"  name="contrasenia" value="">
+                            <br><br>
+                            <input type="submit" class="button" value="Aceptar">
+                        </div>
                     </fieldset>
                 </form>
                 <!--fin formulario inicio de sesión-->

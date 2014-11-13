@@ -34,7 +34,7 @@ public class AltaUsuario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-            registraUsuario(request, response);
+        registraUsuario(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -124,8 +124,8 @@ public class AltaUsuario extends HttpServlet {
             }
 
         } else {
-            
-                mandaMensaje("Error Registrando Usuario",response);
+
+            mandaMensaje("Error Registrando Usuario", response);
 
         }
 

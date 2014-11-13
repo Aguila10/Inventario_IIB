@@ -36,7 +36,7 @@ public class BajaUsuario extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            muestra_usuarios(request,response);
+            muestra_usuarios(request, response);
         }
     }
 
@@ -81,32 +81,30 @@ public class BajaUsuario extends HttpServlet {
 
     private void muestra_usuarios(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        
         ConexionBD con = new ConexionBD();
         HttpSession sesion = request.getSession(true);
         PrintWriter out = response.getWriter();
-                
-        ArrayList<String[]> usuarios = con.buscaNombreLogin((String)sesion.getAttribute("login"));
-        
-        out.println("<center><table>\n" +
-"    		<tr>\n" +
-"    			<th>Login</th>\n" +
-"    			<th class=\"campoNombre\">Nombre</th>\n" +
-"    			<th>Seleccionar</th>\n" +
-"    		</tr>\n");
-     
+
+        ArrayList<String[]> usuarios = con.buscaNombreLogin((String) sesion.getAttribute("login"));
+
+        out.println("<center><table>\n"
+                + "    		<tr>\n"
+                + "    			<th>Login</th>\n"
+                + "    			<th class=\"campoNombre\">Nombre</th>\n"
+                + "    			<th>Seleccionar</th>\n"
+                + "    		</tr>\n");
+
         for (String[] usuario : usuarios) {
-        
-                out.println("<tr>\n" +
-"    			<td>"+ usuario[0]+"</td>\n" +
-"    			<td class=\"campoNombre\">"+usuario[1]+"</td>\n" +
-"    			<td><input type=\"checkbox\" value=\"login\"></td>\n" +
-"    		</tr>");
-               
+
+            out.println("<tr>\n"
+                    + "    			<td>" + usuario[0] + "</td>\n"
+                    + "    			<td class=\"campoNombre\">" + usuario[1] + "</td>\n"
+                    + "    			<td><input type=\"checkbox\" value=\"login\"></td>\n"
+                    + "    		</tr>");
+
         }
-        
-        out.println("</table></center>");   
+
+        out.println("</table></center>");
     }
- 
-    
+
 }
