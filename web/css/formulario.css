@@ -16,7 +16,7 @@
 
 
 /*Estilo para búsquedas sobre formularios*/
-#busquedaDentro{width: 90%;}
+#busquedaDentro{width: 90%; margin-top: 5%;}
 #busquedaDentro button img{width: 20%;}
 #busquedaDentro button{width: 20%;margin-top: 7%;}
 #busqueda{margin: 3% auto 0 auto;width:90%;}
@@ -24,6 +24,9 @@
 #busqueda button img{width: 20%;}
 #busqueda button{width: 10%;margin-right: 8%;margin-top: 3px;}
 #resultadoBusqueda span{margin-left: 30%; color: red;}
+#botonBusqueda{width: 10%; float: right; border: 1px solid #E5E5E5;background: #FBFBFB;border-radius: 5px;-webkit-border-radius: 5px;-moz-border-border-radius: 5px; margin-right: 10%;margin-top: 1%;}
+#busquedaDentro input {margin-left: 1%;}
+#botonBusqueda img{width: 50%;}
 
 /*Estilo para búsqueda de catalogos*/
 #busquedaCatalogos{width: 80%;  margin-bottom: 3%;}
