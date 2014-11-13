@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Controlador;
 
 import Modelo.ConexionBD;
@@ -29,7 +28,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "BuscaEquipo", urlPatterns = {"/BuscaEquipo"})
 public class BuscaEquipo extends HttpServlet {
 
-    
     ConexionBD bd = new ConexionBD();
     public static int id_equipo;
 
@@ -37,6 +35,7 @@ public class BuscaEquipo extends HttpServlet {
      *
      */
     public static final String PRIMERA_LINEA = "<form name=\"actualizacion\" action=\"\" class=\"smart-blue\" method=\"post\" onsubmit=\"\">";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -51,115 +50,116 @@ public class BuscaEquipo extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String campoDeBusqueda = request.getParameter("campoBusqueda");
-            
+
             String actualizar = request.getParameter("actualizar");
-            if(actualizar == null){
-            out.print(obtenTabla(campoDeBusqueda));
+            if (actualizar == null) {
+                out.print(obtenTabla(campoDeBusqueda));
             } else {
                 id_equipo = Integer.parseInt(request.getParameter("id"));
                 out.print(obtenFormulario(id_equipo));
-                   }
-            
+            }
+
         }
     }
-    
+
     /**
      *
      * @param busqueda
      * @return
      */
-    public String obtenTabla(String busqueda){
-        
+    public String obtenTabla(String busqueda) {
+
         ArrayList<Equipo> lista = bd.buscaEquipo(Integer.parseInt(busqueda));
-        if(lista.size() == 0) return "<label id=\"errorBusqueda\" class=\"errorFormulario\">No se encontraron equipos</label>";
+        if (lista.size() == 0) {
+            return "<label id=\"errorBusqueda\" class=\"errorFormulario\">No se encontraron equipos</label>";
+        }
         String tablaIn = "<table style=\"width:100%\" id=\"tablaResultado\">";
         String tablaFin = "</table>";
         String tr1 = "<tr>";
         String tr2 = "</tr>";
         String td1 = "<td>";
         String td2 = "</td>";
-        String boton ="<button onclick=\"muestraFormulario()\" class=\"button\">Actualizar</button>";
-        
+        String boton = "<button onclick=\"muestraFormulario()\" class=\"button\">Actualizar</button>";
+
         String tabla = "";
-        tabla+=tablaIn;
-        
-        tabla+="<tr> <th>Clave Activo Fijo</th> <th> Num. inventario </th> <th>Serie</th>"
+        tabla += tablaIn;
+
+        tabla += "<tr> <th>Clave Activo Fijo</th> <th> Num. inventario </th> <th>Serie</th>"
                 + "<th>Marca</th>  <th>Tipo Activo</th> <th>Selección</th> </tr>";
-        for(Equipo elem:lista){
-            tabla+=tr1;
-            
-            tabla+=td1;
-            tabla+=String.valueOf(elem.getClave_activo_fijo());
-            tabla+=td2;
-            
-            tabla+=td1;
-            tabla+=String.valueOf(elem.getNum_inv_unam());
-            tabla+=td2;
-            
-            tabla+=td1;
-            tabla+=elem.getSerie();
-            tabla+=td2;
-            
-            tabla+=td1;            
-            tabla+=elem.getClave_marcar();
-            tabla+=td2;
-            
-            tabla+=td1;
-            tabla+=elem.getClave_tipo();
-            tabla+=td2;
-            
-            tabla+=td1;
-            tabla+="<input type=\"radio\" value=\""  +elem.getId_equipo()+  "\" name=\"seleccion\" id=\"seleccion\"/>";
-            tabla+=td2;
-            
-            tabla+=tr2;
+        for (Equipo elem : lista) {
+            tabla += tr1;
+
+            tabla += td1;
+            tabla += String.valueOf(elem.getClave_activo_fijo());
+            tabla += td2;
+
+            tabla += td1;
+            tabla += String.valueOf(elem.getNum_inv_unam());
+            tabla += td2;
+
+            tabla += td1;
+            tabla += elem.getSerie();
+            tabla += td2;
+
+            tabla += td1;
+            tabla += elem.getClave_marcar();
+            tabla += td2;
+
+            tabla += td1;
+            tabla += elem.getClave_tipo();
+            tabla += td2;
+
+            tabla += td1;
+            tabla += "<input type=\"radio\" value=\"" + elem.getId_equipo() + "\" name=\"seleccion\" id=\"seleccion\"/>";
+            tabla += td2;
+
+            tabla += tr2;
         }
-        tabla+=tablaFin;
-        tabla+=boton;
+        tabla += tablaFin;
+        tabla += boton;
         return tabla;
     }
-    
 
-    public String obtenFormulario(int id){
+    public String obtenFormulario(int id) {
 
         Equipo equipo = bd.regresaEquipo(id);
         String form = "";
-        
-            form = llenaFormularioAltaEquipo();
-          /*
-            form = form.replace("action=\"altaEquipo\"","action=\"\"");
-            form = form.replace("method=\"post\" onsubmit=\"return validaCampos()\"","method=\"post\"");
-            */
-            form = form.replace("<form name=\"alta\" action=\"altaEquipo\" class=\"smart-blue\" method=\"post\" onsubmit=\"return validaCampos('true','alta')\">","<form name=\"actualiza\" action=\"ActualizaEquipo\" method=\"post\" onsubmit=\"return actualizaEquipo()\">");
-            //form = form.replace("</form>","");
-            form = form.replace("<div style=\"margin-top: 12%;\">","<div style=\"margin-top: 5%;\"> \n"
-                    + " ");
-            form = form.replace("<h3>Equipo: Dar alta</h3>","");
-            form = form.replace("<input type=\"submit\" value=\"Aceptar\" class=\"button\">",""
-                    + "<button class=\"button\" onclick=\"actualizaEquipo()\"> Actualiza </button>");
-            
-            form = form.replace("id=\"activoFijo\" name=\"activoFijo\"","id=\"activoFijo\" name=\"activoFijo\" value=\""+equipo.getClave_activo_fijo()+"\"");
-            form = form.replace("id=\"descripcion\" name=\"descripcion\"","id=\"descripcion\" name=\"descripcion\" value=\"" +equipo.getNum_inv_unam()+"\"");
- 
-            form = form.replace("></textarea>",">"+equipo.getClave_descripcion()+"</textarea>");
-            form = form.replace("list=\"marca\" name=\"marca\"","list=\"marca\" name=\"marca\" value=\""+equipo.getClave_marcar()+"\"");
-            form = form.replace("id=\"numeroSerie\" name=\"numeroSerie\"","id=\"numeroSerie\" name=\"numeroSerie\" value=\""+equipo.getSerie()+"\"");
-            form = form.replace("list=\"clase\" name=\"clase\"","list=\"clase\" name=\"clase\" value=\""+equipo.getClase()+"\"");
-            form = form.replace("list=\"uso\" name=\"uso\"","list=\"uso\" name=\"uso\" value=\""+equipo.getUso()+"\"");
-            form = form.replace("list=\"estadoFisico\" name=\"estadoFisico\"","list=\"estadoFisico\" name=\"estadoFisico\" value=\""+equipo.getEstado_físico()+"\"");
-            form = form.replace("list=\"ubicacion\" name=\"ubicacion\"","list=\"ubicacion\" name=\"ubicacion\" value=\""+equipo.getClave_area()+"\"");
-            form = form.replace("id=\"modelo\" name=\"modelo\"","id=\"modelo\" name=\"modelo\" value=\""+equipo.getClave_modelo()+"\"");
-            form = form.replace("list=\"familia\" name=\"familia\"","list=\"familia\" name=\"familia\" value=\""+equipo.getClave_familia()+"\"");
-            form = form.replace("list=\"tipoActivoFijo\" name=\"tipoActivoFijo\"","list=\"tipoActivoFijo\" name=\"tipoActivoFijo\" value=\""+equipo.getClave_tipo()+"\"");
-            form = form.replace("list=\"nivelObsolencia\" name=\"nivelObsolencia\"","list=\"nivelObsolencia\" name=\"nivelObsolencia\" value=\""+equipo.getNivel_de_obsolescencia()+"\"");
-            form = form.replace("list=\"centroCosto\" name=\"centroCosto\"","list=\"centroCosto\" name=\"centroCosto\" value=\""+equipo.getClave_institucion()+"\"");
-            form = form.replace("list=\"proveedor\" name=\"proveedor\"","list=\"proveedor\" name=\"proveedor\" value=\""+equipo.getClave_proveedor()+"\"");
-            form = form.replace("list=\"responsable\" name=\"responsable\"","list=\"responsable\" name=\"responsable\" value=\""+equipo.getResponsable()+"\"");
-            form = form.replace("id=\"fechaResguardo\" name=\"fechaResguardo\"","id=\"fechaResguardo\" name=\"fechaResguardo\" value=\""+equipo.getFecha_de_resguardo()+"\"");
-  
-        
+
+        form = llenaFormularioAltaEquipo();
+        /*
+         form = form.replace("action=\"altaEquipo\"","action=\"\"");
+         form = form.replace("method=\"post\" onsubmit=\"return validaCampos()\"","method=\"post\"");
+         */
+        form = form.replace("<form name=\"alta\" action=\"altaEquipo\" class=\"smart-blue\" method=\"post\" onsubmit=\"return validaCampos('true','alta')\">", "<form name=\"actualiza\" action=\"ActualizaEquipo\" method=\"post\" onsubmit=\"return actualizaEquipo()\">");
+        //form = form.replace("</form>","");
+        form = form.replace("<div style=\"margin-top: 12%;\">", "<div style=\"margin-top: 5%;\"> \n"
+                + " ");
+        form = form.replace("<h3>Equipo: Dar alta</h3>", "");
+        form = form.replace("<input type=\"submit\" value=\"Aceptar\" class=\"button\">", ""
+                + "<button class=\"button\" onclick=\"actualizaEquipo()\"> Actualiza </button>");
+
+        form = form.replace("id=\"activoFijo\" name=\"activoFijo\"", "id=\"activoFijo\" name=\"activoFijo\" value=\"" + equipo.getClave_activo_fijo() + "\"");
+        form = form.replace("id=\"descripcion\" name=\"descripcion\"", "id=\"descripcion\" name=\"descripcion\" value=\"" + equipo.getNum_inv_unam() + "\"");
+
+        form = form.replace("></textarea>", ">" + equipo.getClave_descripcion() + "</textarea>");
+        form = form.replace("list=\"marca\" name=\"marca\"", "list=\"marca\" name=\"marca\" value=\"" + equipo.getClave_marcar() + "\"");
+        form = form.replace("id=\"numeroSerie\" name=\"numeroSerie\"", "id=\"numeroSerie\" name=\"numeroSerie\" value=\"" + equipo.getSerie() + "\"");
+        form = form.replace("list=\"clase\" name=\"clase\"", "list=\"clase\" name=\"clase\" value=\"" + equipo.getClase() + "\"");
+        form = form.replace("list=\"uso\" name=\"uso\"", "list=\"uso\" name=\"uso\" value=\"" + equipo.getUso() + "\"");
+        form = form.replace("list=\"estadoFisico\" name=\"estadoFisico\"", "list=\"estadoFisico\" name=\"estadoFisico\" value=\"" + equipo.getEstado_físico() + "\"");
+        form = form.replace("list=\"ubicacion\" name=\"ubicacion\"", "list=\"ubicacion\" name=\"ubicacion\" value=\"" + equipo.getClave_area() + "\"");
+        form = form.replace("id=\"modelo\" name=\"modelo\"", "id=\"modelo\" name=\"modelo\" value=\"" + equipo.getClave_modelo() + "\"");
+        form = form.replace("list=\"familia\" name=\"familia\"", "list=\"familia\" name=\"familia\" value=\"" + equipo.getClave_familia() + "\"");
+        form = form.replace("list=\"tipoActivoFijo\" name=\"tipoActivoFijo\"", "list=\"tipoActivoFijo\" name=\"tipoActivoFijo\" value=\"" + equipo.getClave_tipo() + "\"");
+        form = form.replace("list=\"nivelObsolencia\" name=\"nivelObsolencia\"", "list=\"nivelObsolencia\" name=\"nivelObsolencia\" value=\"" + equipo.getNivel_de_obsolescencia() + "\"");
+        form = form.replace("list=\"centroCosto\" name=\"centroCosto\"", "list=\"centroCosto\" name=\"centroCosto\" value=\"" + equipo.getClave_institucion() + "\"");
+        form = form.replace("list=\"proveedor\" name=\"proveedor\"", "list=\"proveedor\" name=\"proveedor\" value=\"" + equipo.getClave_proveedor() + "\"");
+        form = form.replace("list=\"responsable\" name=\"responsable\"", "list=\"responsable\" name=\"responsable\" value=\"" + equipo.getResponsable() + "\"");
+        form = form.replace("id=\"fechaResguardo\" name=\"fechaResguardo\"", "id=\"fechaResguardo\" name=\"fechaResguardo\" value=\"" + equipo.getFecha_de_resguardo() + "\"");
+
         return form;
     }
+
     /**
      * Metodo que llena los catalogos del formulario equipoAlta antes de que se
      * le muestre al usuario.
@@ -254,7 +254,7 @@ public class BuscaEquipo extends HttpServlet {
         return form;
     }
 
-/**
+    /**
      * Metodo que genera un catalogo en codigo html por ejemplo:
      * <option> elem1 </option>
      * <option> elem2 </option>

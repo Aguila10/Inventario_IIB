@@ -37,9 +37,9 @@ public class MuestraCatalogos extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String catalogo = request.getParameter("catalogo");
             Formularios f = new Formularios();
-            
+
             ConexionBD con = new ConexionBD();
-            
+
             ArrayList<String[]> cats = con.regresaCatalogoConId(catalogo);
             out.print(generaTabla(cats));
         }
@@ -54,10 +54,10 @@ public class MuestraCatalogos extends HttpServlet {
         String tabla = "";
         tabla += "<table>";
 
-        for(int i=0; i<cat.size(); i++){
-            tabla += "<tr id='padre"+cat.get(i)[0]+"'>";
-            tabla += "<td id='hijo"+cat.get(i)[0]+"' onclick='voyAeditar("+cat.get(i)[0]+")'>";
-            tabla+= cat.get(i)[1];
+        for (int i = 0; i < cat.size(); i++) {
+            tabla += "<tr id='padre" + cat.get(i)[0] + "'>";
+            tabla += "<td id='hijo" + cat.get(i)[0] + "' onclick='voyAeditar(" + cat.get(i)[0] + ")'>";
+            tabla += cat.get(i)[1];
             tabla += "</td>";
             tabla += "</tr>";
         }

@@ -48,14 +48,14 @@ public class Formularios extends HttpServlet {
 
             /*Formulario solicitado*/
             String formulario = request.getParameter("formulario");
-            if(formulario.equals("movimientoEquipo")) {
+            if (formulario.equals("movimientoEquipo")) {
                 String form = obtenFormulario(formulario);
                 HttpSession sesion = request.getSession();
-                form = form.replace("<input type=\"text\" id=\"nombre\" name=\"nombre\">","<input type=\"text\" id=\"nombre\" value=\""
-                        +bd.regresaNombre((String)sesion.getAttribute("login"))+ "\" disabled>");
+                form = form.replace("<input type=\"text\" id=\"nombre\" name=\"nombre\">", "<input type=\"text\" id=\"nombre\" value=\""
+                        + bd.regresaNombre((String) sesion.getAttribute("login")) + "\" disabled>");
                 out.print(form);
             } else {
-            out.print(obtenFormulario(formulario));
+                out.print(obtenFormulario(formulario));
             }
         }
     }
@@ -90,7 +90,7 @@ public class Formularios extends HttpServlet {
             case "usuarioBaja": // No tiene catalogos
                 form = obtenFormularioSinCatalogos("usuarioBaja");
                 break;
-        }   
+        }
         return form;
     }
 
@@ -191,7 +191,7 @@ public class Formularios extends HttpServlet {
     /**
      *
      * @param formulario
-     * @return 
+     * @return
      */
     public String obtenFormularioSinCatalogos(String formulario) {
         String form = "";

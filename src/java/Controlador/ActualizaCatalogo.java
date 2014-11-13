@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Controlador;
 
 import Modelo.ConexionBD;
@@ -45,15 +44,14 @@ public class ActualizaCatalogo extends HttpServlet {
 //            out.println("<h1>Servlet ActualizaCatalogo at " + request.getContextPath() + "</h1>");
 //            out.println("</body>");
 //            out.println("</html>");
-            
-        String id = request.getParameter("id");
-        int idB = Integer.parseInt(id);
-        String tabla = request.getParameter("tabla");
-        String descripcion = request.getParameter("descripcion");
-        ConexionBD con = new ConexionBD();
-        out.println(con.actualizaCatalogo(tabla, idB, descripcion));
-        
-            
+
+            String id = request.getParameter("id");
+            int idB = Integer.parseInt(id);
+            String tabla = request.getParameter("tabla");
+            String descripcion = request.getParameter("descripcion");
+            ConexionBD con = new ConexionBD();
+            out.println(con.actualizaCatalogo(tabla, idB, descripcion));
+
         }
     }
 
@@ -84,7 +82,7 @@ public class ActualizaCatalogo extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+
     }
 
     /**

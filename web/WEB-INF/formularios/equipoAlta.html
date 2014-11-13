@@ -1,4 +1,4 @@
-        <form name="alta" action="altaEquipo" class="smart-blue" method="post" onsubmit="return validaCampos('true','alta')">
+<form name="alta" action="altaEquipo" class="smart-blue" method="post" onsubmit="return validaCampos('true', 'alta')">
     <h3>Equipo: Dar alta</h3>
     <div class="dosColumnas">
         <label for="activoFijo">Clave activo fijo:</label>
@@ -56,10 +56,10 @@
 
         </datalist>
         <!--<label id="errorUbicacion" class="errorFormulario">Esto es un error</label>-->
-        
+
         <label for="fechaResguardo">Fecha de resguardo:</label>    
-    <input type="date" id="fechaResguardo" name="fechaResguardo" requiered>
-    <label id="errorFechaResguardo" class="errorFormulario"></label>
+        <input type="date" id="fechaResguardo" name="fechaResguardo" requiered>
+        <label id="errorFechaResguardo" class="errorFormulario"></label>
     </div>
 
 
@@ -101,14 +101,14 @@
         <datalist id="proveedor" name="proveedor">
 
         </datalist>
-   
+
         <!--<label id="errorProveedor" class="errorFormulario">Esto es un error</label>-->
-        
-         <label for="responsable">Responsable: <i>(Usuario)</i></label>
-    <input type="text" list="responsable" name="responsable">
-    <datalist id="responsable" name="responsable">
+
+        <label for="responsable">Responsable: <i>(Usuario)</i></label>
+        <input type="text" list="responsable" name="responsable">
+        <datalist id="responsable" name="responsable">
         </datalist>
-    
+
     </div>
 
     <input type="submit" value="Aceptar" class="button">

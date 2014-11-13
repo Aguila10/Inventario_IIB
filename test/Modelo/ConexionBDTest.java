@@ -19,27 +19,26 @@ import static org.junit.Assert.*;
  * @author caenhiro
  */
 public class ConexionBDTest {
-    
+
     public ConexionBDTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
-    
     /**
      * Test of buscaNombreLogin method, of class ConexionBD.
      */
@@ -145,5 +144,5 @@ public class ConexionBDTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+
 }
