@@ -40,10 +40,12 @@ public class MovimientoEquipo extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String busqueda = request.getParameter("equipo");
             if (busqueda == null) {
+                    String mov = request.getParameter("movimiento");
                 if (realizaMovimiento(request)) {
-                    mandaMensaje("Asignacion Exitosa", response);
+
+                    mandaMensaje("El movimiento originado por "+mov+" se realizó correctamente","true", response);
                 } else {
-                    mandaMensaje("Asignacion Fallida", response);
+                    mandaMensaje("El movimiento originado por "+mov+" no se pudo realizar","false", response);
                 }
             } else {
                 out.print(generaTabla(busqueda));
@@ -57,10 +59,7 @@ public class MovimientoEquipo extends HttpServlet {
         String fecha = request.getParameter("fecha");
         String login = (String)sesion.getAttribute("login");
         String equipo = request.getParameter("seleccion");
-        System.out.println(movimiento + " " + fecha + " " + login + " " + equipo);
-        System.out.println(Integer.parseInt(bd.regresaIDNombre(login)));
-        System.out.println(Integer.parseInt(equipo));
-        return true;//bd.insertaMovimientos(Integer.parseInt(bd.regresaIDNombre(bd.regresaNombre(login))),Integer.parseInt(equipo),movimiento, fecha);
+        return bd.insertaMovimientos(Integer.parseInt(bd.regresaIDNombre(login)),Integer.parseInt(equipo),movimiento, fecha);
     }
 
     public String generaTabla(String busqueda) {
@@ -100,10 +99,10 @@ public class MovimientoEquipo extends HttpServlet {
         return tabla;
     }
 
-    public void mandaMensaje(String mensaje, HttpServletResponse response) throws IOException {
+    public void mandaMensaje(String mensaje,String exito, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            response.sendRedirect("administrador.jsp?mensaje=" + mensaje + "&formulario=movimientoEquipo");
+            response.sendRedirect("administrador.jsp?mensaje=" + mensaje + "&exito="+exito);
         }
     }
 

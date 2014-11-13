@@ -544,6 +544,7 @@ public class ConexionBD {
             }
 
         } catch (SQLException ex) {
+            res = false;
             System.err.println(ex.getMessage());
         }
         return res;
@@ -700,6 +701,7 @@ public class ConexionBD {
         
         
         //System.out.println(con.regresaIDNombre("caen"));
+        System.out.println(con.insertaMovimientos(1, 2, "Baja", "12/12/2014"));
     }
 
 
