@@ -1,6 +1,6 @@
-<div id="busquedaCatalogos">
-    <h2>Catalogo:</h2>
-    <select name="verCatalogo" id="verCatalogo" onchange="obtenCatalogo()">
+<div id="busquedaCatalogos" class="smart-blue">
+    <h3>Catálogo: Ver</h3>
+    <center><select name="verCatalogo" id="verCatalogo" onchange="obtenCatalogo()">
         <option></option>
         <option value="catalogo_area">Área</option>
         <option value="catalogo_clase">Clase</option>
@@ -14,8 +14,7 @@
         <option value="catalogo_tipo_equipo">Tipo de Equipo</option>
         <option value="catalogo_uso">Uso</option>
         <option value="persona_asignada">Persona asignada a equipo</option>
-    </select>
-</div>
-<div id="resultadoBusqueda">
-
+    </select></center>
+    <label id="errorCatalgo"></label>
+    <div id="resultadoBusqueda"></div>
 </div>
