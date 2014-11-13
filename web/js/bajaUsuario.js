@@ -1,13 +1,5 @@
-function muestra_usuarios(){
+function elimina_usuarios(){
     
-    window.alert("HOLA BANDA");
-    
-        $.post("BajaUsuario", {
-     }, function (data) {
-        $("#resultadoBusqueda").html(data);    });
-    
-    return;
-    
-    
-    
+return true;
+          
 }

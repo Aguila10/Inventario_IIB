@@ -110,8 +110,7 @@
 
                 <% 
                 if(request.getParameter("mensaje") != null){
-                   
-               out.print(request.getParameter("mensaje"));
+                    out.print(request.getParameter("mensaje"));
                 } else{
                     out.print("<img src='img/caratula.jpg' alt='caratula darktech' id='caratula'>");
                 }

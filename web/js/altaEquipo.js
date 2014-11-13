@@ -13,8 +13,8 @@ function validaCampos(hayform, form) {
     var numInvUNAM = "";
     var descripcion = "";
     var fecha = "";
-    
-    if(hayform != null){
+
+    if (hayform != null) {
         claveAF = document.forms[form]["activoFijo"].value;
         numInvUNAM = document.forms[form]["descripcion"].value;
         descripcion = document.forms[form]["descripcionExtendida"].value;
@@ -28,24 +28,24 @@ function validaCampos(hayform, form) {
     if (claveAF == "" || claveAF == null) {
         if (numInvUNAM == "" || numInvUNAM == null) {
             //alert("Debes meter alguno de los campos");
-            escribeEn("errorActivoFijo","campo inválido");
-            escribeEn("errorDescripcion","campo inválido");
-            if(descripcion == ""){
-                escribeEn("errorDescripcionExtendida","Debes llenar este campoo");
+            escribeEn("errorActivoFijo", "campo inválido");
+            escribeEn("errorDescripcion", "campo inválido");
+            if (descripcion == "") {
+                escribeEn("errorDescripcionExtendida", "Debes llenar este campoo");
             } else {
-                oculta("errorDescripcionExtendida");                
+                oculta("errorDescripcionExtendida");
             }
             return false;
         }
         // claveAF = null y numInvUNAM != null
         var con = numInvUNAM.match(reg);
         if (con == null) {
-            escribeEn("errorDescripcion","Este campo debe ser un numero");
+            escribeEn("errorDescripcion", "Este campo debe ser un numero");
             return false;
         }
 
         if (descripcion == null || descripcion == "") {
-            escribeEn("errorDescripcionExtendida","Este campo no debe ser vacío");
+            escribeEn("errorDescripcionExtendida", "Este campo no debe ser vacío");
             return false;
 
         }
@@ -58,24 +58,24 @@ function validaCampos(hayform, form) {
 
     var con = claveAF.match(reg);
     if (con == null) {
-        escribeEn("errorActivoFijo","Este campo debe ser un numero");
+        escribeEn("errorActivoFijo", "Este campo debe ser un numero");
         return false;
     }
     if (numInvUNAM != "") {
         var r = numInvUNAM.match(reg)
         if (r == null) {
-            escribeEn("errorDescripcion","Este campo debe ser un numero");
+            escribeEn("errorDescripcion", "Este campo debe ser un numero");
             return false;
         }
     }
 
     if (descripcion == null || descripcion == "") {
-        escribeEn("errorDescripcionExtendida","Este campo no debe ser vacío");
+        escribeEn("errorDescripcionExtendida", "Este campo no debe ser vacío");
         return false;
     }
 
-    if(fecha == null || fecha == ""){
-        escribeEn("errorFechaResguardo","Debes escribir una fecha");
+    if (fecha == null || fecha == "") {
+        escribeEn("errorFechaResguardo", "Debes escribir una fecha");
         return false;
     }
     return true;
@@ -87,35 +87,37 @@ function buscaEquipo() {
 
     var x = document.getElementById("campoBusqueda").value;
     if (x === "" || x === null) {
-           if(esVisible("errorBusqueda1")){
-            escribeEn("errorBusqueda1","EL campo de búsqueda es vacío");
-            } else {
-                escribeEn("errorBusqueda1","EL campo de búsqueda es vacío");
-                muestra("errorBusqueda1");
-            }
-            return;
+        if (esVisible("errorBusqueda1")) {
+            escribeEn("errorBusqueda1", "EL campo de búsqueda es vacío");
+        } else {
+            escribeEn("errorBusqueda1", "EL campo de búsqueda es vacío");
+            muestra("errorBusqueda1");
+        }
+        return;
     }
     var reg = "^[0-9]+$";
     var con = x.match(reg);
-    if(con == null){
-            if(esVisible("errorBusqueda1")){
-            escribeEn("errorBusqueda1","La búsqueda no es un número");
+    if (con == null) {
+        if (esVisible("errorBusqueda1")) {
+            escribeEn("errorBusqueda1", "La búsqueda no es un número");
         } else {
-            escribeEn("errorBusqueda1","La búsqueda no es un número");
+            escribeEn("errorBusqueda1", "La búsqueda no es un número");
             muestra("errorBusqueda1");
         }
-            return;
+        return;
     }
     oculta("errorBusqueda1");
-    
+
     $.post("BuscaEquipo", {
         campoBusqueda: x
-    }, function (data) {
-        if(data==="<label id='errorBusqueda' class='errorFormulario'>No se encontraron equipos</label>"){$("#errorBusqueda").html(data);}
-            else {
-                $("#resultadoBusqueda").html(data);
-            }
-            
+    }, function(data) {
+        if (data === "<label id='errorBusqueda' class='errorFormulario'>No se encontraron equipos</label>") {
+            $("#errorBusqueda").html(data);
+        }
+        else {
+            $("#resultadoBusqueda").html(data);
+        }
+
     });
 
 }
@@ -124,27 +126,27 @@ function obtenCatalogo() {
     var cat = document.getElementById("verCatalogo").value;
     $.post("MuestraCatalogos", {
         catalogo: cat
-    }, function (data) {
+    }, function(data) {
         $("#resultadoBusqueda").html(data);
     });
 
 }
 
-function muestraFormulario(){
-    
+function muestraFormulario() {
+
     var sel = document.getElementsByName("seleccion");
     var id_equipo;
-    for(i = 0; i < sel.length; i++){
-        if(sel[i].checked){
-           id_equipo = sel[i].value;
+    for (i = 0; i < sel.length; i++) {
+        if (sel[i].checked) {
+            id_equipo = sel[i].value;
         }
     }
-    
-    if(id_equipo == null){
-        if(!esVisible("errorBusqueda1")){
-            muestra("errorBusqueda1");       
+
+    if (id_equipo == null) {
+        if (!esVisible("errorBusqueda1")) {
+            muestra("errorBusqueda1");
         }
-        escribeEn("errorBusqueda1","No has seleccionado nada");
+        escribeEn("errorBusqueda1", "No has seleccionado nada");
         return;
     }
     oculta("errorBusqueda1");
@@ -152,114 +154,114 @@ function muestraFormulario(){
     var act = 1;
     $.post("BuscaEquipo", {
         id: id_equipo,
-        actualizar:act
-    }, function (data) {
+        actualizar: act
+    }, function(data) {
         $("#resultadoBusqueda").html(data);
     });
-    
+
     return;
-    
+
 }
 
 function actualizaEquipo() {
-    if(!validaCampos("si","actualiza")){
+    if (!validaCampos("si", "actualiza")) {
         return false;
     }
     return true;
 }
-function validaMovimiento(){
-    
-   var movimiento = document.getElementById("movimiento").value;
-   var fecha = document.getElementById("fecha").value;
-   if(movimiento === ""){
-       if(!esVisible("errorMovimiento")){
-           escribeEn("errorMovimiento","Debes introducir un valor1");
-           muestra("errorMovimiento");
-       } else {
-        escribeEn("errorMovimiento","Debes introducir un valor2");
-        }   
-    if(fecha === ""){
-        if(!esVisible("errorFecha")){
-           escribeEn("errorFecha","Debes introducir una fecha1");
-           muestra("errorFecha");
-       } else {
-        escribeEn("errorFecha","debes introducir una fecha2");
-        }
+function validaMovimiento() {
 
-    } else {
-    if(esVisible("errorFecha")){
-        oculta("errorFecha");
-    }    
+    var movimiento = document.getElementById("movimiento").value;
+    var fecha = document.getElementById("fecha").value;
+    if (movimiento === "") {
+        if (!esVisible("errorMovimiento")) {
+            escribeEn("errorMovimiento", "Debes introducir un valor1");
+            muestra("errorMovimiento");
+        } else {
+            escribeEn("errorMovimiento", "Debes introducir un valor2");
+        }
+        if (fecha === "") {
+            if (!esVisible("errorFecha")) {
+                escribeEn("errorFecha", "Debes introducir una fecha1");
+                muestra("errorFecha");
+            } else {
+                escribeEn("errorFecha", "debes introducir una fecha2");
+            }
+
+        } else {
+            if (esVisible("errorFecha")) {
+                oculta("errorFecha");
+            }
+        }
+        return false
     }
-    return false
-   }
-   if(esVisible("errorMovimiento")){
-       oculta("errorMovimiento");
-   }
-    if(fecha === ""){
-        if(!esVisible("errorFecha")){
-           escribeEn("errorFecha","Debes introducir una fecha3");
-           muestra("errorFecha");
-       } else {
-        escribeEn("errorFecha","Debes introducir una fecha4");
+    if (esVisible("errorMovimiento")) {
+        oculta("errorMovimiento");
+    }
+    if (fecha === "") {
+        if (!esVisible("errorFecha")) {
+            escribeEn("errorFecha", "Debes introducir una fecha3");
+            muestra("errorFecha");
+        } else {
+            escribeEn("errorFecha", "Debes introducir una fecha4");
         }
         return false;
     }
-    if(esVisible("errorFecha")){
+    if (esVisible("errorFecha")) {
         oculta("errorFecha");
     }
 
     var sel = document.getElementsByName("seleccion");
     var id_equipo;
 
-    for(i = 0; i < sel.length; i++){
-        if(sel[i].checked){
-           id_equipo = sel[i].value;
+    for (i = 0; i < sel.length; i++) {
+        if (sel[i].checked) {
+            id_equipo = sel[i].value;
         }
     }
-    if(id_equipo == null){
-        escribeEn("errorBusqueda","No has seleccionado un equipo");
+    if (id_equipo == null) {
+        escribeEn("errorBusqueda", "No has seleccionado un equipo");
         return false;
     }
-    
-   
-   return true;
+
+
+    return true;
 }
-function validaFecha(fecha){
-    
-   if(fecha === ""){
-       return false;
-   }
-   return true;
+function validaFecha(fecha) {
+
+    if (fecha === "") {
+        return false;
+    }
+    return true;
 }
-function esVisible(id){
+function esVisible(id) {
     return document.getElementById(id).style.visibility === 'visible';
 }
-function oculta(id){
-    document.getElementById(id).style.visibility='hidden';
+function oculta(id) {
+    document.getElementById(id).style.visibility = 'hidden';
 }
 function muestra(id) {
-    document.getElementById(id).style.visibility='visible';
+    document.getElementById(id).style.visibility = 'visible';
 }
-function escribeEn(id,texto){
-    document.getElementById(id).innerHTML=texto;
+function escribeEn(id, texto) {
+    document.getElementById(id).innerHTML = texto;
 }
-function imprimeTabla(){
+function imprimeTabla() {
     var busqueda = document.getElementById("campoBusqueda").value;
     var reg = "^[0-9]+$";
-    if(busqueda === ""){
-    escribeEn("errorBusqueda","El campo no puede ser nulo");
-    return;
+    if (busqueda === "") {
+        escribeEn("errorBusqueda", "El campo no puede ser nulo");
+        return;
     }
     var con = busqueda.match(reg);
-    if(con === null){
-        escribeEn("errorBusqueda","Debe ser un número");
+    if (con === null) {
+        escribeEn("errorBusqueda", "Debe ser un número");
         return;
     }
     $.post("MovimientoEquipo", {
         equipo: busqueda
-        
-    }, function (data) {
+
+    }, function(data) {
         $("#resultadoBusqueda").html(data);
     });
 }
