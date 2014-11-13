@@ -273,8 +273,8 @@ public class ConexionBD {
     
     
     
-     public ArrayList actualizaCatalogo(String tabla , int id_catalogo , String   descrip) {
-        String res = "";
+     public boolean actualizaCatalogo(String tabla , int id_catalogo , String   descrip) {
+        boolean res = true;
         ArrayList lista = new ArrayList();
         try {
             Class.forName(driver);
@@ -283,18 +283,50 @@ public class ConexionBD {
                     + "descripcion = "+ descrip+" where id_catalogo = " + id_catalogo );
 
             ResultSet rset = query.executeQuery();
-            while (rset.next()) {
-                res = (rset.getString(1));
-                lista.add(res);
-            }
+        
+            
         } catch (SQLException | java.lang.ClassNotFoundException e) {
+            res = false;
             System.out.println(e.getMessage());
+            return res;
+            
         }
 
-        return lista;
+        return res;
     }
     
 
+     
+     
+    
+     public boolean insertaCatalogo(String tabla ,  String   descrip) {
+        boolean res = true;
+        ArrayList lista = new ArrayList();
+        try {
+            Class.forName(driver);
+            Connection con = DriverManager.getConnection(connectString, user, password);
+            PreparedStatement query = con.prepareStatement("insert into  " + tabla + " values "
+                    + "descripcion = "+ descrip  );
+
+            ResultSet rset = query.executeQuery();
+        
+            
+        } catch (SQLException | java.lang.ClassNotFoundException e) {
+            res = false;
+            System.out.println(e.getMessage());
+            return res;
+            
+        }
+
+        return res;
+    }
+    
+
+     
+     
+     
+     
+     
     /**
      *Metodo que solo nos regresa  los catalogos
      * @param catalogo
@@ -451,11 +483,11 @@ public class ConexionBD {
      public ArrayList<String[]> regresaMarcaSerieDeparta(int numero) {
         String res = "";
         ArrayList<String[]> resultado = new ArrayList<>();
-        String [] nombre = new String[3];
+        String [] nombre = new String[4];
         try {
             Class.forName(driver);
             Connection con = DriverManager.getConnection(connectString, user, password);
-            PreparedStatement query = con.prepareStatement("  select  catalogo_marca.descripcion,serie ,catalogo_institucion.descripcion "
+            PreparedStatement query = con.prepareStatement("  select  catalogo_marca.descripcion,serie ,catalogo_institucion.descripcion , equipo.id_equipo "
                     + "from equipo join catalogo_marca on equipo.clave_marcar = catalogo_marca.clave_marcar " +
 "join catalogo_familia on equipo.clave_familia = catalogo_familia.clave_familia " +
 "join catalogo_tipo_equipo on equipo.clave_tipo = catalogo_tipo_equipo.clave_tipo " +
@@ -474,10 +506,13 @@ public class ConexionBD {
                 nombre[0] = resultSet.getString(1);
                 nombre[1]= resultSet.getString(2);
                 nombre[2] = resultSet.getString(3);
-               String[] nuevo = new String[3];
+                nombre[3] = resultSet.getString(4);
+               
+                String[] nuevo = new String[3];
                nuevo[0]= nombre[0];
                nuevo[1]= nombre[1];
                nuevo[2] = nombre[2];
+               nuevo[3] = nombre[3];
                 resultado.add(nuevo);
             }
         } catch (SQLException | java.lang.ClassNotFoundException e) {
@@ -513,6 +548,27 @@ public class ConexionBD {
     
      
     
+     
+      
+     public int regresaIDNombre(String nombre) {
+        String res = "";
+        try {
+            Class.forName(driver);
+            Connection con = DriverManager.getConnection(connectString, user, password);
+            PreparedStatement query = con.prepareStatement("  select usuarios.nombre from usuarios join"
+                    + " registro on usuarios.id_usuario = registro.id_usuario where registro.login = '"+ nombre + "'");
+
+            ResultSet resultSet = query.executeQuery();
+            while (resultSet.next()) {
+              res = resultSet.getString(1);
+            }
+        } catch (SQLException | java.lang.ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return res;
+    }
+     
     
     
     /**
