@@ -107,12 +107,13 @@
             <!--Inicio formulario-->
             <div class="col span_3_of_4" id="formulario" >
             <!--Caratula con marca de agua-->
-            <img src="img/caratula.jpg" alt="caratula darktech" id="caratula">
 
                 <% 
                 if(request.getParameter("mensaje") != null){
                    
                out.print(request.getParameter("mensaje"));
+                } else{
+                    out.print("<img src='img/caratula.jpg' alt='caratula darktech' id='caratula'>");
                 }
                
                 %>     

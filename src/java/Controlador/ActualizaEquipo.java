@@ -6,6 +6,7 @@
 
 package Controlador;
 
+import Modelo.ConexionBD;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ActualizaEquipo", urlPatterns = {"/ActualizaEquipo"})
 public class ActualizaEquipo extends HttpServlet {
-
+    ConexionBD bd = new ConexionBD();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -48,13 +49,13 @@ public class ActualizaEquipo extends HttpServlet {
         
     private boolean actualizaEquipo(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
-        //int activoFij = Integer.parseInt(request.getParameter("activoFij"));
         String activoFij = request.getParameter("activoFijo");
         String descripcion = request.getParameter("descripcion");
         String descripcionExt = request.getParameter("descripcionExtendida");
         String numeroSer = request.getParameter("numeroSerie");
         String clase = request.getParameter("clase");
         String uso = request.getParameter("uso");
+        String marca = request.getParameter("marca");
         String estado = request.getParameter("estadoFisico");
         String ubicacion = request.getParameter("ubicacion");
         String fechaRes=request.getParameter("fechaResguardo");  
@@ -66,28 +67,16 @@ public class ActualizaEquipo extends HttpServlet {
         String proveedor=request.getParameter("proveedor");
         String responsable=request.getParameter("responsable");
         
-        System.out.println(activoFij);
-        System.out.println(descripcion);
-        System.out.println(descripcionExt);
-        System.out.println(numeroSer);
-        System.out.println(clase);
-        System.out.println(uso); 
-        System.out.println(estado);
-        System.out.println(ubicacion);
-        System.out.println(fechaRes);
-        System.out.println(modelo);
-        System.out.println(familia);
-        System.out.println(tipoActivo);
-        System.out.println(nivelObs);
-        System.out.println(centroCos);
-        System.out.println(proveedor);
-        System.out.println(responsable);
-    return true;
+    return bd.actualizaEquipo(BuscaEquipo.id_equipo, Integer.parseInt(activoFij),
+            Integer.parseInt(descripcion), descripcionExt, modelo, marca, numeroSer, familia, tipoActivo,
+            proveedor, clase, uso, nivelObs, estado, ubicacion, centroCos, fechaRes,
+            responsable);
+    
     }
     public void mandaMensaje(String mensaje, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            response.sendRedirect("administrador.jsp?mensaje=" + mensaje);
+            response.sendRedirect("administrador.jsp?mensaje=" + mensaje + "&formulario=equipo");
         }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

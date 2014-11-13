@@ -36,16 +36,7 @@ public class BajaUsuario extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet BajaUsuario</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet BajaUsuario at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            muestra_usuarios(request,response);
         }
     }
 
@@ -88,19 +79,34 @@ public class BajaUsuario extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void muestra_usuarios(HttpServletRequest request, HttpServletResponse response) {
+    private void muestra_usuarios(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         
         ConexionBD con = new ConexionBD();
         HttpSession sesion = request.getSession(true);
-        
+        PrintWriter out = response.getWriter();
+                
         ArrayList<String[]> usuarios = con.buscaNombreLogin((String)sesion.getAttribute("login"));
         
+        out.println("<center><table>\n" +
+"    		<tr>\n" +
+"    			<th>Login</th>\n" +
+"    			<th class=\"campoNombre\">Nombre</th>\n" +
+"    			<th>Seleccionar</th>\n" +
+"    		</tr>\n");
+     
         for (String[] usuario : usuarios) {
-            
+        
+                out.println("<tr>\n" +
+"    			<td>"+ usuario[0]+"</td>\n" +
+"    			<td class=\"campoNombre\">"+usuario[1]+"</td>\n" +
+"    			<td><input type=\"checkbox\" value=\"login\"></td>\n" +
+"    		</tr>");
+               
         }
         
+        out.println("</table></center>");   
     }
-    
+ 
     
 }

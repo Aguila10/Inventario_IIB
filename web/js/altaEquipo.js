@@ -8,7 +8,7 @@
 
 function validaCampos(hayform, form) {
 
-    var reg = "[0-9]+$";
+    var reg = "^[0-9]+$";
     var claveAF = "";
     var numInvUNAM = "";
     var descripcion = "";
@@ -95,7 +95,7 @@ function buscaEquipo() {
             }
             return;
     }
-    var reg = "[0-9]+$";
+    var reg = "^[0-9]+$";
     var con = x.match(reg);
     if(con == null){
             if(esVisible("errorBusqueda1")){
@@ -166,47 +166,6 @@ function actualizaEquipo() {
         return false;
     }
     return true;
-    /*
-    var activo = document.getElementById("activoFijo").value;
-    var descrip = document.getElementById("descripcion").value;
-    var descripExt = document.getElementById("descripcionExtendida").value;
-    var numero = document.getElementById("numeroSerie").value;
-    var clas = document.getElementById("clase").value;
-    var us = document.getElementById("uso").value;
-    var estad = document.getElementById("estadoFisico").value;
-  
-   var ubicacio = document.getElementById("ubicacion").value;
-   var fechaResguard = document.getElementById("fechaResguardo").value;
-   var model = document.getElementById("modelo").value;
-   var famili = document.getElementById("familia").value;
-   var tipoActiv = document.getElementById("tipoActivoFijo").value;
-   var nivelOb = document.getElementById("nivelObsolencia").value;
-   var centroCo = document.getElementById("centroCosto").value;
-   var provee = document.getElementById("proveedor").value;
-   var resp = document.getElementByName("r").value;
-   alert(resp);
- *//*
-    $.post("ActualizaEquipo", {
-        activoFij:activo,
-        descripcion:descrip,
-        descripcionExt:descripExt,
-        numeroSer:numero,
-        clase:clas,
-        uso:us,
-        estado:estad,
-        ubicacion:ubicacio,
-        fechaRes:fechaResguard,
-        modelo:model,
-        familia:famili,
-        tipoActivo:tipoActiv,
-        nivelObs:nivelOb,
-        centroCos:centroCo,
-        proveedor:provee,
-        responsable:resp
-    }, function (data) {
-        $("#resultadoBusqueda").html(data);
-    });
-    */
 }
 function esVisible(id){
     return document.getElementById(id).style.visibility === 'visible';

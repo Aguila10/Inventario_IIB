@@ -31,6 +31,7 @@ public class BuscaEquipo extends HttpServlet {
 
     
     ConexionBD bd = new ConexionBD();
+    public static int id_equipo;
 
     /**
      *
@@ -55,8 +56,9 @@ public class BuscaEquipo extends HttpServlet {
             if(actualizar == null){
             out.print(obtenTabla(campoDeBusqueda));
             } else {
-                out.print(obtenFormulario(Integer.parseInt(request.getParameter("id"))));
-                            }
+                id_equipo = Integer.parseInt(request.getParameter("id"));
+                out.print(obtenFormulario(id_equipo));
+                   }
             
         }
     }
@@ -130,7 +132,8 @@ public class BuscaEquipo extends HttpServlet {
             */
             form = form.replace("<form name=\"alta\" action=\"altaEquipo\" class=\"smart-blue\" method=\"post\" onsubmit=\"return validaCampos('true','alta')\">","<form name=\"actualiza\" action=\"ActualizaEquipo\" method=\"post\" onsubmit=\"return actualizaEquipo()\">");
             //form = form.replace("</form>","");
-            form = form.replace("<div style=\"margin-top: 12%;\">","<div style=\"margin-top: 5%;\">");
+            form = form.replace("<div style=\"margin-top: 12%;\">","<div style=\"margin-top: 5%;\"> \n"
+                    + " ");
             form = form.replace("<h3>Equipo: Dar alta</h3>","");
             form = form.replace("<input type=\"submit\" value=\"Aceptar\" class=\"button\">",""
                     + "<button class=\"button\" onclick=\"actualizaEquipo()\"> Actualiza </button>");
@@ -151,7 +154,7 @@ public class BuscaEquipo extends HttpServlet {
             form = form.replace("list=\"nivelObsolencia\" name=\"nivelObsolencia\"","list=\"nivelObsolencia\" name=\"nivelObsolencia\" value=\""+equipo.getNivel_de_obsolescencia()+"\"");
             form = form.replace("list=\"centroCosto\" name=\"centroCosto\"","list=\"centroCosto\" name=\"centroCosto\" value=\""+equipo.getClave_institucion()+"\"");
             form = form.replace("list=\"proveedor\" name=\"proveedor\"","list=\"proveedor\" name=\"proveedor\" value=\""+equipo.getClave_proveedor()+"\"");
-            form = form.replace("id=\"responsable\" name=\"responsable\"","id=\"responsable\" name=\"responsable\" value=\""+equipo.getResponsable()+"\"");
+            form = form.replace("list=\"responsable\" name=\"responsable\"","list=\"responsable\" name=\"responsable\" value=\""+equipo.getResponsable()+"\"");
             form = form.replace("id=\"fechaResguardo\" name=\"fechaResguardo\"","id=\"fechaResguardo\" name=\"fechaResguardo\" value=\""+equipo.getFecha_de_resguardo()+"\"");
   
         

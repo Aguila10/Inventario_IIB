@@ -1,6 +1,8 @@
 function muestra_usuarios(){
     
-        $.post("BuscaEquipo", {
+    window.alert("HOLA BANDA");
+    
+        $.post("BajaUsuario", {
      }, function (data) {
         $("#resultadoBusqueda").html(data);    });
     
