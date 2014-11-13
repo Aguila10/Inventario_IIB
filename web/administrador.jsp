@@ -112,7 +112,14 @@
 
                 <% 
                 if(request.getParameter("mensaje") != null){
-                    out.print(request.getParameter("mensaje"));
+                    out.print("<div id='respuestaServidor'>");
+                        if(request.getParameter("exito").equals("true")){
+                            out.print("<img src=img/ok.jpg>");
+                        } else{
+                            out.print("<img src=img/error.png>");
+                        }
+                    out.print("<h2>"+request.getParameter("mensaje")+"</h2>");
+                    out.print("</div>");
                 } else{
                     out.print("<a href='https://www.facebook.com/darktech.enterprise' target='_blank'><img src='img/caratula.jpg' alt='caratula darktech' id='caratula'></a>");
                 }

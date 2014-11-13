@@ -54,3 +54,8 @@
 .botonGuardaCambios{margin-left: 7%; padding: 3%;}
 .errorActualizaCatalogo{color: red; font-style: italic; }
 
+/*Estilos para errores del servidor*/
+#respuestaServidor{margin-left: 30%; margin-top: 12%;}
+#respuestaServidor img{width: 30%;}
+#respuestaServidor h2{width: 50%;}
+
