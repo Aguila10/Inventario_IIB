@@ -59,7 +59,7 @@ public class ConexionBD {
         String res = "error";
         Statement statement;
         ResultSet resultSet;
-        ArrayList<String[]> resultado = new ArrayList<String[]>();
+        ArrayList<String[]> resultado = new ArrayList<>();
         String[] nombre = new String[2];
 
         try {
@@ -304,47 +304,47 @@ public class ConexionBD {
 
         String id_catalogo_tabla = "";
 
-        if (tabla == "catalogo_marca") {
+        if ("catalogo_marca".equals(tabla)) {
             id_catalogo_tabla = "clave_marcar";
         }
 
-        if (tabla == "catalogo_area") {
+        if ("catalogo_area".equals(tabla)) {
             id_catalogo_tabla = "clave_area";
         }
 
-        if (tabla == "catalogo_institucion") {
+        if ("catalogo_institucion".equals(tabla)) {
             id_catalogo_tabla = "clave_institucion";
         }
 
-        if (tabla == "catalogo_tipo_equipo") {
+        if ("catalogo_tipo_equipo".equals(tabla)) {
             id_catalogo_tabla = "clave_tipo";
         }
 
-        if (tabla == "catalogo_familia") {
+        if ("catalogo_familia".equals(tabla)) {
             id_catalogo_tabla = "clave_familia";
         }
 
-        if (tabla == "catalogo_proveedor") {
+        if ("catalogo_proveedor".equals(tabla)) {
             id_catalogo_tabla = "clave_proveedor";
         }
 
-        if (tabla == "catalogo_clase") {
+        if ("catalogo_clase".equals(tabla)) {
             id_catalogo_tabla = "clave_clase";
         }
 
-        if (tabla == "catalogo_uso") {
+        if ("catalogo_uso".equals(tabla)) {
             id_catalogo_tabla = "clave_uso";
         }
 
-        if (tabla == "catalogo_nivel") {
+        if ("catalogo_nivel".equals(tabla)) {
             id_catalogo_tabla = "clave_nivel";
         }
 
-        if (tabla == "catalogo_estado_fisico") {
+        if ("catalogo_estado_fisico".equals(tabla)) {
             id_catalogo_tabla = "clave_estado_fisico";
         }
 
-        if (tabla == "catalogo_responsable") {
+        if ("catalogo_responsable".equals(tabla)) {
             id_catalogo_tabla = "clave_responsable";
         }
 
