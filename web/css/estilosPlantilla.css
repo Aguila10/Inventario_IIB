@@ -4,7 +4,8 @@ html,body{height:100%; font-family: Arial, Helvetica, sans-serif;}
 /*Estilos encabezado página*/
 #encabezado{height: 8%;width: 90%;margin:0 auto 0 auto;background-image: url('../img/fondoAzul.jpg');}
 #imagenUnam{margin-left: 9%;}
-#imagenCiencias{margin-top: 8%;}
+#imagenBiblioteca{margin-left: 10%;}
+#nombreInstituto{color: white;font-weight: bold;font-size: 160%; text-align: right;}
 #barra{width: 90%;margin:0 auto 0 auto;background:  #E1B715 url('../img/barra-amarilla.png');}
 
 /*Estilos Login*/
