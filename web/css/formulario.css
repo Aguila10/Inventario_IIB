@@ -49,4 +49,5 @@
 /*Estilos para editar catálogos*/
 #resultadoBusqueda table{width: 100%; margin-top: 5%;}
 .botonGuardaCambios{margin-left: 7%; padding: 3%;}
+.errorActualizaCatalogo{color: red; font-style: italic; }
 
