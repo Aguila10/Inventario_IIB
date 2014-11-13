@@ -293,7 +293,7 @@ public class ConexionBD {
     }
 
     /**
-     *
+     * QUE ONDA CON EL CATALOG RELACIONADO
      * @param tabla
      * @param id_catalogo
      * @param descrip
@@ -368,7 +368,7 @@ public class ConexionBD {
     }
 
     /**
-     *REALIZAR PROCEDIMIENTO MAS FACIL !!!!
+     *REALIZAR PROCEDIMIENTO MAS FACIL !!!! QUE ONDA CON EL CATALOG RELACIONADO
      * @param tabla
      * @param descrip
      * @return
@@ -622,16 +622,16 @@ public class ConexionBD {
 
     /**
      *
-     * @param nombre
+     * @param login
      * @return
      */
-    public String regresaIDNombre(String nombre) {
+    public String regresaIDNombre(String login) {
         String res = "";
         try {
             Class.forName(driver);
             Connection con = DriverManager.getConnection(connectString, user, password);
-            PreparedStatement query = con.prepareStatement("  select usuarios.nombre from usuarios join"
-                    + " registro on usuarios.id_usuario = registro.id_usuario where registro.login = '" + nombre + "'");
+            PreparedStatement query = con.prepareStatement("  select usuarios.id_usuario from usuarios join"
+                    + " registro on usuarios.id_usuario = registro.id_usuario where registro.login = '" + login + "'");
 
             ResultSet resultSet = query.executeQuery();
             while (resultSet.next()) {
@@ -696,12 +696,11 @@ public class ConexionBD {
         // System.out.println(con.actualizaCatalogo("catalogo_marca",1,"hola"));
   //       System.out.println(con.actualizaCatalogo("catalogo_marca",1,"ACER"));
         
-        ArrayList<String[]> a = con.regresaMarcaSerieDeparta(123);
-        for(String[] e:a){
-            System.out.println(e[0] + " "+e[1]+" "+e[2] + " "+e[3]);
-        }
-        System.out.println(con.regresaIDNombre("caen"));        
-        }
+        //System.out.println(con.insertaCatalogo("catalogo_marca","ACERRRRRR"));
+        
+        
+        //System.out.println(con.regresaIDNombre("caen"));
+    }
 
 
 }
