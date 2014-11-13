@@ -33,5 +33,27 @@ function voyAeditar(edita){
 
 function actualizaCatalogo(id, catalogo){
 	var cambio = document.getElementById("contenido"+id).value;
+	var respuesta ="";
+
+	$.post("ActualizaCatalogo", {
+        id: id, 
+        tabla: catalogo,
+        descripcion: cambio
+    }, function (data) {
+        respuesta = data;
+    });
 	
+	if(respuesta){
+		var padre = document.getElementById("padre"+id);
+		while (padre.childNodes.length>= 1){
+			padre.removeChild(padre.firstChild);
+		}
+		var td = document.createElement(td);
+		td.appendChild(document.createTextNode(cambio));
+		td.id = "hijo"+id;
+		td.setAttribute("onclick", "voyAeditar("+id+")");
+		padre.appendChild(td);
+	} else {
+		document.getElementById("errorCatalgo").innerHTML= "No fue posible guardar los cambios";
+	}
 }

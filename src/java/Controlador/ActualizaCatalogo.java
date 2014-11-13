@@ -51,6 +51,7 @@ public class ActualizaCatalogo extends HttpServlet {
         String tabla = request.getParameter("tabla");
         String descripcion = request.getParameter("descripcion");
         ConexionBD con = new ConexionBD();
+        out.println(con.actualizaCatalogo(tabla, idB, descripcion));
         
             
         }

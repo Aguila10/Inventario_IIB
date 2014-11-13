@@ -550,7 +550,7 @@ public class ConexionBD {
     
      
       
-     public int regresaIDNombre(String nombre) {
+     public String regresaIDNombre(String nombre) {
         String res = "";
         try {
             Class.forName(driver);
