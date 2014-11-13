@@ -44,7 +44,7 @@ public class Formularios extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String form;
+        String form="";
         HttpSession sesion = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -53,8 +53,8 @@ public class Formularios extends HttpServlet {
             String formulario = request.getParameter("formulario");
             if (formulario.equals("movimientoEquipo")) {
                 form = obtenFormulario(formulario);
-                
-                form = form.replace("<input type=\"text\" id=\"nombre\" name=\"nombre\">", "<input type=\"text\" id=\"nombre\" value=\""
+                form = form.replace("<input type=\"text\" id=\"nombre\" name=\"nombre\">", "<input type=\"text\" id=\"nombre\" "
+                        + "name=\"nombre\" value=\""
                         + bd.regresaNombre((String) sesion.getAttribute("login")) + "\" disabled>");
                 out.print(form);
             } else {

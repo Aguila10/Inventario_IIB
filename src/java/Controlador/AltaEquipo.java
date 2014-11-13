@@ -36,9 +36,9 @@ public class AltaEquipo extends HttpServlet {
         boolean edo = registraEquipo(request, response);
 
         if (edo) {
-            mandaMensaje("Registro Exitoso ", response);
+            mandaMensaje("Se registró un equipo correctamente","true", response);
         } else {
-            mandaMensaje("No se pudo guardar ", response);
+            mandaMensaje("No se pudo registrar el equipo","false", response);
         }
     }
 
@@ -87,10 +87,10 @@ public class AltaEquipo extends HttpServlet {
      * @param response
      * @throws IOException
      */
-    public void mandaMensaje(String mensaje, HttpServletResponse response) throws IOException {
+    public void mandaMensaje(String mensaje, String exito,HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            response.sendRedirect("administrador.jsp?mensaje=" + mensaje);
+            response.sendRedirect("administrador.jsp?mensaje=" + mensaje+"&exito="+exito);
         }
     }
 

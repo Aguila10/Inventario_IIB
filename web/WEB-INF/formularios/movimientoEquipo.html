@@ -4,11 +4,11 @@
         <label for="movimiento">Movimiento originado por:</label>
         <select name="movimiento" id="movimiento">
             <option value=""></option>
-            <option value="descompostura o falla">Descompostura o Falla</option>
-            <option value="baja">Baja</option>
-            <option value="desuso">Desuso</option>
-            <option value="renovacion/cambio">Renovación/Cambio</option>
-            <option value="asignacion">Asignación</option>
+            <option value="Descompostura o Falla">Descompostura o Falla</option>
+            <option value="Baja">Baja</option>
+            <option value="Desuso">Desuso</option>
+            <option value="Renovación/Cambio">Renovación/Cambio</option>
+            <option value="Asignación">Asignación</option>
         </select>
         <label id="errorMovimiento" class="errorFormulario"></label>
     </div>
@@ -23,7 +23,7 @@
     <label id="errorNombre" class="errorFormulario"></label>
 
     <center><div id="busquedaDentro">
-            <input type="text" id="campoBusqueda" placeholder="Búsqueda clave activo fijo o número inventario UNAM">    <div onclick="imprimeTabla()"><img src="img/search.png"></div>
+            <input type="text" id="campoBusqueda" placeholder="Búsqueda clave activo fijo o número inventario UNAM">    <div onclick="imprimeTabla()" id="botonBusqueda"><img src="img/search.png"></div>
             <label id="errorBusqueda" class="errorFormulario"></label>
         </div></center>
 

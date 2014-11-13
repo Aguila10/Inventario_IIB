@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,10 +40,12 @@ public class MovimientoEquipo extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String busqueda = request.getParameter("equipo");
             if (busqueda == null) {
+                    String mov = request.getParameter("movimiento");
                 if (realizaMovimiento(request)) {
-                    mandaMensaje("Asignacion Exitosa", response);
+
+                    mandaMensaje("El movimiento originado por "+mov+" se realizó correctamente","true", response);
                 } else {
-                    mandaMensaje("Asignacion Fallida", response);
+                    mandaMensaje("El movimiento originado por "+mov+" no se pudo realizar","false", response);
                 }
             } else {
                 out.print(generaTabla(busqueda));
@@ -51,12 +54,13 @@ public class MovimientoEquipo extends HttpServlet {
     }
 
     public boolean realizaMovimiento(HttpServletRequest request) {
+        HttpSession sesion = request.getSession();
         String movimiento = request.getParameter("movimiento");
+        System.out.println(movimiento);
         String fecha = request.getParameter("fecha");
-        String login = request.getParameter("nombre");
+        String login = (String)sesion.getAttribute("login");
         String equipo = request.getParameter("seleccion");
-        System.out.println(movimiento + " " + fecha + " " + login + " " + equipo);
-        return true;
+        return bd.insertaMovimientos(Integer.parseInt(bd.regresaIDNombre(login)),Integer.parseInt(equipo),movimiento, fecha);
     }
 
     public String generaTabla(String busqueda) {
@@ -87,7 +91,7 @@ public class MovimientoEquipo extends HttpServlet {
             tabla += td2;
 
             tabla += td1;
-            tabla += "<input type=\"radio\" value=\"" + e[1] + "\" name=\"seleccion\" id=\"seleccion\"/>";
+            tabla += "<input type=\"radio\" value=\"" + e[3] + "\" name=\"seleccion\" id=\"seleccion\"/>";
             tabla += td2;
 
             tabla += tr2;
@@ -96,10 +100,10 @@ public class MovimientoEquipo extends HttpServlet {
         return tabla;
     }
 
-    public void mandaMensaje(String mensaje, HttpServletResponse response) throws IOException {
+    public void mandaMensaje(String mensaje,String exito, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            response.sendRedirect("administrador.jsp?mensaje=" + mensaje + "&formulario=equipo");
+            response.sendRedirect("administrador.jsp?mensaje=" + mensaje + "&exito="+exito);
         }
     }
 
