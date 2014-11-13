@@ -538,12 +538,13 @@ public class ConexionBD {
             Connection con = DriverManager.getConnection(connectString, user, password);
             statement = con.createStatement();
             resultSet = statement.executeQuery("SELECT * from  movimientoEquipo(" + id_usuario + " , "
-                    + id_equipo + "," + "'" + descripcion + "'" + "'" + fecha + "');");
+                    + id_equipo + ", '" + descripcion + "' , '" + fecha + "');");
             while (resultSet.next()) {
                 res = resultSet.getBoolean(1);
             }
 
         } catch (SQLException ex) {
+            res = false;
             System.err.println(ex.getMessage());
         }
         return res;
@@ -700,6 +701,9 @@ public class ConexionBD {
         
         
         //System.out.println(con.regresaIDNombre("caen"));
+        
+//        System.out.println(con.insertaMovimientos(1, 1,"Baja", "12/12/1999"));
+        
     }
 
 
