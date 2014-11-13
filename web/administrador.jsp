@@ -44,9 +44,11 @@
                 <div class="col span_1_of_6">
                     <img src="img/escudoUnam.png" height="40%" width="40%" alt="escudo unam" id="imagenUnam">
                 </div>
-                <div class="col span_4_of_6"></div>
+                <div class="col span_4_of_6" id="nombreInstituto">
+                    <span>Intituto de<br>Investigaciones<br>Bibliografícas</span>
+                </div>
                 <div class="col span_1_of_6">
-                    <!--logo biblioteca-->
+                    <img src="img/logoBiblioteca.png" height="80%" width="80%" alt="escudo biblioteca" id="imagenBiblioteca">
                 </div>
             </div>
             <div class="section group" id="barra">
@@ -113,7 +115,7 @@
                    
                out.print(request.getParameter("mensaje"));
                 } else{
-                    out.print("<img src='img/caratula.jpg' alt='caratula darktech' id='caratula'>");
+                    out.print("<a href='https://www.facebook.com/darktech.enterprise' target='_blank'><img src='img/caratula.jpg' alt='caratula darktech' id='caratula'></a>");
                 }
                
                 %>     
