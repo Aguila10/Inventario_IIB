@@ -581,12 +581,12 @@ public class ConexionBD {
                 nombre[1] = resultSet.getString(2);
                 nombre[2] = resultSet.getString(3);
                 nombre[3] = resultSet.getString(4);
-
-                String[] nuevo = new String[3];
-                nuevo[0] = nombre[0];
-                nuevo[1] = nombre[1];
-                nuevo[2] = nombre[2];
-                nuevo[3] = nombre[3];
+               
+                String[] nuevo = new String[4];
+               nuevo[0]= nombre[0];
+               nuevo[1]= nombre[1];
+               nuevo[2] = nombre[2];
+               nuevo[3] = nombre[3];
                 resultado.add(nuevo);
             }
         } catch (SQLException | java.lang.ClassNotFoundException e) {
@@ -696,7 +696,11 @@ public class ConexionBD {
         // System.out.println(con.actualizaCatalogo("catalogo_marca",1,"hola"));
   //       System.out.println(con.actualizaCatalogo("catalogo_marca",1,"ACER"));
         
-        //System.out.println(con.insertaCatalogo("catalogo_marca","ACERRRRRR"));
-    }
+        ArrayList<String[]> a = con.regresaMarcaSerieDeparta(123);
+        for(String[] e:a){
+            System.out.println(e[0] + " "+e[1]+" "+e[2] + " "+e[3]);
+        }
+        
+        }
 
 }
