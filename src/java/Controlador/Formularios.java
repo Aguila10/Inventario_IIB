@@ -75,6 +75,8 @@ public class Formularios extends HttpServlet {
                 break;
             case "movimientoEquipo": //
                 form = obtenFormularioSinCatalogos("movimientoEquipo");
+                form = form.replace("<input type=\"text\" id=\"nombre\">","<input type=\"text\" id=\"nombre\" value=\""
+                        + "\" disabled>");
                 break;
             case "usuarioAlta": // No tiene catalogos
                 form = obtenFormularioSinCatalogos("usuarioAlta");

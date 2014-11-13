@@ -167,6 +167,60 @@ function actualizaEquipo() {
     }
     return true;
 }
+function validaMovimiento(){
+    
+   var movimiento = document.getElementById("movimiento").value;
+   var fecha = document.getElementById("fecha").value;
+   if(movimiento === ""){
+       if(!esVisible("errorMovimiento")){
+           escribeEn("errorMovimiento","Debes introducir un valor");
+           muestra("errorMovimiento");
+       } else {
+        escribeEn("errorMovimiento","Debes introducir un valor");
+        }
+    if(fecha === ""){
+        if(!esVisible("errorFecha")){
+           escribeEn("errorFecha","Debes introducir una fecha");
+           muestra("errorFecha");
+       } else {
+        escribeEn("errorFecha","debes introducir una fecha");
+        }
+
+    } else {
+    if(esVisible("errorFecha")){
+        oculta("errorFecha");
+    }    
+    }
+    return false
+   }
+   
+   if(esVisible("errorMovimiento")){
+       ocultar("errorMovimiento")
+   }
+    if(fecha === ""){
+        if(!esVisible("errorFecha")){
+           escribeEn("errorFecha","Debes introducir una fecha");
+           muestra("errorFecha");
+       } else {
+        escribeEn("errorFecha","Debes introducir una fecha");
+        }
+        return false;
+    }
+    
+    if(esVisible("errorFecha")){
+        ocultar("errorFecha");
+    }
+   
+   
+   return true;
+}
+function validaFecha(fecha){
+    
+   if(fecha === ""){
+       return false;
+   }
+   return true;
+}
 function esVisible(id){
     return document.getElementById(id).style.visibility === 'visible';
 }
