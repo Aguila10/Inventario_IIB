@@ -696,10 +696,10 @@ public class ConexionBD {
         // System.out.println(con.actualizaCatalogo("catalogo_marca",1,"hola"));
   //       System.out.println(con.actualizaCatalogo("catalogo_marca",1,"ACER"));
         
-        ArrayList<String[]> a = con.regresaMarcaSerieDeparta(123);
-        for(String[] e:a){
-            System.out.println(e[0] + " "+e[1]+" "+e[2] + " "+e[3]);
-        }
+//        ArrayList<String[]> a = con.regresaMarcaSerieDeparta(123);
+//        for(String[] e:a){
+//            System.out.println(e[0] + " "+e[1]+" "+e[2] + " "+e[3]);
+//        }
         
         }
 
