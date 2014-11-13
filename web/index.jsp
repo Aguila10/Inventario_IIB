@@ -4,6 +4,19 @@
     Author     : rae
 --%>
 
+<%
+    /*Obtener la sesion ya iniciada*/
+    HttpSession sesion = request.getSession(true);
+    String tipo = (String)sesion.getAttribute("identidad");
+    
+    if(sesion.getAttribute("identidad") != null){
+           if(tipo.equals("administrador")){
+               response.sendRedirect("administrador.jsp");
+           } 
+    }
+   
+%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -32,14 +45,20 @@
         <header>
             <div class="section group" id="encabezado">
                 <div class="col span_1_of_6">
-                    <img src="img/escudoUnam.png" height="40%" width="40%" alt="escudo unam" id="imagenUnam"/>
+                    <img src="img/escudoUnam.png" height="40%" width="40%" alt="escudo unam" id="imagenUnam">
                 </div>
-                <div class="col span_4_of_6"></div>
+                <div class="col span_4_of_6" id="nombreInstituto">
+                    <span>Intituto de<br>Investigaciones<br>Bibliografícas</span>
+                </div>
                 <div class="col span_1_of_6">
-                    <!--logo biblioteca-->
+                    <img src="img/logoBiblioteca.png" height="80%" width="80%" alt="escudo biblioteca" id="imagenBiblioteca">
                 </div>
             </div>
-            <div class="section group" id="barra"><br></div>
+            <div class="section group" id="barra">
+                <div id="login">
+                   <br>
+                </div>
+            </div>
         </header>
         <!--Fin encabezado-->
 

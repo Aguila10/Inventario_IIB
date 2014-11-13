@@ -11,7 +11,11 @@ function voyAeditar(edita) {
     input.type = "text";
     input.value = contenidoHijo;
     input.id = "contenido" + edita;
+    var label = document.createElement("label");
+    label.id = "error"+edita;
+    label.classList.add('errorActualizaCatalogo');
     td.appendChild(input);
+    td.appendChild(label);
 
     padre.appendChild(td);
 
@@ -33,17 +37,20 @@ function voyAeditar(edita) {
 
 function actualizaCatalogo(id, catalogo) {
     var cambio = document.getElementById("contenido" + id).value;
-    var respuesta = "";
+    
+    if(cambio===""){
+    	document.getElementById("error"+id).innerHTML = "Actualización inválida";
+    	return;
+    }
 
     $.post("ActualizaCatalogo", {
         id: id,
         tabla: catalogo,
         descripcion: cambio
     }, function (data) {
-        respuesta = data;
-    });
 
-    if (respuesta) {
+
+        if (data) {
         var padre = document.getElementById("padre" + id);
         while (padre.childNodes.length >= 1) {
             padre.removeChild(padre.firstChild);
@@ -54,6 +61,12 @@ function actualizaCatalogo(id, catalogo) {
         td.setAttribute("onclick", "voyAeditar(" + id + ")");
         padre.appendChild(td);
     } else {
-        document.getElementById("errorCatalgo").innerHTML = "No fue posible guardar los cambios";
+        document.getElementById("error"+id).innerHTML = "No fue posible guardar los cambios";
     }
+
+
+
+    });
+
+    
 }
