@@ -11,9 +11,8 @@
 #main form label{text-align: center;text-shadow: #B39217 1px 1px 1px;color: #132B5A;}
 
 /*Estilos errores*/
-#error{width: 20%;margin: 3% auto 0 auto;}
-#error span{margin-left: 20px;text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87}
-#error img{float: left;width: 8%;height: 8%;}
+#error{width: 50%;margin: 3% auto 0 auto; display: none; color:red;}
+//#error img{float: left;width: 8%;height: 8%;}
 
 /*Estilos extras*/
 .smart-blue{border:none !important;}

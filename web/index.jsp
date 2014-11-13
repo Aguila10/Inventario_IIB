@@ -93,12 +93,12 @@
                 </form>
                 <!--fin formulario inicio de sesión-->
                 <!--Inicio error-->
-                <div class="section group" id="error" hidden>
+                <div class="section group" id="error">
                     <p>
-                        <!--Imagen error-->
-                        <img src="img/error.png" alt="error">
+                       
+    
                         <!--Mensaje error-->
-                        <span>Error: Esto es un error</span>
+                        <span>Login o contraseña incorrecta</span>
                     </p>
                 </div>
                 <!--Fin errror-->

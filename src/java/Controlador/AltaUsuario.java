@@ -102,30 +102,31 @@ public class AltaUsuario extends HttpServlet {
                 case "Administrador":
                     sesion.setAttribute("identidad", "administrador");
                     sesion.setAttribute("login", login);
-                    response.sendRedirect("administrador.jsp");
+                  //  response.sendRedirect("administrador.jsp");
                     break;
                 case "Secretaria":
                     sesion.setAttribute("identidad", "secretaria");
                     sesion.setAttribute("login", login);
-                    response.sendRedirect("administrador.jsp");
+                   // response.sendRedirect("administrador.jsp");
                     break;
 
                 case "Tecnico Academico":
                     sesion.setAttribute("identidad", "tecnico academico");
                     sesion.setAttribute("login", login);
-                    response.sendRedirect("administrador.jsp");
+                   // response.sendRedirect("administrador.jsp");
                     break;
 
                 case "Jefe de inventario":
                     sesion.setAttribute("identidad", "jefe de inventario");
-                    sesion.setAttribute("login", login);
-                    response.sendRedirect("administrador.jsp");
+                    sesion.setAttribute("login", login);                   
                     break;
             }
+            
+            response.sendRedirect("administrador.jsp?mensaje=Se registro usuario exitosamente&exito=true");
 
         } else {
 
-            mandaMensaje("Error Registrando Usuario", response);
+            response.sendRedirect("administrador.jsp?mensaje=Error al registrar usuario&exito=false");
 
         }
 
