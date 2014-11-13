@@ -110,7 +110,7 @@ function buscaEquipo() {
 
     $.post("BuscaEquipo", {
         campoBusqueda: x
-    }, function(data) {
+    }, function (data) {
         if (data === "<label id='errorBusqueda' class='errorFormulario'>No se encontraron equipos</label>") {
             $("#errorBusqueda").html(data);
         }
@@ -155,7 +155,7 @@ function muestraFormulario() {
     $.post("BuscaEquipo", {
         id: id_equipo,
         actualizar: act
-    }, function(data) {
+    }, function (data) {
         $("#resultadoBusqueda").html(data);
     });
 
@@ -261,7 +261,7 @@ function imprimeTabla() {
     $.post("MovimientoEquipo", {
         equipo: busqueda
 
-    }, function(data) {
+    }, function (data) {
         $("#resultadoBusqueda").html(data);
     });
 }

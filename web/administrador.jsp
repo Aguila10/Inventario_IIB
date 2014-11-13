@@ -106,7 +106,7 @@
 
             <!--Inicio formulario-->
             <div class="col span_3_of_4" id="formulario" >
-            <!--Caratula con marca de agua-->
+                <!--Caratula con marca de agua-->
 
                 <% 
                 if(request.getParameter("mensaje") != null){

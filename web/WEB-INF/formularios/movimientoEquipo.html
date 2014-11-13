@@ -2,20 +2,20 @@
     <h3>Movimiento de Equipo</h3>
     <div class="dosColumnas">
         <label for="movimiento">Movimiento originado por:</label>
-    <select name="movimiento" id="movimiento">
-        <option value=""></option>
-        <option value="descompostura o falla">Descompostura o Falla</option>
-        <option value="baja">Baja</option>
-        <option value="desuso">Desuso</option>
-        <option value="renovacion/cambio">Renovación/Cambio</option>
-        <option value="asignacion">Asignación</option>
-    </select>
-    <label id="errorMovimiento" class="errorFormulario"></label>
+        <select name="movimiento" id="movimiento">
+            <option value=""></option>
+            <option value="descompostura o falla">Descompostura o Falla</option>
+            <option value="baja">Baja</option>
+            <option value="desuso">Desuso</option>
+            <option value="renovacion/cambio">Renovación/Cambio</option>
+            <option value="asignacion">Asignación</option>
+        </select>
+        <label id="errorMovimiento" class="errorFormulario"></label>
     </div>
     <div class="dosColumnas derecha">
         <label for="fecha">Fecha:</label>
-    <input type="date" id="fecha" name="fecha">
-    <label id="errorFecha" class="errorFormulario"></label>
+        <input type="date" id="fecha" name="fecha">
+        <label id="errorFecha" class="errorFormulario"></label>
     </div>
 
     <label for="nombre">Nombre de usuario:</label>
@@ -23,10 +23,10 @@
     <label id="errorNombre" class="errorFormulario"></label>
 
     <center><div id="busquedaDentro">
-    <input type="text" id="campoBusqueda" placeholder="Búsqueda clave activo fijo o número inventario UNAM">    <div onclick="imprimeTabla()"><img src="img/search.png"></div>
-    <label id="errorBusqueda" class="errorFormulario"></label>
-    </div></center>
-    
+            <input type="text" id="campoBusqueda" placeholder="Búsqueda clave activo fijo o número inventario UNAM">    <div onclick="imprimeTabla()"><img src="img/search.png"></div>
+            <label id="errorBusqueda" class="errorFormulario"></label>
+        </div></center>
+
     <div id="resultadoBusqueda"></div>
     <input type="submit" value="Aceptar" class="button">
 </form>

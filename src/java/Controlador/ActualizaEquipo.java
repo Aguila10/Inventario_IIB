@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Controlador;
 
 import Modelo.ConexionBD;
@@ -21,7 +20,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ActualizaEquipo", urlPatterns = {"/ActualizaEquipo"})
 public class ActualizaEquipo extends HttpServlet {
+
     ConexionBD bd = new ConexionBD();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -35,20 +36,18 @@ public class ActualizaEquipo extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            
-            if(actualizaEquipo(request,response)){
-                mandaMensaje("Acttualización exitosa",response);
+
+            if (actualizaEquipo(request, response)) {
+                mandaMensaje("Acttualización exitosa", response);
             } else {
-                mandaMensaje("Actualización fallida",response);                
+                mandaMensaje("Actualización fallida", response);
             }
-                
 
         }
     }
-        
+
     private boolean actualizaEquipo(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
+            throws ServletException, IOException {
         String activoFij = request.getParameter("activoFijo");
         String descripcion = request.getParameter("descripcion");
         String descripcionExt = request.getParameter("descripcionExtendida");
@@ -58,27 +57,29 @@ public class ActualizaEquipo extends HttpServlet {
         String marca = request.getParameter("marca");
         String estado = request.getParameter("estadoFisico");
         String ubicacion = request.getParameter("ubicacion");
-        String fechaRes=request.getParameter("fechaResguardo");  
-        String modelo=request.getParameter("modelo");
-        String familia=request.getParameter("familia");
-        String tipoActivo=request.getParameter("tipoActivoFijo");
-        String nivelObs=request.getParameter("nivelObsolencia");
-        String centroCos=request.getParameter("centroCosto");
-        String proveedor=request.getParameter("proveedor");
-        String responsable=request.getParameter("responsable");
-        
-    return bd.actualizaEquipo(BuscaEquipo.id_equipo, Integer.parseInt(activoFij),
-            Integer.parseInt(descripcion), descripcionExt, modelo, marca, numeroSer, familia, tipoActivo,
-            proveedor, clase, uso, nivelObs, estado, ubicacion, centroCos, fechaRes,
-            responsable);
-    
+        String fechaRes = request.getParameter("fechaResguardo");
+        String modelo = request.getParameter("modelo");
+        String familia = request.getParameter("familia");
+        String tipoActivo = request.getParameter("tipoActivoFijo");
+        String nivelObs = request.getParameter("nivelObsolencia");
+        String centroCos = request.getParameter("centroCosto");
+        String proveedor = request.getParameter("proveedor");
+        String responsable = request.getParameter("responsable");
+
+        return bd.actualizaEquipo(BuscaEquipo.id_equipo, Integer.parseInt(activoFij),
+                Integer.parseInt(descripcion), descripcionExt, modelo, marca, numeroSer, familia, tipoActivo,
+                proveedor, clase, uso, nivelObs, estado, ubicacion, centroCos, fechaRes,
+                responsable);
+
     }
+
     public void mandaMensaje(String mensaje, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             response.sendRedirect("administrador.jsp?mensaje=" + mensaje + "&formulario=equipo");
         }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
