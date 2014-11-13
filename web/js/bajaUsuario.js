@@ -1,5 +1,11 @@
-function elimina_usuarios(){
+function revisa_usuarios(){
     
-return true;
-          
+var usuarios = $("input:checkbox[name=usuarios]:checked").toArray();    
+
+if(usuarios.length === 0 ){  
+    document.getElementById("errorUsuarioBaja").innerHTML = "Debes seleccionar al menos un elemento";
+    return false;
+}
+    
+return true;      
 }

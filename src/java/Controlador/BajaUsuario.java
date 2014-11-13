@@ -83,7 +83,7 @@ public class BajaUsuario extends HttpServlet {
         ConexionBD con = new ConexionBD();
         String[] seleccion = request.getParameterValues("usuarios");
         
-        if( seleccion.length > 0){
+        if( seleccion != null && seleccion.length > 0){
             for(int cont=0; cont < seleccion.length; cont++){
              con.eliminaUsuario(seleccion[cont]);
             }
