@@ -111,6 +111,7 @@
                 <!--Caratula con marca de agua-->
 
                 <% 
+                request.setCharacterEncoding("UTF-8");
                 if(request.getParameter("mensaje") != null){
                     out.print("<div id='respuestaServidor'>");
                         if(request.getParameter("exito").equals("true")){

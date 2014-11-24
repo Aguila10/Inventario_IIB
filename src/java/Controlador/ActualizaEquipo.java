@@ -8,6 +8,7 @@ package Controlador;
 import Modelo.ConexionBD;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,6 +49,7 @@ public class ActualizaEquipo extends HttpServlet {
 
     private boolean actualizaEquipo(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         String activoFij = request.getParameter("activoFijo");
         String descripcion = request.getParameter("descripcion");
         String descripcionExt = request.getParameter("descripcionExtendida");
@@ -76,7 +78,7 @@ public class ActualizaEquipo extends HttpServlet {
     public void mandaMensaje(String mensaje, String exito,HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            response.sendRedirect("administrador.jsp?mensaje=" + mensaje + "&exito="+exito);
+            response.sendRedirect("administrador.jsp?mensaje=" + URLEncoder.encode(mensaje,"UTF-8") + "&exito="+exito);
         }
     }
 
