@@ -45,7 +45,7 @@
                     <img src="img/escudoUnam.png" height="40%" width="40%" alt="escudo unam" id="imagenUnam">
                 </div>
                 <div class="col span_4_of_6" id="nombreInstituto">
-                    <span>Intituto de<br>Investigaciones<br>Bibliografícas</span>
+                    <span>Intituto de<br>Investigaciones<br>Bibliográficas</span>
                 </div>
                 <div class="col span_1_of_6">
                     <img src="img/logoBiblioteca.png" height="80%" width="80%" alt="escudo biblioteca" id="imagenBiblioteca">
