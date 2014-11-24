@@ -8,6 +8,7 @@ package Controlador;
 import Modelo.ConexionBD;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,6 +38,8 @@ public class MovimientoEquipo extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String busqueda = request.getParameter("equipo");
             if (busqueda == null) {
@@ -60,7 +63,7 @@ public class MovimientoEquipo extends HttpServlet {
         String fecha = request.getParameter("fecha");
         String login = (String)sesion.getAttribute("login");
         String equipo = request.getParameter("seleccion");
-        return bd.insertaMovimientos(Integer.parseInt(bd.regresaIDNombre(login)),Integer.parseInt(equipo),movimiento, fecha);
+        return Validacion.valida_login(login) && bd.insertaMovimientos(Integer.parseInt(bd.regresaIDNombre(login)),Integer.parseInt(equipo),movimiento, fecha);
     }
 
     public String generaTabla(String busqueda) {
@@ -102,8 +105,9 @@ public class MovimientoEquipo extends HttpServlet {
 
     public void mandaMensaje(String mensaje,String exito, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            response.sendRedirect("administrador.jsp?mensaje=" + mensaje + "&exito="+exito);
+            response.sendRedirect("administrador.jsp?mensaje=" + URLEncoder.encode(mensaje,"UTF-8") + "&exito="+exito);
         }
     }
 
