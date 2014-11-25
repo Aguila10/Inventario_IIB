@@ -396,6 +396,29 @@ public class ConexionBD {
         return res;
     }
 
+    
+    
+     public boolean insertaCatalogoFamilia( String descrip , int id) {
+        boolean res = true;
+
+        try {
+            Class.forName(driver);
+            Connection con = DriverManager.getConnection(connectString, user, password);
+            PreparedStatement query = con.prepareStatement("insert into  catalogo_familia (descripcion, clave_tipo) values ( "
+                    + "'" + descrip + "' , " + id );
+
+            ResultSet rset = query.executeQuery();
+
+        } catch (SQLException | java.lang.ClassNotFoundException e) {
+            res = false;
+            System.out.println(e.getMessage());
+            return res;
+
+        }
+
+        return res;
+    }
+    
     /**
      * Metodo que solo nos regresa los catalogos
      *
