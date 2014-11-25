@@ -31,7 +31,7 @@ function validaCampos(hayform, form) {
             escribeEn("errorActivoFijo", "campo inválido");
             escribeEn("errorDescripcion", "campo inválido");
             if (descripcion == "") {
-                escribeEn("errorDescripcionExtendida", "Debes llenar este campoo");
+                escribeEn("errorDescripcionExtendida", "Debes llenar este campo");
             } else {
                 oculta("errorDescripcionExtendida");
             }
