@@ -654,8 +654,8 @@ public class ConexionBD {
         serie= serie.equals("") ? "%": serie;
         familia= familia.equals("") ? "%": familia;
         tipo_equipo= tipo_equipo.equals("") ? "%": tipo_equipo;
-        fechaInicio= fechaInicio.equals("") ? "12/12/12": fechaInicio;
-        fechaFin= fechaFin.equals("") ? fechaInicio: fechaFin;
+        fechaInicio= fechaInicio.equals("") ? "12/12/86": fechaInicio;
+        fechaFin= fechaFin.equals("") ? "12/12/30": fechaFin;
         institucion= institucion.equals("") ? "%": institucion;
         area= area.equals("") ? "%": area;
         responsable= responsable.equals("") ? "%": responsable;
@@ -707,7 +707,7 @@ public class ConexionBD {
          
         Equipo a = new Equipo(clave_activo_fijo, num_inv_unam,
                  clave_marcar, clave_modelo, serie1, clave_familia, clave_tipo, fecha_de_resguardo,
-                clave_institucion, clave_area,  responsable);
+                clave_institucion, clave_area,  responsable1);
             
                 resultado.add(a);
                 
@@ -772,7 +772,8 @@ public class ConexionBD {
         //System.out.println(con.regresaIDNombre("caen"));
 //        System.out.println(con.insertaMovimientos(1, 1,"Baja", "12/12/1999"));
         
-        con.reportes("", "", "", "", "12/12/12", "", "", "", "", "");
-    }
+//     ArrayList<Equipo> a=   con.reportes("", "", "", "", "12/12/12", "", "", "", "", "");
+//        System.out.println(a.size());
+//    }
 
 }
