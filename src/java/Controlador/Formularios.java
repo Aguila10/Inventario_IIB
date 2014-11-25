@@ -155,6 +155,9 @@ public class Formularios extends HttpServlet {
             case "consultaEquipo":
                 form = obtenFormularioConCatalogos("consultaEquipo");
                 break;
+            case "consultaEquipo":
+                form = obtenFormularioConCatalogos("consultaEquipo");
+                break;
         }
         return form;
     }
