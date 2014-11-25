@@ -382,7 +382,7 @@ public class ConexionBD {
             Class.forName(driver);
             Connection con = DriverManager.getConnection(connectString, user, password);
             PreparedStatement query = con.prepareStatement("insert into  " + tabla + " (descripcion) values ( "
-                    + "'" + descrip + "'");
+                    + "'" + descrip + "' );");
 
             ResultSet rset = query.executeQuery();
 
@@ -405,7 +405,7 @@ public class ConexionBD {
             Class.forName(driver);
             Connection con = DriverManager.getConnection(connectString, user, password);
             PreparedStatement query = con.prepareStatement("insert into  catalogo_familia (descripcion, clave_tipo) values ( "
-                    + "'" + descrip + "' , " + id );
+             + "'" + descrip + "' , " + id +");");
 
             ResultSet rset = query.executeQuery();
 
@@ -798,6 +798,9 @@ public class ConexionBD {
 //     ArrayList<Equipo> a=   con.reportes("", "", "", "", "12/12/12", "", "", "", "", "");
 //        System.out.println(a.size());
 //    }
+        
+        con.insertaCatalogo("catalogo_area", "reneeeee");
+        con.insertaCatalogoFamilia("daaaaaaaaaaaaaaaaaa0", 1);
 
     }
 }
