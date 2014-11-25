@@ -12,6 +12,7 @@
 
         <!--Estilos plantilla-->
         <link rel="stylesheet" href="css/6cols.css">
+        <link rel="stylesheet" href="css/5cols.css">
         <link rel="stylesheet" href="css/4cols.css">
         <link rel="stylesheet" href="css/col.css">
         <link rel="stylesheet" href="css/estilosPlantilla.css">
@@ -73,12 +74,8 @@
                     <li onclick="obtenerFormulario('movimientoEquipo', 'movimientoEquipo')">
                         <a id="movimientoEquipo">Movimiento de Equipo</a>
                     </li>
-                    <li>
-                        <a id="consulta">Consulta</a>
-                        <ul>
-                            <li onclick="obtenerFormulario('consultaUsuario', 'consulta')"><a>Usuario</a></li>
-                            <li onclick="obtenerFormulario('consultaEquipo', 'consulta')"><a>Equipo</a></li>
-                        </ul>
+                    <li onclick="obtenerFormulario('consultaEquipo', 'consulta')">
+                        <a id="consulta">Consultar Equipo</a>
                     </li>
                 </ul>
                 <br>

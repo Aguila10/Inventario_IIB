@@ -8,6 +8,7 @@ package Controlador;
 import Modelo.ConexionBD;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,13 +33,13 @@ public class AltaEquipo extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+response.setContentType("text/html;charset=UTF-8");
         boolean edo = registraEquipo(request, response);
 
         if (edo) {
-            mandaMensaje("Registro Exitoso ", response);
+            mandaMensaje("Se registró un equipo correctamente","true", response);
         } else {
-            mandaMensaje("No se pudo guardar ", response);
+            mandaMensaje("No se pudo registrar el equipo","false", response);
         }
     }
 
@@ -51,6 +52,7 @@ public class AltaEquipo extends HttpServlet {
      */
     public boolean registraEquipo(HttpServletRequest request, HttpServletResponse response) throws IOException {
         ConexionBD bd = new ConexionBD();
+        request.setCharacterEncoding("UTF-8");
         String activoFijo = (String) request.getParameter("activoFijo");
         int actFijo = (activoFijo.equals("")) ? 0 : Integer.parseInt(activoFijo);
 
@@ -87,10 +89,10 @@ public class AltaEquipo extends HttpServlet {
      * @param response
      * @throws IOException
      */
-    public void mandaMensaje(String mensaje, HttpServletResponse response) throws IOException {
+    public void mandaMensaje(String mensaje, String exito,HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            response.sendRedirect("administrador.jsp?mensaje=" + mensaje);
+            response.sendRedirect("administrador.jsp?mensaje=" + URLEncoder.encode(mensaje,"UTF-8")+"&exito="+exito);
         }
     }
 

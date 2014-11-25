@@ -12,6 +12,7 @@
 
         <!--Estilos plantilla-->
         <link rel="stylesheet" href="css/6cols.css">
+        <link rel="stylesheet" href="css/5cols.css">
         <link rel="stylesheet" href="css/4cols.css">
         <link rel="stylesheet" href="css/col.css">
         <link rel="stylesheet" href="css/estilosPlantilla.css">
@@ -54,12 +55,9 @@
             <div class="col span_1_of_4" id="menu">
                 <br><br><br>
                 <ul>
-                    <li onclick="obtenerFormulario('consultaUsuario', 'consultaUsuario')">
-                        <a id="consultaUsuario">Consulta Usuario</a>
-                    </li>
-                    <li onclick="obtenerFormulario('consultaEquipo', 'consultaEquipo')">
-                      <a id="consultaEquipo">Consulta Equipo</a>  
-                    </li>   
+                    <li onclick="obtenerFormulario('consultaEquipo', 'consulta')">
+                        <a id="consulta">Consultar Equipo</a>
+                    </li> 
                 </ul>
                 <br><br><br>
                 <a href="http://www.iib.unam.mx/" target="_blank">

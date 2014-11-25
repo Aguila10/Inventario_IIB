@@ -10,12 +10,12 @@ function valida_inicio_sesion() {
     if (usuario.match(usuario_pat) && contrasenia.match(contrasenia_pat)) {
         return true;
     } else {
-        document.getElementById("error").style.visibility = 'visible';
+        document.getElementById("error").style.display = 'block';
         return false;
     }
 
 }
 
 function limpia() {
-    document.getElementById("error").style.visibility = 'hidden';
+    document.getElementById("error").style.display = 'none';
 }

@@ -88,10 +88,10 @@ public class BajaUsuario extends HttpServlet {
              con.eliminaUsuario(seleccion[cont]);
             }
         }else{
-            //Error;
+            response.sendRedirect("administrador.jsp?mensaje=No se eliminaron exitosamente&exito=true");
         }
         
-        response.sendRedirect("administrador.jsp");
+        response.sendRedirect("administrador.jsp?mensaje=Se eliminarion exitosamente&exito=true");
                 
     }
 }

@@ -8,6 +8,7 @@
 .smart-blue .button {background-color: #132B5A;border-radius: 5px;-webkit-border-radius: 5px;-moz-border-border-radius: 5px;border: none;padding: 2% 3% 2% 3%;color: #FFF;margin-top: 3%; margin-left: 40%;}
 .smart-blue .button:hover, .botonGuardaCambios:hover {background-color:#B8BEC9;}
 .errorFormulario{color:red;font-style: italic;}
+.especial{width: 80%; padding: 10% !important;}
 
 /* Estilos para editar catálogos*/
 .entrada{width: 70%;}
@@ -36,11 +37,8 @@
 #caratula{width: 80%;}
 #enlaceBiblioteca {margin-left: -30%; margin-top: 5%; width: 70%;}
 
-/*Errores*/
+/*Estilos para errores cliente*/
 #errorBusqueda1{font-size: 70%;}
-
-
-/*Estilos para errores*/
 #errorBusqueda1{font-size: 80%;margin-left: 25%;}
 #errorBusqueda{margin: 3% auto 3% auto; width: 40%;}
 
@@ -56,6 +54,9 @@
 #busquedaCatalogos{width: 80%;  margin-bottom: 3%;}
 #busquedaCatalogos select {width: 100%;}
 #busquedaCatalogos .span_1_of_4{margin-top: 3%;}
+
+/*Estilos para consultar equipo*/
+#resultadoConsulta{width: 90%;}
 
 /*Estilos para errores del servidor*/
 #respuestaServidor{width: auto; text-align: center;margin-top: 5%; margin-left: -15%;}

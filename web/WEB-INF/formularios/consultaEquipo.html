@@ -1,0 +1,90 @@
+<div name="consultaEquipo" class="smart-blue">
+    <h3>Consulta Equipo</h3>
+       
+    
+    <div class="section group">
+        <div class="col span_1_of_5">
+            <label for="marca">Marca:</label>
+            <!--Cátalogo BD-->
+            <input type="text" list="marca" id="marcaid" name="marca" />
+            <datalist id="marca" name="marca">
+                
+            </datalist>
+        </div>
+        <div class="col span_1_of_5">
+            <label for="numeroSerie">Número de serie:</label>
+            <input type="text" id="numeroSerie" name="numeroSerie">
+        </div>
+        <div class="col span_1_of_5">
+            <label for="familia">Familia:</label>
+            <!--Cátalogo BD-->
+            <input type="text" list="familia" id="familiaid" name="familia"/>
+            <datalist id="familia" name="familia">
+                
+            </datalist>
+        </div>
+        <div class="col span_1_of_5">
+            <label for="ubicacion">Ubicación:</label>
+            <input type="text" list="ubicacion" id="ubicacionid" name="ubicacion"/>
+            <datalist id="ubicacion" name="ubicacion">
+                
+            </datalist>
+        </div>
+        <div class="col span_1_of_5">
+            <label for="responsable">Responsable:</label>
+            <input type="text" list="responsable" id="responsableid" name="responsable">
+            <datalist id="responsable" name="responsable">
+                
+            </datalist>
+        </div>
+        
+    </div>
+    <div class="section group">
+        <div class="col span_1_of_5">
+            <label for="tipoActivoFijo">Tipo activo fijo:</label>
+            <input type="text" list="tipoActivoFijo" id="tipoequipoid" name="tipoActivoFijo"/>
+            <datalist id="tipoActivoFijo" name="tipoActivoFijo">
+                
+            </datalist>
+        </div>
+        <div class="col span_1_of_5">
+            <label for="centroCosto">Departamento:</label>
+            <input type="text" list="centroCosto" id="departam" name="centroCosto"/>
+            <datalist id="centroCosto" name="centroCosto">
+                
+            </datalist>
+        </div>
+        <div class="col span_1_of_5">
+            <label for="fechaResguardo">Fecha inicio:</label>    
+            <input type="date" id="fecha1" name="fechaResguardo" requiered>
+        </div>
+        <div class="col span_1_of_5">
+            <label for="fechaResguardo">Fecha fin:</label>    
+            <input type="date" id="fecha2" name="fechaResguardo" requiered>
+        </div>
+        
+        <div class="col span_1_of_5">
+            <label for="movimiento">Estado:</label>
+                <select name="movimiento" id="movimiento">
+                    <option value=""></option>
+                    <option value="Descompostura o Falla">Descompostura o Falla</option>
+                    <option value="Baja">Baja</option>
+                    <option value="Desuso">Desuso</option>
+                    <option value="Renovación/Cambio">Renovación/Cambio</option>
+                    <option value="Asignación">Asignación</option>
+                </select>
+        </div>
+        
+    </div>
+    <div class="section group">
+        <div class="col span_1_of_5"></div>
+        <div class="col span_1_of_5"><button onclick="consultaEquipos()" class="button especial" style="float:left">Consultar</button></div>
+        <div class="col span_1_of_5"><button onclick="" class="button especial">Exportar</button></div>
+        <div class="col span_1_of_5"></div>
+        <div class="col span_1_of_5"></div>
+    </div>
+    
+</div>
+<br>
+<br>
+<div id="resultadoConsulta"></div>
