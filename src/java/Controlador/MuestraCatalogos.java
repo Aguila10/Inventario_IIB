@@ -52,7 +52,7 @@ public class MuestraCatalogos extends HttpServlet {
      */
     public String generaTabla(ArrayList<String[]> cat) {
         String tabla = "";
-        tabla += "<table>";
+        tabla += "<table style='width:100%'>";
 
         for (int i = 0; i < cat.size(); i++) {
             tabla += "<tr id='padre" + cat.get(i)[0] + "'>";

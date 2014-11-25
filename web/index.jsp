@@ -48,7 +48,7 @@
                     <img src="img/escudoUnam.png" height="40%" width="40%" alt="escudo unam" id="imagenUnam">
                 </div>
                 <div class="col span_4_of_6" id="nombreInstituto">
-                    <span>Intituto de<br>Investigaciones<br>Bibliografícas</span>
+                    <span>Instituto de<br>Investigaciones<br>Bibliográficas</span>
                 </div>
                 <div class="col span_1_of_6">
                     <img src="img/logoBiblioteca.png" height="80%" width="80%" alt="escudo biblioteca" id="imagenBiblioteca">
@@ -66,11 +66,11 @@
         <div class="section group" id="main">
             <!--Inicio descripcion del sistema-->
             <div class="col span_1_of_2" id="inicio">
-                <h1>Inventario del Instituo de Investigaciones Bibliografícas</h1>
+                <h1>Inventario del Instituto de Investigaciones Bibliográficas</h1>
                 <center><img src="img/instituto.jpg" alt="instituto biblioteca"></center>
                 <p>Este sistema surgió por la necesidad de automatizar la administración
                     de los equipos que se encuentran distribuidos en <br> 
-                    la Hemeroteca Nacional de México, la Biblioteca Nacional de México y el Instituto de Investigaciones Bibliografícas <br>
+                    la Hemeroteca Nacional de México, la Biblioteca Nacional de México y el Instituto de Investigaciones Bibliográficas <br>
                     para poder tener un mejor manejo de dichos equipos.</p>
             </div>
             <!--Fin descripcion del sistema-->

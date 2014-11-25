@@ -3,16 +3,6 @@
     Created on : Oct 15, 2014, 8:44:07 PM
     Author     : rae
 --%>
-<%
-    /*Obtener la sesion ya iniciada*/
-    HttpSession sesion = request.getSession(true);
-    
-    if(sesion.getAttribute("identidad") == null){
-       response.sendRedirect("index.jsp");
-    }
-   
-%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -31,8 +21,6 @@
         <script src="js/jquery-1.10.1.min.js"></script>
         <script src="js/ajaxFormularios.js"></script>
         <script src="js/altaEquipo.js"></script>
-        <script src="js/altaUsuario.js"></script>
-        <script src="js/bajaUsuario.js"></script>
         <script src="js/catalogo.js"></script>
 
     </head>
@@ -54,7 +42,7 @@
                 <div id="login">
                     <p>
                         Conectado como: 
-                        <span id="loginUsuario"><%=sesion.getAttribute("login")%></span>
+                        <span id="loginUsuario"></span>
                         <img src="img/door_out.png" alt="salir">
                         <a href="CerrarSesion">Salir</a>
                     </p>
@@ -67,13 +55,7 @@
             <!--Inicio menú-->
             <div class="col span_1_of_4" id="menu">
                 <ul>
-                    <li>
-                        <a id="usuario">Usuario</a>
-                        <ul>
-                            <li onclick="obtenerFormulario('usuarioAlta', 'usuario')"><a>Dar alta</a></li>
-                            <li onclick="obtenerFormulario('usuarioBaja', 'usuario')"><a>Dar baja</a></li>
-                        </ul>
-                    </li>
+                    <br><br>
                     <li>
                         <a id="equipo">Equipo</a>
                         <ul>
@@ -99,6 +81,7 @@
                         </ul>
                     </li>
                 </ul>
+                <br>
                 <a href="http://www.iib.unam.mx/" target="_blank">
                     <img src="img/biblioteca.gif" alt=" biblioteca hemeroteca unam" id="enlaceBiblioteca">
                 </a>
@@ -117,7 +100,7 @@
                         } else{
                             out.print("<img src=img/error.png>");
                         }
-                    out.print("<h3>"+request.getParameter("mensaje")+"</h3>");
+                    out.print("<h2>"+request.getParameter("mensaje")+"</h2>");
                     out.print("</div>");
                 } else{
                     out.print("<a href='https://www.facebook.com/darktech.enterprise' target='_blank'><img src='img/caratula.jpg' alt='caratula darktech' id='caratula'></a>");

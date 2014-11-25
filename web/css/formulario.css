@@ -4,10 +4,14 @@
 .smart-blue label {display: block;margin: 0px 0px 1%;}
 .smart-blue label>span{float: left;margin-top: 2%;}
 .smart-blue input[type="password"],.smart-blue input[type="url"],.smart-blue input[type="number"],.smart-blue input[type="date"], .smart-blue input[type="text"], .smart-blue input[type="email"], .smart-blue textarea, .smart-blue select {
-    color: black;height: 30px;width: 100%;padding: 0px 0px 0px 1%;margin-top: 2px;border: 1px solid #E5E5E5;background: #FBFBFB;-webkit-box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);}
+    color: black;height: 30px;width: 100%;padding: 0px 0px 0px 1%;margin-top: 2px;border: 1px solid black;background: #FBFBFB;-webkit-box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);}
 .smart-blue .button {background-color: #132B5A;border-radius: 5px;-webkit-border-radius: 5px;-moz-border-border-radius: 5px;border: none;padding: 2% 3% 2% 3%;color: #FFF;margin-top: 3%; margin-left: 40%;}
-.smart-blue .button:hover {background-color:#B8BEC9;}
+.smart-blue .button:hover, .botonGuardaCambios:hover {background-color:#B8BEC9;}
 .errorFormulario{color:red;font-style: italic;}
+
+/* Estilos para editar catálogos*/
+.entrada{width: 70%;}
+.botonGuardaCambios{background-color: #132B5A;border-radius: 5px;-webkit-border-radius: 5px;-moz-border-border-radius: 5px;border: none;color: #FFF;margin-top: 3%; margin-left: 40%;width: 70%; padding-top: 10%;}
 
 /*Estilos formulario a dos columnas*/
 .dosColumnas{width: 48%;float: left;}
@@ -28,10 +32,6 @@
 #busquedaDentro input {margin-left: 1%;}
 #botonBusqueda img{width: 50%;}
 
-/*Estilo para búsqueda de catalogos*/
-#busquedaCatalogos{width: 80%;  margin-bottom: 3%;}
-#busquedaCatalogos select {width: 50%;}
-
 /*Estilos extra (caratula y gif)*/
 #caratula{width: 80%;}
 #enlaceBiblioteca {margin-left: -30%; margin-top: 5%; width: 70%;}
@@ -50,12 +50,15 @@
 #tablaResultado td{padding-bottom: 3%; padding-top: 3%;}
 
 /*Estilos para editar catálogos*/
-#resultadoBusqueda table{width: 100%; margin-top: 5%;}
-.botonGuardaCambios{margin-left: 7%; padding: 3%;}
+#resultadoBusqueda table{margin-top: 5%;}
+.botonGuardaCambios{margin-left: 7%; padding: 5%;}
 .errorActualizaCatalogo{color: red; font-style: italic; }
+#busquedaCatalogos{width: 80%;  margin-bottom: 3%;}
+#busquedaCatalogos select {width: 100%;}
+#busquedaCatalogos .span_1_of_4{margin-top: 3%;}
 
 /*Estilos para errores del servidor*/
-#respuestaServidor{margin-left: 30%; margin-top: 12%;}
-#respuestaServidor img{width: 30%;}
-#respuestaServidor h2{width: 50%;}
+#respuestaServidor{width: auto; text-align: center;margin-top: 5%; margin-left: -15%;}
+#respuestaServidor img{width: 30%; margin: 0 auto 0 auto;}
+#respuestaServidor h3{width:auto; margin: 0 auto 0 auto;}
 
