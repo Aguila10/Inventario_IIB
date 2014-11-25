@@ -4,7 +4,34 @@
  * and open the template in the editor.
  */
 
-
+function consultaEquipos(){
+    
+    var marc = document.getElementById("marcaid").value;
+    var numS = document.getElementById("numeroSerie").value;
+    var fam = document.getElementById("familiaid").value;
+    var ubic = document.getElementById("ubicacionid").value;
+    var res = document.getElementById("responsableid").value;
+    var tipoEqui = document.getElementById("tipoequipoid").value;
+    var depa = document.getElementById("departam").value;
+    var fecha1 = document.getElementById("fecha1").value;
+    var fecha2 = document.getElementById("fecha2").value;
+    var mov = document.getElementById("movimiento").value;
+    
+    $.post("ConsultaEquipo", {
+        marca:marc,
+        numeroSerie:numS,
+        familia:fam,
+        ubicacion:ubic,
+        responsable:res,
+        tipoEquipo:tipoEqui,
+        departamento:depa,
+        fechaI:fecha1,
+        fechaF:fecha2,
+        estado:mov
+    }, function (data) {
+        $("#resultadoConsulta").html(data);
+    });
+}
 
 function validaCampos(hayform, form) {
 

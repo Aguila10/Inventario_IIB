@@ -23,6 +23,8 @@
         <!--Estilos plantilla-->
         <link rel="stylesheet" href="css/6cols.css">
         <link rel="stylesheet" href="css/4cols.css">
+        <link rel="stylesheet" href="css/3cols.css">
+        <link rel="stylesheet" href="css/5cols.css">
         <link rel="stylesheet" href="css/col.css">
         <link rel="stylesheet" href="css/estilosPlantilla.css">
         <link rel="stylesheet" href="css/formulario.css">
