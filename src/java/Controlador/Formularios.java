@@ -44,7 +44,7 @@ public class Formularios extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String form="";
+        String form = "";
         HttpSession sesion = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -60,54 +60,68 @@ public class Formularios extends HttpServlet {
             } else {
                 if (formulario.equals("usuarioBaja")) {
                     form = obtenFormulario(formulario);
-                    form = form.replace("<aqui va la tabla>",obten_tabla_usuarios((String)sesion.getAttribute("login")));
+                    form = form.replace("<aqui va la tabla>", obten_tabla_usuarios((String) sesion.getAttribute("login")));
                     out.print(form);
                 } else {
-                    out.print(obtenFormulario(formulario));
+                    if (formulario.equals("catalogoAltaRegistro")) {
+                        form = obtenFormulario(formulario);
+                        form = form.replace("<aqui va el catalogo>",obten_select_catalogo("catalogo_tipo_equipo"));
+                        out.print(form);
+                    } else {
+                        out.print(obtenFormulario(formulario));
+                    }
                 }
+
             }
         }
     }
 
-    private String obten_tabla_usuarios(String login){
-        
+    
+    private String obten_select_catalogo(String nombre_catalogo){
+    
+    ConexionBD con = new ConexionBD();
+    ArrayList<String[]> elementos = con.regresaCatalogoConId(nombre_catalogo);
+    String select = "";
+
+    //datalist = "<input type=\"text\" list=\"list_"+nombre_catalogo+"\" id=\"input_"+ nombre_catalogo+"\" name=\"input_"+ nombre_catalogo+"\" style=\"display:none\"/>\n" +
+     select =  "<select id=\"select_"+ nombre_catalogo  +"\" name=\"select_"+ nombre_catalogo +"\" style=\"display:none\">\n";
+    
+    for(String[] elemento : elementos){
+        select += "<option value=\""+ elemento[0] +"\">" + elemento[1]  + "</option>\n";
+    }
+    select += "</select>\n";
+    
+    return select;
+    }
+    
+    private String obten_tabla_usuarios(String login) {
+
         ConexionBD con = new ConexionBD();
         ArrayList<String[]> usuarios = con.buscaNombreLogin(login);
         String tabla = "";
-        
-        tabla += "<center><table style=\"width:100%\" id=\"tablaResultado\">\n" +
-"    		<tr>\n" +
-"    			<th>Login</th>\n" +
-"    			<th class=\"campoNombre\">Nombre</th>\n" +
-"    			<th>Seleccionar</th>\n" +
-"    		</tr>\n";
-        
+
+        tabla += "<center><table style=\"width:100%\" id=\"tablaResultado\">\n"
+                + "    		<tr>\n"
+                + "    			<th>Login</th>\n"
+                + "    			<th class=\"campoNombre\">Nombre</th>\n"
+                + "    			<th>Seleccionar</th>\n"
+                + "    		</tr>\n";
+
         for (String[] usuario : usuarios) {
-            
-            tabla+="<tr>\n" +
-"    			<td>"+ usuario[0]+"</td>\n" +
-"    			<td class=\"campoNombre\">"+usuario[1]+"</td>\n" +
-"    			<td><input type=\"checkbox\" value=\""+ usuario[0]+"\" name=\"usuarios\"></td>\n" +
-"    		</tr>\n";
-            
+
+            tabla += "<tr>\n"
+                    + "    			<td>" + usuario[0] + "</td>\n"
+                    + "    			<td class=\"campoNombre\">" + usuario[1] + "</td>\n"
+                    + "    			<td><input type=\"checkbox\" value=\"" + usuario[0] + "\" name=\"usuarios\"></td>\n"
+                    + "    		</tr>\n";
+
         }
-        
-        tabla+= "</table></center>";
-        
-    return tabla;
+
+        tabla += "</table></center>";
+
+        return tabla;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     /**
      * Metodo que regresa un formulario en forma de cadena
      *
@@ -137,6 +151,9 @@ public class Formularios extends HttpServlet {
                 break;
             case "usuarioBaja": // No tiene catalogos
                 form = obtenFormularioSinCatalogos("usuarioBaja");
+                break;
+            case "consultaEquipo":
+                form = obtenFormularioConCatalogos("consultaEquipo");
                 break;
             case "consultaEquipo":
                 form = obtenFormularioConCatalogos("consultaEquipo");
