@@ -85,9 +85,12 @@ public class AgregaCatalogo extends HttpServlet {
         } else {
              
             if(!catalogo.equals("catalogo_familia")){
+                con.insertaCatalogoFamilia(descripcion, Integer.parseInt(tipo_familia));
                 
+                
+               
             }else{
-                            
+                con.insertaCatalogo(catalogo, descripcion);
                 
             } 
             

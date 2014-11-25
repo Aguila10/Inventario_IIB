@@ -23,6 +23,8 @@
         <!--Estilos plantilla-->
         <link rel="stylesheet" href="css/6cols.css">
         <link rel="stylesheet" href="css/4cols.css">
+        <link rel="stylesheet" href="css/3cols.css">
+        <link rel="stylesheet" href="css/5cols.css">
         <link rel="stylesheet" href="css/col.css">
         <link rel="stylesheet" href="css/estilosPlantilla.css">
         <link rel="stylesheet" href="css/formulario.css">
@@ -46,7 +48,7 @@
                     <img src="img/escudoUnam.png" height="40%" width="40%" alt="escudo unam" id="imagenUnam">
                 </div>
                 <div class="col span_4_of_6" id="nombreInstituto">
-                    <span>Intituto de<br>Investigaciones<br>Bibliografícas</span>
+                    <span>Intituto de<br>Investigaciones<br>Bibliográficas</span>
                 </div>
                 <div class="col span_1_of_6">
                     <img src="img/logoBiblioteca.png" height="80%" width="80%" alt="escudo biblioteca" id="imagenBiblioteca">
@@ -111,10 +113,11 @@
             <div class="col span_3_of_4" id="formulario" >
                 <!--Caratula con marca de agua-->
 
-                <%
-                    if (request.getParameter("mensaje") != null) {
-                        out.print("<div id='respuestaServidor'>");
-                        if (request.getParameter("exito").equals("true")) {
+                <% 
+                request.setCharacterEncoding("UTF-8");
+                if(request.getParameter("mensaje") != null){
+                    out.print("<div id='respuestaServidor'>");
+                        if(request.getParameter("exito").equals("true")){
                             out.print("<img src=img/ok.jpg>");
                         } else {
                             out.print("<img src=img/error.png>");

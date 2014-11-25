@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package Controlador;
 
 import Modelo.ConexionBD;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URLEncoder;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,11 +20,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jpachecov
  */
-@WebServlet(name = "ActualizaEquipo", urlPatterns = {"/ActualizaEquipo"})
-public class ActualizaEquipo extends HttpServlet {
-
+@WebServlet(name = "ConsultaEquipo", urlPatterns = {"/ConsultaEquipo"})
+public class ConsultaEquipo extends HttpServlet {
     ConexionBD bd = new ConexionBD();
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,51 +36,63 @@ public class ActualizaEquipo extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
-            if (actualizaEquipo(request, response)) {
-                mandaMensaje("Acttualización exitosa","true", response);
-            } else {
-                mandaMensaje("Actualización fallida","false", response);
-            }
-
+            out.print(hazConsulta(request));
         }
     }
-
-    private boolean actualizaEquipo(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        String activoFij = request.getParameter("activoFijo");
-        String descripcion = request.getParameter("descripcion");
-        String descripcionExt = request.getParameter("descripcionExtendida");
-        String numeroSer = request.getParameter("numeroSerie");
-        String clase = request.getParameter("clase");
-        String uso = request.getParameter("uso");
+    
+    public String hazConsulta(HttpServletRequest request){
         String marca = request.getParameter("marca");
-        String estado = request.getParameter("estadoFisico");
-        String ubicacion = request.getParameter("ubicacion");
-        String fechaRes = request.getParameter("fechaResguardo");
-        String modelo = request.getParameter("modelo");
+        String numero = request.getParameter("numeroSerie");
         String familia = request.getParameter("familia");
-        String tipoActivo = request.getParameter("tipoActivoFijo");
-        String nivelObs = request.getParameter("nivelObsolencia");
-        String centroCos = request.getParameter("centroCosto");
-        String proveedor = request.getParameter("proveedor");
+        String ubicacion = request.getParameter("ubicacion");
         String responsable = request.getParameter("responsable");
-
-        return bd.actualizaEquipo(BuscaEquipo.id_equipo, Integer.parseInt(activoFij),
-                Integer.parseInt(descripcion), descripcionExt, modelo, marca, numeroSer, familia, tipoActivo,
-                proveedor, clase, uso, nivelObs, estado, ubicacion, centroCos, fechaRes,
-                responsable);
-
+        String tipoEquipo = request.getParameter("tipoEquipo");
+        String departamento = request.getParameter("departamento");
+        String fechai = request.getParameter("fechaI");
+        String fechaf = request.getParameter("fechaF");
+        String estado = request.getParameter("estado");
+        
+        
+        
+        
+       return generaTabla(bd.reportes(marca, numero, familia, tipoEquipo, fechai, fechaf, departamento, ubicacion, responsable, estado));//marca+" "+numero+" "+familia+" "+ubicacion+" "+responsable+" "+tipoEquipo+" "+departamento+
+              // " "+fechai+" "+fechaf+" "+estado;                
     }
 
-    public void mandaMensaje(String mensaje, String exito,HttpServletResponse response) throws IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            response.sendRedirect("administrador.jsp?mensaje=" + URLEncoder.encode(mensaje,"UTF-8") + "&exito="+exito);
+    public String generaTabla(ArrayList<Equipo> equipos){
+        
+        String tabla = "<table style='width:90%' id='tablaResultado'>\n";
+        tabla+="<tr>\n";
+        tabla+="<th>Num. Inv. interno</th> <th>Num. Inv. UNAM</th> <th>Marca</th> <th>Modelo</th>"
+                + "<th>Serie</th> <th>Familia</th> <th>Tipo</th> <th>Fecha de registro</th>"
+                + "<th>Departamento</th> <th>Ubicación</th> <th>Responsable</th>\n";
+    
+        if(equipos.size() == 0) {
+            return "<label id=\"errorBusqueda\" class=\"errorFormulario\">No se encontraron equipos</label>";
         }
+        for(Equipo e: equipos){
+        tabla+="<tr>\n";
+        
+        tabla+="<td>"+e.getClave_activo_fijo()+"</td>";
+        tabla+="<td>"+e.getNum_inv_unam()+"</td>";
+        tabla+="<td>"+e.getClave_marcar()+"</td>";
+        tabla+="<td>"+e.getClave_modelo()+"</td>";
+        tabla+="<td>"+e.getSerie()+"</td>";
+        tabla+="<td>"+e.getClave_familia()+"</td>";
+        tabla+="<td>"+e.getClave_tipo()+"</td>";
+        tabla+="<td>"+e.getFecha_de_resguardo()+"</td>";
+        tabla+="<td>"+e.getClave_institucion()+"</td>";
+        tabla+="<td>"+e.getClave_area()+"</td>";
+        tabla+="<td>"+e.getResponsable()+"</td>";
+        
+        tabla+="</tr>\n";
+        }
+        
+        tabla+="</tr>\n";
+        tabla+="</table>\n";
+        
+        return tabla;
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

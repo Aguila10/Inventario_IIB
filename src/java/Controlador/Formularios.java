@@ -152,6 +152,9 @@ public class Formularios extends HttpServlet {
             case "usuarioBaja": // No tiene catalogos
                 form = obtenFormularioSinCatalogos("usuarioBaja");
                 break;
+            case "consultaEquipo":
+                form = obtenFormularioConCatalogos("consultaEquipo");
+                break;
         }
         return form;
     }
@@ -250,6 +253,93 @@ public class Formularios extends HttpServlet {
         return form;
     }
 
+    public String obtenFormularioConCatalogos(String formulario){
+        String form = "";
+        ServletContext context = getServletContext();
+        InputStream is = context.getResourceAsStream("/WEB-INF/formularios/"+formulario+".html");
+        if (is != null) {
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader reader = new BufferedReader(isr);
+            String text = "";
+            try {
+                while ((text = reader.readLine()) != null) {
+
+                    if (text.contains("<datalist id=\"marca\" name=\"marca\">")) {
+                        form += text;
+                        text = reader.readLine(); // <option>----</option>
+                        form += llenaCatalogo(getCatalogo("catalogo_marca"));
+                        continue;
+                    }
+                    if (text.contains("<datalist id=\"familia\" name=\"familia\">")) {
+                        form += text;
+                        text = reader.readLine(); // <option>----</option>
+                        form += llenaCatalogo(getCatalogo("catalogo_familia"));
+                        continue;
+                    }
+                    if (text.contains("<datalist id=\"clase\" name=\"clase\">")) {
+                        form += text;
+                        text = reader.readLine(); // <option>----</option>
+                        form += llenaCatalogo(getCatalogo("catalogo_clase"));
+                        continue;
+                    }
+                    if (text.contains("<datalist id=\"tipoActivoFijo\" name=\"tipoActivoFijo\">")) {
+                        form += text;
+                        text = reader.readLine(); // <option>----</option>
+                        form += llenaCatalogo(getCatalogo("catalogo_tipo_equipo"));
+                        continue;
+                    }
+                    if (text.contains("<datalist id=\"uso\" name=\"uso\">")) {
+                        form += text;
+                        text = reader.readLine(); // <option>----</option>
+                        form += llenaCatalogo(getCatalogo("catalogo_uso"));
+                        continue;
+                    }
+                    if (text.contains("<datalist id=\"nivelObsolencia\" name=\"nivelObsolencia\">")) {
+                        form += text;
+                        text = reader.readLine(); // <option>----</option>
+                        form += llenaCatalogo(getCatalogo("catalogo_nivel"));
+                        continue;
+                    }
+                    if (text.contains("<datalist id=\"estadoFisico\" name=\"estadoFisico\">")) {
+                        form += text;
+                        text = reader.readLine(); // <option>----</option>
+                        form += llenaCatalogo(getCatalogo("catalogo_estado_fisico"));
+                        continue;
+                    }
+                    if (text.contains("<datalist id=\"centroCosto\" name=\"centroCosto\">")) {
+                        form += text;
+                        text = reader.readLine(); // <option>----</option>
+                        form += llenaCatalogo(getCatalogo("catalogo_institucion"));
+                        continue;
+                    }
+                    if (text.contains("<datalist id=\"ubicacion\" name=\"ubicacion\">")) {
+                        form += text;
+                        text = reader.readLine(); // <option>----</option>
+                        form += llenaCatalogo(getCatalogo("catalogo_area"));
+                        continue;
+                    }
+                    if (text.contains("<datalist id=\"proveedor\" name=\"proveedor\">")) {
+                        form += text;
+                        text = reader.readLine(); // <option>----</option>
+                        form += llenaCatalogo(getCatalogo("catalogo_proveedor"));
+                        continue;
+                    }
+                    if (text.contains("<datalist id=\"responsable\" name=\"responsable\">")) {
+                        form += text;
+                        text = reader.readLine(); // <option>----</option>
+                        form += llenaCatalogo(getCatalogo("catalogo_responsable"));
+                        continue;
+                    }
+
+                    form += text;
+
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Formularios.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return form;
+    }
     /**
      *
      * @param formulario
