@@ -707,7 +707,7 @@ public class ConexionBD {
          
         Equipo a = new Equipo(clave_activo_fijo, num_inv_unam,
                  clave_marcar, clave_modelo, serie1, clave_familia, clave_tipo, fecha_de_resguardo,
-                clave_institucion, clave_area,  responsable);
+                clave_institucion, clave_area,  responsable1);
             
                 resultado.add(a);
                 

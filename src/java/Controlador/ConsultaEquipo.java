@@ -55,16 +55,38 @@ public class ConsultaEquipo extends HttpServlet {
         
         
         
-       return generaTabla();//marca+" "+numero+" "+familia+" "+ubicacion+" "+responsable+" "+tipoEquipo+" "+departamento+
+       return generaTabla(bd.reportes(marca, numero, familia, tipoEquipo, fechai, fechaf, departamento, ubicacion, responsable, estado));//marca+" "+numero+" "+familia+" "+ubicacion+" "+responsable+" "+tipoEquipo+" "+departamento+
               // " "+fechai+" "+fechaf+" "+estado;                
     }
 
-    public String generaTabla(){
+    public String generaTabla(ArrayList<Equipo> equipos){
+        
         String tabla = "<table style='width:90%' id='tablaResultado'>\n";
         tabla+="<tr>\n";
         tabla+="<th>Num. Inv. interno</th> <th>Num. Inv. UNAM</th> <th>Marca</th> <th>Modelo</th>"
                 + "<th>Serie</th> <th>Familia</th> <th>Tipo</th> <th>Fecha de registro</th>"
                 + "<th>Departamento</th> <th>Ubicación</th> <th>Responsable</th>\n";
+    
+        if(equipos.size() == 0) {
+            return "<label id=\"errorBusqueda\" class=\"errorFormulario\">No se encontraron equipos</label>";
+        }
+        for(Equipo e: equipos){
+        tabla+="<tr>\n";
+        
+        tabla+="<td>"+e.getClave_activo_fijo()+"</td>";
+        tabla+="<td>"+e.getNum_inv_unam()+"</td>";
+        tabla+="<td>"+e.getClave_marcar()+"</td>";
+        tabla+="<td>"+e.getClave_modelo()+"</td>";
+        tabla+="<td>"+e.getSerie()+"</td>";
+        tabla+="<td>"+e.getClave_familia()+"</td>";
+        tabla+="<td>"+e.getClave_tipo()+"</td>";
+        tabla+="<td>"+e.getFecha_de_resguardo()+"</td>";
+        tabla+="<td>"+e.getClave_institucion()+"</td>";
+        tabla+="<td>"+e.getClave_area()+"</td>";
+        tabla+="<td>"+e.getResponsable()+"</td>";
+        
+        tabla+="</tr>\n";
+        }
         
         tabla+="</tr>\n";
         tabla+="</table>\n";
