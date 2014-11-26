@@ -22,7 +22,16 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ExportaConsulta", urlPatterns = {"/ExportaConsulta"})
 public class ExportaConsulta extends HttpServlet {
-
+        private String marca;
+        private String numero;
+        private String familia;
+        private String ubicacion;
+        private String responsable;
+        private String tipoEquipo;
+        private String departamento;
+        private String fechai;
+        private String fechaf;
+        private String estado;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,20 +43,29 @@ public class ExportaConsulta extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String genera = request.getParameter("genera");
+        if(genera == null){ // si apretado el link de descarga            
+            try {
+                creaXLS(response);
+            
+            } catch (Exception e){
+                e.printStackTrace();
+            }    
+        } else {
+            marca = request.getParameter("marca");
+            numero = request.getParameter("numeroSerie");
+            familia = request.getParameter("familia");
+            ubicacion = request.getParameter("ubicacion");
+            responsable = request.getParameter("responsable");
+            tipoEquipo = request.getParameter("tipoEquipo");
+            departamento = request.getParameter("departamento");
+            fechai = request.getParameter("fechaI");
+            fechaf = request.getParameter("fechaF");
+            estado = request.getParameter("estado"); 
         
-        
-        String marca = request.getParameter("marca");
-        System.out.println(marca+" kakak");
-        String numero = request.getParameter("numeroSerie");
-        String familia = request.getParameter("familia");
-        String ubicacion = request.getParameter("ubicacion");
-        String responsable = request.getParameter("responsable");
-        String tipoEquipo = request.getParameter("tipoEquipo");
-        String departamento = request.getParameter("departamento");
-        String fechai = request.getParameter("fechaI");
-        String fechaf = request.getParameter("fechaF");
-        String estado = request.getParameter("estado"); 
-    
+        }
+    }
+    public void creaXLS(HttpServletResponse response)throws ServletException, IOException{
         ConexionBD bd = new ConexionBD();
         ArrayList<Equipo> equipos = bd.reportes(marca, numero, familia, tipoEquipo, fechai, fechaf, departamento, ubicacion, responsable, estado);
         response.setContentType("application/vnd.ms-excel;charset=UTF-8");
@@ -98,9 +116,10 @@ public class ExportaConsulta extends HttpServlet {
             response.getWriter().write(",");
             response.getWriter().write(e.getResponsable());
             response.getWriter().write("\n");
-            
+          
     
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

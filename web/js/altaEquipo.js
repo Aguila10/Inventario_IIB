@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+function exporta(){
+     exportaConsulta();
+     $("#resultadoConsulta").html("<a href='ExportaConsulta'>Descargar excel</a>");
+}
 function exportaConsulta(){
 
     var marc = document.getElementById("marcaid").value;
@@ -16,7 +19,6 @@ function exportaConsulta(){
     var fecha1 = document.getElementById("fecha1").value;
     var fecha2 = document.getElementById("fecha2").value;
     var mov = document.getElementById("movimiento").value;
-    alert("yea");
     
     $.post("ExportaConsulta", {
         marca:marc,
@@ -28,11 +30,10 @@ function exportaConsulta(){
         departamento:depa,
         fechaI:fecha1,
         fechaF:fecha2,
-        estado:mov
-    } //function (data) {
-       // $("#resultadoConsulta").html(data);
-    //});
-    );
+        estado:mov,
+        genera:"yeah"
+    });
+    
     
 }
 
