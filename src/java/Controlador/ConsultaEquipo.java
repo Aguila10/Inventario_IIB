@@ -61,7 +61,7 @@ public class ConsultaEquipo extends HttpServlet {
 
     public String generaTabla(ArrayList<Equipo> equipos){
         
-        String tabla = "<table style='width:90%' id='tablaResultado'>\n";
+        String tabla = "<table id='tablaResultado'>\n";
         tabla+="<tr>\n";
         tabla+="<th>Num. Inv. interno</th> <th>Num. Inv. UNAM</th> <th>Marca</th> <th>Modelo</th>"
                 + "<th>Serie</th> <th>Familia</th> <th>Tipo</th> <th>Fecha de registro</th>"

@@ -7,6 +7,7 @@ function voyAeditar(edita) {
     padre.removeChild(hijo);
 
     var td = document.createElement("td");
+    td.style.width ="80%";
     var input = document.createElement("input");
     input.type = "text";
     input.value = contenidoHijo;
@@ -20,9 +21,10 @@ function voyAeditar(edita) {
     padre.appendChild(td);
 
     var td = document.createElement("td");
+    td.style.width ="20%";
     var button = document.createElement("button");
     button.classList.add('botonGuardaCambios');
-    button.appendChild(document.createTextNode("Guardar cambios"));
+    button.appendChild(document.createTextNode("Guardar"));
 
     // agregar función boton
     var id = edita;
