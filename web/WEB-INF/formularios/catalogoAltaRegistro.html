@@ -1,26 +1,30 @@
-<div id="busquedaCatalogos">
-    <h2>Catalogo:</h2>
-    <select name="altaRegistro" id="">
-        <option></option>
-        <option value="catalogo_area">Área</option>
-        <option value="catalogo_clase">Clase</option>
-        <option value="catalogo_estado_fisico">Estado Físico</option>
-        <option value="catalogo_familia">Familia</option>
-        <option value="catalogo_institucion">Centro de Costo</option>
-        <option value="catalogo_marca">Marca</option>
-        <option value="catalogo_nivel">Nivel de Obsolencia</option>
-        <option value="catalogo_proveedor">Proveedor</option>
-        <option value="catalogo_responsable">Responsable</option>
-        <option value="catalogo_tipo_equipo">Tipo de Equipo</option>
-        <option value="catalogo_uso">Uso</option>
-        <option value="persona_asignada">Persona asignada a equipo</option>
-    </select>
-</div>
-<form action="" class="smart-blue">
-    <h3></h3>
-    <!--Inicio resultados búsqueda-->
-    <div id="resultadoBusqueda">
-        <span>No se ha seleccionado ningún catalogo</span>
+<form name="agregaCatalogo" action="AgregaCatalogo" class="smart-blue" method="post" onsubmit="return agregaCatalogos()">
+    <div id="verCatalogo">
+        <h3>Catálogo: Agregar</h3>
+        <label id="errorElegirCatalogo" class="errorFormulario"></label>
+        <label for="elegirCatalogo">Seleccionar Catalogo:</label>
+        <center><select name="elegirCatalogo" id="elegirCatalogo" onchange="agregaFamiliaCatalogo()">
+                <option></option>
+                <option value="catalogo_area">Área</option>
+                <option value="catalogo_clase">Clase</option>
+                <option value="catalogo_estado_fisico">Estado Físico</option>
+                <option value="catalogo_familia">Familia</option>
+                <option value="catalogo_institucion">Centro de Costo</option>
+                <option value="catalogo_marca">Marca</option>
+                <option value="catalogo_nivel">Nivel de Obsolencia</option>
+                <option value="catalogo_proveedor">Proveedor</option>
+                <option value="catalogo_responsable">Responsable</option>
+                <option value="catalogo_tipo_equipo">Tipo de Equipo</option>
+                <option value="catalogo_uso">Uso</option>
+                <option value="persona_asignada">Persona asignada a equipo</option>
+            </select></center>
+        
+        <label for="select_catalogo_tipo_equipo" id="msj_catalogo_tipo_equipo" style="display:none">Catalogo Tipo:</label>
+        <aqui va el catalogo>
+        <label id="errorDescripcion" class="errorFormulario"></label>
+       
+        <label for="descripcion">Descripcion:</label>
+        <input type="text" name="descripcion" id="descripcion"/>
     </div>
-    <!--Fin resultados búsqueda-->
+    <input type="submit" value="Aceptar" class="button">
 </form>

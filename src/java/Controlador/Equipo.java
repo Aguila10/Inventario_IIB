@@ -88,14 +88,14 @@ public class Equipo {
 
         this.clave_activo_fijo = b;
         this.num_inv_unam = c;
-        this.clave_marcar = f;
-        this.clave_modelo = e;
+        this.clave_marcar = e;
+        this.clave_modelo = f;
         this.serie = g;
         this.clave_familia = h;
         this.clave_tipo = i;
-        this.fecha_de_resguardo = q;
+        this.fecha_de_resguardo = ñ;
         this.clave_institucion = o;
-        this.clave_area = ñ;
+        this.clave_area = q;
         this.responsable = r;
         
 

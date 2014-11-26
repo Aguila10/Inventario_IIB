@@ -6,11 +6,11 @@
 <%
     /*Obtener la sesion ya iniciada*/
     HttpSession sesion = request.getSession(true);
-    
-    if(sesion.getAttribute("identidad") == null){
-       response.sendRedirect("index.jsp");
+
+    if (sesion.getAttribute("identidad") == null) {
+        response.sendRedirect("index.jsp");
     }
-   
+
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -36,6 +36,7 @@
         <script src="js/altaUsuario.js"></script>
         <script src="js/bajaUsuario.js"></script>
         <script src="js/catalogo.js"></script>
+        <script src="js/agregaCatalogo.js"></script>
 
     </head>
     <body>
@@ -113,7 +114,7 @@
                     out.print("<div id='respuestaServidor'>");
                         if(request.getParameter("exito").equals("true")){
                             out.print("<img src=img/ok.jpg>");
-                        } else{
+                        } else {
                             out.print("<img src=img/error.png>");
                         }
                     out.print("<h3>"+request.getParameter("mensaje")+"</h3>");

@@ -382,7 +382,7 @@ public class ConexionBD {
             Class.forName(driver);
             Connection con = DriverManager.getConnection(connectString, user, password);
             PreparedStatement query = con.prepareStatement("insert into  " + tabla + " (descripcion) values ( "
-                    + "'" + descrip + "'");
+                    + "'" + descrip + "' );");
 
             ResultSet rset = query.executeQuery();
 
@@ -396,6 +396,29 @@ public class ConexionBD {
         return res;
     }
 
+    
+    
+     public boolean insertaCatalogoFamilia( String descrip , int id) {
+        boolean res = true;
+
+        try {
+            Class.forName(driver);
+            Connection con = DriverManager.getConnection(connectString, user, password);
+            PreparedStatement query = con.prepareStatement("insert into  catalogo_familia (descripcion, clave_tipo) values ( "
+             + "'" + descrip + "' , " + id +");");
+
+            ResultSet rset = query.executeQuery();
+
+        } catch (SQLException | java.lang.ClassNotFoundException e) {
+            res = false;
+            System.out.println(e.getMessage());
+            return res;
+
+        }
+
+        return res;
+    }
+    
     /**
      * Metodo que solo nos regresa los catalogos
      *
@@ -654,8 +677,8 @@ public class ConexionBD {
         serie= serie.equals("") ? "%": serie;
         familia= familia.equals("") ? "%": familia;
         tipo_equipo= tipo_equipo.equals("") ? "%": tipo_equipo;
-        fechaInicio= fechaInicio.equals("") ? "12/12/12": fechaInicio;
-        fechaFin= fechaFin.equals("") ? fechaInicio: fechaFin;
+        fechaInicio= fechaInicio.equals("") ? "12/12/86": fechaInicio;
+        fechaFin= fechaFin.equals("") ? "12/12/30": fechaFin;
         institucion= institucion.equals("") ? "%": institucion;
         area= area.equals("") ? "%": area;
         responsable= responsable.equals("") ? "%": responsable;
@@ -772,7 +795,12 @@ public class ConexionBD {
         //System.out.println(con.regresaIDNombre("caen"));
 //        System.out.println(con.insertaMovimientos(1, 1,"Baja", "12/12/1999"));
         
-        con.reportes("", "", "", "", "12/12/12", "", "", "", "", "");
-    }
+//     ArrayList<Equipo> a=   con.reportes("", "", "", "", "12/12/12", "", "", "", "", "");
+//        System.out.println(a.size());
+//    }
+        
+        con.insertaCatalogo("catalogo_area", "reneeeee");
+        con.insertaCatalogoFamilia("daaaaaaaaaaaaaaaaaa0", 1);
 
+    }
 }
