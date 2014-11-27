@@ -49,7 +49,7 @@ public class MovimientoEquipo extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String busqueda = request.getParameter("equipo");
             if (busqueda == null) {
-                    String mov = request.getParameter("movimiento");
+                String mov = request.getParameter("movimiento");
                 if (realizaMovimiento(request)) {
                     
                     msj_exito = msj_exito.replace("<causa_movimiento>", mov);                    
@@ -70,9 +70,9 @@ public class MovimientoEquipo extends HttpServlet {
         String movimiento = request.getParameter("movimiento");
         System.out.println(movimiento);
         String fecha = request.getParameter("fecha");
-        String login = (String)sesion.getAttribute("login");
+        String login = (String) sesion.getAttribute("login");
         String equipo = request.getParameter("seleccion");
-        return Validacion.valida_login(login) && bd.insertaMovimientos(Integer.parseInt(bd.regresaIDNombre(login)),Integer.parseInt(equipo),movimiento, fecha);
+        return Validacion.valida_login(login) && bd.insertaMovimientos(Integer.parseInt(bd.regresaIDNombre(login)), Integer.parseInt(equipo), movimiento, fecha);
     }
 
     public String generaTabla(String busqueda) {

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Controlador;
 
 import Modelo.ConexionBD;
@@ -101,8 +100,8 @@ public class ConsultaEquipo extends HttpServlet {
             out.print(header + hazConsulta(request) + footer);
         }
     }
-    
-    public String hazConsulta(HttpServletRequest request){
+
+    public String hazConsulta(HttpServletRequest request) {
         String marca = request.getParameter("marca");
         String numero = request.getParameter("numeroSerie");
         String familia = request.getParameter("familia");
@@ -113,48 +112,46 @@ public class ConsultaEquipo extends HttpServlet {
         String fechai = request.getParameter("fechaI");
         String fechaf = request.getParameter("fechaF");
         String estado = request.getParameter("estado");
-        
-        
-        
-        
-       return generaTabla(bd.reportes(marca, numero, familia, tipoEquipo, fechai, fechaf, departamento, ubicacion, responsable, estado));//marca+" "+numero+" "+familia+" "+ubicacion+" "+responsable+" "+tipoEquipo+" "+departamento+
-              // " "+fechai+" "+fechaf+" "+estado;                
+
+        return generaTabla(bd.reportes(marca, numero, familia, tipoEquipo, fechai, fechaf, departamento, ubicacion, responsable, estado));//marca+" "+numero+" "+familia+" "+ubicacion+" "+responsable+" "+tipoEquipo+" "+departamento+
+        // " "+fechai+" "+fechaf+" "+estado;                
     }
 
-    public String generaTabla(ArrayList<Equipo> equipos){
-        
+    public String generaTabla(ArrayList<Equipo> equipos) {
+
         String tabla = "<table id='tablaResultado'>\n";
-        tabla+="<tr>\n";
-        tabla+="<th>Num. Inv. interno</th> <th>Num. Inv. UNAM</th> <th>Marca</th> <th>Modelo</th>"
+        tabla += "<tr>\n";
+        tabla += "<th>Num. Inv. interno</th> <th>Num. Inv. UNAM</th> <th>Marca</th> <th>Modelo</th>"
                 + "<th>Serie</th> <th>Familia</th> <th>Tipo</th> <th>Fecha de registro</th>"
                 + "<th>Departamento</th> <th>Ubicación</th> <th>Responsable</th>\n";
-    
-        if(equipos.size() == 0) {
+
+        if (equipos.size() == 0) {
             return "<label id=\"errorBusqueda\" class=\"errorFormulario\">No se encontraron equipos</label>";
         }
-        for(Equipo e: equipos){
-        tabla+="<tr>\n";
-        
-        tabla+="<td>"+e.getClave_activo_fijo()+"</td>";
-        tabla+="<td>"+e.getNum_inv_unam()+"</td>";
-        tabla+="<td>"+e.getClave_marcar()+"</td>";
-        tabla+="<td>"+e.getClave_modelo()+"</td>";
-        tabla+="<td>"+e.getSerie()+"</td>";
-        tabla+="<td>"+e.getClave_familia()+"</td>";
-        tabla+="<td>"+e.getClave_tipo()+"</td>";
-        tabla+="<td>"+e.getFecha_de_resguardo()+"</td>";
-        tabla+="<td>"+e.getClave_institucion()+"</td>";
-        tabla+="<td>"+e.getClave_area()+"</td>";
-        tabla+="<td>"+e.getResponsable()+"</td>";
-        
-        tabla+="</tr>\n";
+        for (Equipo e : equipos) {
+            tabla += "<tr>\n";
+
+            tabla += "<td>" + e.getClave_activo_fijo() + "</td>";
+            tabla += "<td>" + e.getNum_inv_unam() + "</td>";
+            tabla += "<td>" + e.getClave_marcar() + "</td>";
+            tabla += "<td>" + e.getClave_modelo() + "</td>";
+            tabla += "<td>" + e.getSerie() + "</td>";
+            tabla += "<td>" + e.getClave_familia() + "</td>";
+            tabla += "<td>" + e.getClave_tipo() + "</td>";
+            tabla += "<td>" + e.getFecha_de_resguardo() + "</td>";
+            tabla += "<td>" + e.getClave_institucion() + "</td>";
+            tabla += "<td>" + e.getClave_area() + "</td>";
+            tabla += "<td>" + e.getResponsable() + "</td>";
+
+            tabla += "</tr>\n";
         }
-        
-        tabla+="</tr>\n";
-        tabla+="</table>\n";
-        
+
+        tabla += "</tr>\n";
+        tabla += "</table>\n";
+
         return tabla;
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

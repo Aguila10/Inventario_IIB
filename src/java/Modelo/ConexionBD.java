@@ -313,7 +313,7 @@ public class ConexionBD {
     }
 
     /**
-     * QUE ONDA CON EL CATALOG RELACIONADO
+     * 
      *
      * @param tabla
      * @param id_catalogo
@@ -378,6 +378,9 @@ public class ConexionBD {
 
             ResultSet rset = query.executeQuery();
 
+            
+            
+            
         } catch (SQLException | java.lang.ClassNotFoundException e) {
             res = false;
             System.out.println(e.getMessage());
@@ -388,6 +391,90 @@ public class ConexionBD {
         return res;
     }
 
+    
+    
+    
+    
+    
+    
+    
+    public int regresaMaxCatalogo(String tabla) {
+      int res = 0;
+    
+        
+           String id_catalogo_tabla = "";
+
+        if ("catalogo_marca".equals(tabla)) {
+            id_catalogo_tabla = "clave_marcar";
+        }
+
+        if ("catalogo_area".equals(tabla)) {
+            id_catalogo_tabla = "clave_area";
+        }
+
+        if ("catalogo_institucion".equals(tabla)) {
+            id_catalogo_tabla = "clave_institucion";
+        }
+
+        if ("catalogo_tipo_equipo".equals(tabla)) {
+            id_catalogo_tabla = "clave_tipo";
+        }
+
+        if ("catalogo_familia".equals(tabla)) {
+            id_catalogo_tabla = "clave_familia";
+        }
+
+        if ("catalogo_proveedor".equals(tabla)) {
+            id_catalogo_tabla = "clave_proveedor";
+        }
+
+        if ("catalogo_clase".equals(tabla)) {
+            id_catalogo_tabla = "clave_clase";
+        }
+
+        if ("catalogo_uso".equals(tabla)) {
+            id_catalogo_tabla = "clave_uso";
+        }
+
+        if ("catalogo_nivel".equals(tabla)) {
+            id_catalogo_tabla = "clave_nivel";
+        }
+
+        if ("catalogo_estado_fisico".equals(tabla)) {
+            id_catalogo_tabla = "clave_estado_fisico";
+        }
+
+        if ("catalogo_responsable".equals(tabla)) {
+            id_catalogo_tabla = "clave_responsable";
+        }
+
+        
+
+        try {
+            Class.forName(driver);
+            Connection con = DriverManager.getConnection(connectString, user, password);
+            PreparedStatement query = con.prepareStatement("select max("+ id_catalogo_tabla +") from " + tabla + ";");
+
+           ResultSet rset = query.executeQuery();
+            while (rset.next()) {
+                res = (rset.getInt(1));
+                
+            }
+
+        } catch (SQLException | java.lang.ClassNotFoundException e) {
+ 
+            System.out.println(e.getMessage());
+        }
+
+        return res;
+    }
+
+    
+    
+    
+    
+    
+    
     /**
      * REALIZAR PROCEDIMIENTO MAS FACIL !!!! QUE ONDA CON EL CATALOG RELACIONADO
      *
@@ -396,45 +483,101 @@ public class ConexionBD {
      * @return
      */
     public boolean insertaCatalogo(String tabla, String descrip) {
-        boolean res = true;
+        
 
+           String id_catalogo_tabla = "";
+
+        if ("catalogo_marca".equals(tabla)) {
+            id_catalogo_tabla = "clave_marcar";
+        }
+
+        if ("catalogo_area".equals(tabla)) {
+            id_catalogo_tabla = "clave_area";
+        }
+
+        if ("catalogo_institucion".equals(tabla)) {
+            id_catalogo_tabla = "clave_institucion";
+        }
+
+        if ("catalogo_tipo_equipo".equals(tabla)) {
+            id_catalogo_tabla = "clave_tipo";
+        }
+
+        if ("catalogo_familia".equals(tabla)) {
+            id_catalogo_tabla = "clave_familia";
+        }
+
+        if ("catalogo_proveedor".equals(tabla)) {
+            id_catalogo_tabla = "clave_proveedor";
+        }
+
+        if ("catalogo_clase".equals(tabla)) {
+            id_catalogo_tabla = "clave_clase";
+        }
+
+        if ("catalogo_uso".equals(tabla)) {
+            id_catalogo_tabla = "clave_uso";
+        }
+
+        if ("catalogo_nivel".equals(tabla)) {
+            id_catalogo_tabla = "clave_nivel";
+        }
+
+        if ("catalogo_estado_fisico".equals(tabla)) {
+            id_catalogo_tabla = "clave_estado_fisico";
+        }
+
+        if ("catalogo_responsable".equals(tabla)) {
+            id_catalogo_tabla = "clave_responsable";
+        }
+
+        
+        ConexionBD con1 = new ConexionBD();
+        
+        int id = con1.regresaMaxCatalogo(tabla) +1;
+        
         try {
             Class.forName(driver);
             Connection con = DriverManager.getConnection(connectString, user, password);
-            PreparedStatement query = con.prepareStatement("insert into  " + tabla + " (descripcion) values ( "
-                    + "'" + descrip + "' );");
+            PreparedStatement query = con.prepareStatement("insert into  " + tabla + " ("+ id_catalogo_tabla +" , descripcion) values ( "
+               + id  + " ,  '" + descrip + "' );");
 
             ResultSet rset = query.executeQuery();
 
         } catch (SQLException | java.lang.ClassNotFoundException e) {
-            res = false;
+        
             System.out.println(e.getMessage());
-            return res;
+        return false;
 
         }
 
-        return res;
+      return true;
     }
 
     public boolean insertaCatalogoFamilia(String descrip, int id) {
-        boolean res = true;
+        
 
+          ConexionBD con1 = new ConexionBD();
+        String tabla = "catalogo_familia";
+        
+        int id1 = con1.regresaMaxCatalogo(tabla) +1;
+        
         try {
             Class.forName(driver);
             Connection con = DriverManager.getConnection(connectString, user, password);
-            PreparedStatement query = con.prepareStatement("insert into  catalogo_familia (descripcion, clave_tipo) values ( "
-                    + "'" + descrip + "' , " + id + ");");
+            PreparedStatement query = con.prepareStatement("insert into  catalogo_familia (clave_familia , descripcion, clave_tipo) values ( "
+               + id1     + " , '" + descrip + "' , " + id + ");");
 
             ResultSet rset = query.executeQuery();
 
         } catch (SQLException | java.lang.ClassNotFoundException e) {
-            res = false;
+            
             System.out.println(e.getMessage());
-            return res;
-
+            
+            return false;
         }
 
-        return res;
+       return true; 
     }
 
     /**

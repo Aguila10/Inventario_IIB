@@ -93,7 +93,7 @@ public class IniciarSesion extends HttpServlet {
 
         if (validacion) {
             tipo_usuario = bd.buscaLogin(usuario, contrasenia);
-       
+
             if (!(tipo_usuario.equals("false"))) {
 
                 sesion = request.getSession(true);

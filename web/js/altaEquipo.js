@@ -8,7 +8,7 @@ function exporta(){
      $("#resultadoConsulta").html("");
      $("#exportaConsulta").html("<a href='ExportaConsulta'>Descargar excel</a>");
 }
-function exportaConsulta(){
+function exportaConsulta() {
 
     var marc = document.getElementById("marcaid").value;
     var numS = document.getElementById("numeroSerie").value;
@@ -20,26 +20,26 @@ function exportaConsulta(){
     var fecha1 = document.getElementById("fecha1").value;
     var fecha2 = document.getElementById("fecha2").value;
     var mov = document.getElementById("movimiento").value;
-    
+
     $.post("ExportaConsulta", {
-        marca:marc,
-        numeroSerie:numS,
-        familia:fam,
-        ubicacion:ubic,
-        responsable:res,
-        tipoEquipo:tipoEqui,
-        departamento:depa,
-        fechaI:fecha1,
-        fechaF:fecha2,
-        estado:mov,
-        genera:"yeah"
+        marca: marc,
+        numeroSerie: numS,
+        familia: fam,
+        ubicacion: ubic,
+        responsable: res,
+        tipoEquipo: tipoEqui,
+        departamento: depa,
+        fechaI: fecha1,
+        fechaF: fecha2,
+        estado: mov,
+        genera: "yeah"
     });
-    
-    
+
+
 }
 
-function consultaEquipos(){
-    
+function consultaEquipos() {
+
     var marc = document.getElementById("marcaid").value;
     var numS = document.getElementById("numeroSerie").value;
     var fam = document.getElementById("familiaid").value;
@@ -50,18 +50,18 @@ function consultaEquipos(){
     var fecha1 = document.getElementById("fecha1").value;
     var fecha2 = document.getElementById("fecha2").value;
     var mov = document.getElementById("movimiento").value;
-    
+
     $.post("ConsultaEquipo", {
-        marca:marc,
-        numeroSerie:numS,
-        familia:fam,
-        ubicacion:ubic,
-        responsable:res,
-        tipoEquipo:tipoEqui,
-        departamento:depa,
-        fechaI:fecha1,
-        fechaF:fecha2,
-        estado:mov
+        marca: marc,
+        numeroSerie: numS,
+        familia: fam,
+        ubicacion: ubic,
+        responsable: res,
+        tipoEquipo: tipoEqui,
+        departamento: depa,
+        fechaI: fecha1,
+        fechaF: fecha2,
+        estado: mov
     }, function (data) {
         
     despliegaPestaña(data);
@@ -201,7 +201,7 @@ function obtenCatalogo() {
     var cat = document.getElementById("verCatalogo").value;
     $.post("MuestraCatalogos", {
         catalogo: cat
-    }, function(data) {
+    }, function (data) {
         $("#resultadoBusqueda").html(data);
     });
 

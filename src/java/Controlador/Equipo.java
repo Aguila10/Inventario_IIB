@@ -62,10 +62,9 @@ public class Equipo {
 
     }
 
-    
-        public Equipo( int b, int c,
-             String e, String f, String g, String h, String i, 
-             String ñ, String o, String q, String r) {
+    public Equipo(int b, int c,
+            String e, String f, String g, String h, String i,
+            String ñ, String o, String q, String r) {
 
         this.clave_activo_fijo = b;
         this.num_inv_unam = c;
@@ -78,15 +77,9 @@ public class Equipo {
         this.clave_institucion = o;
         this.clave_area = q;
         this.responsable = r;
-        
 
     }
 
-    
-    
-    
-    
-    
     /**
      * @return the id_equipo
      */
