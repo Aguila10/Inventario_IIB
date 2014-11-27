@@ -250,17 +250,17 @@ function validaMovimiento() {
     var fecha = document.getElementById("fecha").value;
     if (movimiento === "") {
         if (!esVisible("errorMovimiento")) {
-            escribeEn("errorMovimiento", "Debes introducir un valor1");
+            escribeEn("errorMovimiento", "Debes introducir un valor");
             muestra("errorMovimiento");
         } else {
-            escribeEn("errorMovimiento", "Debes introducir un valor2");
+            escribeEn("errorMovimiento", "Debes introducir un valor");
         }
         if (fecha === "") {
             if (!esVisible("errorFecha")) {
-                escribeEn("errorFecha", "Debes introducir una fecha1");
+                escribeEn("errorFecha", "Debes introducir una fecha");
                 muestra("errorFecha");
             } else {
-                escribeEn("errorFecha", "debes introducir una fecha2");
+                escribeEn("errorFecha", "debes introducir una fecha");
             }
 
         } else {
@@ -275,10 +275,10 @@ function validaMovimiento() {
     }
     if (fecha === "") {
         if (!esVisible("errorFecha")) {
-            escribeEn("errorFecha", "Debes introducir una fecha3");
+            escribeEn("errorFecha", "Debes introducir una fecha");
             muestra("errorFecha");
         } else {
-            escribeEn("errorFecha", "Debes introducir una fecha4");
+            escribeEn("errorFecha", "Debes introducir una fecha");
         }
         return false;
     }

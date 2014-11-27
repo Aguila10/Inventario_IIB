@@ -956,7 +956,7 @@ public class ConexionBD {
 //        System.out.println(a.size());
 //    }
 //        
-//          con.insertaCatalogo("catalogo_area", "reneeeee");
+//System.out.println(con.insertaCatalogo("catalogo_area", "kjakjnkjankj") + "s");
 //        con.insertaCatalogoFamilia("daaaaaaaaaaaaaaaaaa0", 1);
 //        System.out.println(con.regresaBuscaLogin("caen"));
         
