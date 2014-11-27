@@ -83,15 +83,34 @@ public class AgregaCatalogo extends HttpServlet {
         if (catalogo.equals("") || descripcion.equals("")) {
             response.sendRedirect("administrador.jsp?mensaje=Error al agregar al catalogo&exito=false");
         } else {
-
-            if (!catalogo.equals("catalogo_familia")) {
-                con.insertaCatalogoFamilia(descripcion, Integer.parseInt(tipo_familia));
-
-            } else {
-                con.insertaCatalogo(catalogo, descripcion);
-
-            }
-
+            
+            if(!catalogo.equals("catalogo_familia")){
+                
+                if((!tipo_familia.equals("")) && con.insertaCatalogoFamilia(descripcion, Integer.parseInt(tipo_familia))){
+                    
+                    response.sendRedirect("administrador.jsp?mensaje=Catalogo agregado exitosamente&exito=true");
+                    
+                }else{
+                    
+                    response.sendRedirect("administrador.jsp?mensaje=Error al agregar al catalogo&exito=false");
+                    
+                }
+                
+            }else{
+                
+                if(con.insertaCatalogo(catalogo, descripcion)){
+                    
+                    response.sendRedirect("administrador.jsp?mensaje=Catalogo agregado exitosamente&exito=true");
+                    
+                }else{
+                    
+                    response.sendRedirect("administrador.jsp?mensaje=Error al agregar al catalogo&exito=false");
+                    
+                }
+                
+                
+            } 
+            
         }
 
     }

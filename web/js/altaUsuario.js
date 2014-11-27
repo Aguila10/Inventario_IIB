@@ -1,6 +1,10 @@
 
 function valida_usuario_alta() {
 
+    document.getElementById("errorNombre").innerHTML = "";
+    document.getElementById("errorLogin").innerHTML = "";
+    document.getElementById("errorCorreo").innerHTML = "";
+    document.getElementById("errorPassword").innerHTML = "";
 
     var validacion_nombre = revisaNombre();
     var validacion_login = revisaLogin();
