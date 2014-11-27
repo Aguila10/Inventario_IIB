@@ -56,7 +56,7 @@
             </div>
             <div class="section group" id="barra">
                 <div id="login">
-                   <br>
+                    <br>
                 </div>
             </div>
         </header>
@@ -70,12 +70,12 @@
                 <center><img src="img/instituto.jpg" alt="instituto biblioteca"></center>
                 <p>Este sistema surgió por la necesidad de automatizar la administración
                     de los equipos que se encuentran distribuidos en <br> 
-                    la Hemeroteca Nacional de México, la Biblioteca Nacional de México y el Instituto de Investigaciones Bibliografícas <br>
+                    la Hemeroteca Nacional de México, la Biblioteca Nacional de México y el Instituto de Investigaciones Bibliográficas <br>
                     para poder tener un mejor control de los equipos.</p>
             </div>
             <!--Fin descripcion del sistema-->
 
-            <div class="col span_1_of_2">|
+            <div class="col span_1_of_2">
                 <!--Inicio formulario inicio de sesión-->
                 <form action="IniciarSesion" id="inicio_sesion" class="smart-blue" onsubmit="return valida_inicio_sesion()">
                     <fieldset>
@@ -95,8 +95,8 @@
                 <!--Inicio error-->
                 <div class="section group" id="error">
                     <p>
-                       
-    
+
+
                         <!--Mensaje error-->
                         <span>Login o contraseña incorrecta</span>
                     </p>

@@ -48,6 +48,26 @@ public class ConexionBD {
         return res;
     }
 
+    public boolean regresaBuscaLogin(String login) {
+        boolean res = true;
+        Statement statement;
+        ResultSet resultSet;
+
+        try {
+            Connection con = DriverManager.getConnection(connectString, user, password);
+            statement = con.createStatement();
+            resultSet = statement.executeQuery("SELECT * from   buscaLogin ('" + login + "');");
+
+            while (resultSet.next()) {
+                res = resultSet.getBoolean(1);
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return res;
+    }
+
     /**
      * Metodo que regresa un arreglo de string con todos los nombres y login de
      * todos los usuarios MENOS del nombre o login que recibe
@@ -293,7 +313,7 @@ public class ConexionBD {
     }
 
     /**
-     * QUE ONDA CON EL CATALOG RELACIONADO
+     * 
      *
      * @param tabla
      * @param id_catalogo
@@ -358,6 +378,9 @@ public class ConexionBD {
 
             ResultSet rset = query.executeQuery();
 
+            
+            
+            
         } catch (SQLException | java.lang.ClassNotFoundException e) {
             res = false;
             System.out.println(e.getMessage());
@@ -368,6 +391,90 @@ public class ConexionBD {
         return res;
     }
 
+    
+    
+    
+    
+    
+    
+    
+    public int regresaMaxCatalogo(String tabla) {
+      int res = 0;
+    
+        
+           String id_catalogo_tabla = "";
+
+        if ("catalogo_marca".equals(tabla)) {
+            id_catalogo_tabla = "clave_marcar";
+        }
+
+        if ("catalogo_area".equals(tabla)) {
+            id_catalogo_tabla = "clave_area";
+        }
+
+        if ("catalogo_institucion".equals(tabla)) {
+            id_catalogo_tabla = "clave_institucion";
+        }
+
+        if ("catalogo_tipo_equipo".equals(tabla)) {
+            id_catalogo_tabla = "clave_tipo";
+        }
+
+        if ("catalogo_familia".equals(tabla)) {
+            id_catalogo_tabla = "clave_familia";
+        }
+
+        if ("catalogo_proveedor".equals(tabla)) {
+            id_catalogo_tabla = "clave_proveedor";
+        }
+
+        if ("catalogo_clase".equals(tabla)) {
+            id_catalogo_tabla = "clave_clase";
+        }
+
+        if ("catalogo_uso".equals(tabla)) {
+            id_catalogo_tabla = "clave_uso";
+        }
+
+        if ("catalogo_nivel".equals(tabla)) {
+            id_catalogo_tabla = "clave_nivel";
+        }
+
+        if ("catalogo_estado_fisico".equals(tabla)) {
+            id_catalogo_tabla = "clave_estado_fisico";
+        }
+
+        if ("catalogo_responsable".equals(tabla)) {
+            id_catalogo_tabla = "clave_responsable";
+        }
+
+        
+
+        try {
+            Class.forName(driver);
+            Connection con = DriverManager.getConnection(connectString, user, password);
+            PreparedStatement query = con.prepareStatement("select max("+ id_catalogo_tabla +") from " + tabla + ";");
+
+           ResultSet rset = query.executeQuery();
+            while (rset.next()) {
+                res = (rset.getInt(1));
+                
+            }
+
+        } catch (SQLException | java.lang.ClassNotFoundException e) {
+ 
+            System.out.println(e.getMessage());
+        }
+
+        return res;
+    }
+
+    
+    
+    
+    
+    
+    
     /**
      * REALIZAR PROCEDIMIENTO MAS FACIL !!!! QUE ONDA CON EL CATALOG RELACIONADO
      *
@@ -376,49 +483,103 @@ public class ConexionBD {
      * @return
      */
     public boolean insertaCatalogo(String tabla, String descrip) {
-        boolean res = true;
+        
 
+           String id_catalogo_tabla = "";
+
+        if ("catalogo_marca".equals(tabla)) {
+            id_catalogo_tabla = "clave_marcar";
+        }
+
+        if ("catalogo_area".equals(tabla)) {
+            id_catalogo_tabla = "clave_area";
+        }
+
+        if ("catalogo_institucion".equals(tabla)) {
+            id_catalogo_tabla = "clave_institucion";
+        }
+
+        if ("catalogo_tipo_equipo".equals(tabla)) {
+            id_catalogo_tabla = "clave_tipo";
+        }
+
+        if ("catalogo_familia".equals(tabla)) {
+            id_catalogo_tabla = "clave_familia";
+        }
+
+        if ("catalogo_proveedor".equals(tabla)) {
+            id_catalogo_tabla = "clave_proveedor";
+        }
+
+        if ("catalogo_clase".equals(tabla)) {
+            id_catalogo_tabla = "clave_clase";
+        }
+
+        if ("catalogo_uso".equals(tabla)) {
+            id_catalogo_tabla = "clave_uso";
+        }
+
+        if ("catalogo_nivel".equals(tabla)) {
+            id_catalogo_tabla = "clave_nivel";
+        }
+
+        if ("catalogo_estado_fisico".equals(tabla)) {
+            id_catalogo_tabla = "clave_estado_fisico";
+        }
+
+        if ("catalogo_responsable".equals(tabla)) {
+            id_catalogo_tabla = "clave_responsable";
+        }
+
+        
+        ConexionBD con1 = new ConexionBD();
+        
+        int id = con1.regresaMaxCatalogo(tabla) +1;
+        
         try {
             Class.forName(driver);
             Connection con = DriverManager.getConnection(connectString, user, password);
-            PreparedStatement query = con.prepareStatement("insert into  " + tabla + " (descripcion) values ( "
-                    + "'" + descrip + "' );");
+            PreparedStatement query = con.prepareStatement("insert into  " + tabla + " ("+ id_catalogo_tabla +" , descripcion) values ( "
+               + id  + " ,  '" + descrip + "' );");
 
             ResultSet rset = query.executeQuery();
 
         } catch (SQLException | java.lang.ClassNotFoundException e) {
-            res = false;
+        
             System.out.println(e.getMessage());
-            return res;
+        return false;
 
         }
 
-        return res;
+      return true;
     }
 
-    
-    
-     public boolean insertaCatalogoFamilia( String descrip , int id) {
-        boolean res = true;
+    public boolean insertaCatalogoFamilia(String descrip, int id) {
+        
 
+          ConexionBD con1 = new ConexionBD();
+        String tabla = "catalogo_familia";
+        
+        int id1 = con1.regresaMaxCatalogo(tabla) +1;
+        
         try {
             Class.forName(driver);
             Connection con = DriverManager.getConnection(connectString, user, password);
-            PreparedStatement query = con.prepareStatement("insert into  catalogo_familia (descripcion, clave_tipo) values ( "
-             + "'" + descrip + "' , " + id +");");
+            PreparedStatement query = con.prepareStatement("insert into  catalogo_familia (clave_familia , descripcion, clave_tipo) values ( "
+               + id1     + " , '" + descrip + "' , " + id + ");");
 
             ResultSet rset = query.executeQuery();
 
         } catch (SQLException | java.lang.ClassNotFoundException e) {
-            res = false;
+            
             System.out.println(e.getMessage());
-            return res;
-
+            
+            return false;
         }
 
-        return res;
+       return true; 
     }
-    
+
     /**
      * Metodo que solo nos regresa los catalogos
      *
@@ -668,23 +829,22 @@ public class ConexionBD {
         return res;
     }
 
-    public ArrayList<Equipo> reportes(String marca,  String serie, String familia, String tipo_equipo,
+    public ArrayList<Equipo> reportes(String marca, String serie, String familia, String tipo_equipo,
             String fechaInicio, String fechaFin, String institucion, String area, String responsable,
             String estado) {
-        
-        ArrayList<Equipo>  resultado = new ArrayList<Equipo>();
-        marca= marca.equals("") ? "%": marca;
-        serie= serie.equals("") ? "%": serie;
-        familia= familia.equals("") ? "%": familia;
-        tipo_equipo= tipo_equipo.equals("") ? "%": tipo_equipo;
-        fechaInicio= fechaInicio.equals("") ? "12/12/86": fechaInicio;
-        fechaFin= fechaFin.equals("") ? "12/12/30": fechaFin;
-        institucion= institucion.equals("") ? "%": institucion;
-        area= area.equals("") ? "%": area;
-        responsable= responsable.equals("") ? "%": responsable;
-        estado= estado.equals("") ? "%": estado;
-        
-      
+
+        ArrayList<Equipo> resultado = new ArrayList<Equipo>();
+        marca = marca.equals("") ? "%" : marca;
+        serie = serie.equals("") ? "%" : serie;
+        familia = familia.equals("") ? "%" : familia;
+        tipo_equipo = tipo_equipo.equals("") ? "%" : tipo_equipo;
+        fechaInicio = fechaInicio.equals("") ? "12/12/86" : fechaInicio;
+        fechaFin = fechaFin.equals("") ? "12/12/30" : fechaFin;
+        institucion = institucion.equals("") ? "%" : institucion;
+        area = area.equals("") ? "%" : area;
+        responsable = responsable.equals("") ? "%" : responsable;
+        estado = estado.equals("") ? "%" : estado;
+
         try {
             Class.forName(driver);
             Connection con = DriverManager.getConnection(connectString, user, password);
@@ -699,11 +859,10 @@ public class ConexionBD {
                     + "join catalogo_responsable on equipo.responsable = catalogo_responsable.clave_responsable "
                     + "join movimientos on equipo.id_equipo = movimientos.id_equipo "
                     + "where  catalogo_marca.descripcion like ?   and serie like ? and catalogo_familia.descripcion like ? and  "
-                    + "catalogo_tipo_equipo.descripcion like  ? and fecha_de_resguardo  between '"+fechaInicio + "' "
-                    + " and '"+fechaFin + "' and catalogo_institucion.descripcion  like  ? and "
+                    + "catalogo_tipo_equipo.descripcion like  ? and fecha_de_resguardo  between '" + fechaInicio + "' "
+                    + " and '" + fechaFin + "' and catalogo_institucion.descripcion  like  ? and "
                     + "catalogo_area.descripcion like  ? and catalogo_responsable.descripcion like  ? and  movimientos.descripcion like ?");
-      
-        
+
             query.setString(1, marca);
             query.setString(2, serie);
             query.setString(3, familia);
@@ -712,29 +871,28 @@ public class ConexionBD {
             query.setString(6, area);
             query.setString(7, responsable);
             query.setString(8, estado);
-            
+
             ResultSet rset = query.executeQuery();
-               
+
             while (rset.next()) {
-        int clave_activo_fijo = rset.getInt(1);
-        int num_inv_unam = rset.getInt(2);
-        String clave_marcar = rset.getString(3);
-        String clave_modelo = rset.getString(4);
-        String serie1 = rset.getString(5);
-        String clave_familia = rset.getString(6);
-        String clave_tipo = rset.getString(7);
-        String fecha_de_resguardo = rset.getString(8);
-        String clave_institucion = rset.getString(9);
-        String clave_area = rset.getString(10);
-        String responsable1 = rset.getString(11);
-         
-        Equipo a = new Equipo(clave_activo_fijo, num_inv_unam,
-                 clave_marcar, clave_modelo, serie1, clave_familia, clave_tipo, fecha_de_resguardo,
-                clave_institucion, clave_area,  responsable1);
-            
+                int clave_activo_fijo = rset.getInt(1);
+                int num_inv_unam = rset.getInt(2);
+                String clave_marcar = rset.getString(3);
+                String clave_modelo = rset.getString(4);
+                String serie1 = rset.getString(5);
+                String clave_familia = rset.getString(6);
+                String clave_tipo = rset.getString(7);
+                String fecha_de_resguardo = rset.getString(8);
+                String clave_institucion = rset.getString(9);
+                String clave_area = rset.getString(10);
+                String responsable1 = rset.getString(11);
+
+                Equipo a = new Equipo(clave_activo_fijo, num_inv_unam,
+                        clave_marcar, clave_modelo, serie1, clave_familia, clave_tipo, fecha_de_resguardo,
+                        clave_institucion, clave_area, responsable1);
+
                 resultado.add(a);
-                
-                
+
             }
         } catch (SQLException | java.lang.ClassNotFoundException e) {
             System.out.println(e.getMessage());
@@ -794,13 +952,20 @@ public class ConexionBD {
         //System.out.println(con.insertaCatalogo("catalogo_marca","ACERRRRRR"));
         //System.out.println(con.regresaIDNombre("caen"));
 //        System.out.println(con.insertaMovimientos(1, 1,"Baja", "12/12/1999"));
-        
 //     ArrayList<Equipo> a=   con.reportes("", "", "", "", "12/12/12", "", "", "", "", "");
 //        System.out.println(a.size());
 //    }
+//        
+//        con.insertaCatalogo("catalogo_area", "reneeeee");
+//        con.insertaCatalogoFamilia("daaaaaaaaaaaaaaaaaa0", 1);
+//        System.out.println(con.regresaBuscaLogin("caendd"));
         
-        con.insertaCatalogo("catalogo_area", "reneeeee");
-        con.insertaCatalogoFamilia("daaaaaaaaaaaaaaaaaa0", 1);
-
+//        System.out.println(con.regresaMaxCatalogo("catalogo_area"));
+        
+//        con.insertaCatalogo("catalogo_responsable", "caenHiro23");
+        
+        
+       con.insertaCatalogoFamilia("daaaaa", 2);
+        
     }
 }

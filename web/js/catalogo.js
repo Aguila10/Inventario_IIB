@@ -7,13 +7,13 @@ function voyAeditar(edita) {
     padre.removeChild(hijo);
 
     var td = document.createElement("td");
-    td.style.width ="80%";
+    td.style.width = "80%";
     var input = document.createElement("input");
     input.type = "text";
     input.value = contenidoHijo;
     input.id = "contenido" + edita;
     var label = document.createElement("label");
-    label.id = "error"+edita;
+    label.id = "error" + edita;
     label.classList.add('errorActualizaCatalogo');
     td.appendChild(input);
     td.appendChild(label);
@@ -21,7 +21,7 @@ function voyAeditar(edita) {
     padre.appendChild(td);
 
     var td = document.createElement("td");
-    td.style.width ="20%";
+    td.style.width = "20%";
     var button = document.createElement("button");
     button.classList.add('botonGuardaCambios');
     button.appendChild(document.createTextNode("Guardar"));
@@ -39,10 +39,10 @@ function voyAeditar(edita) {
 
 function actualizaCatalogo(id, catalogo) {
     var cambio = document.getElementById("contenido" + id).value;
-    
-    if(cambio===""){
-    	document.getElementById("error"+id).innerHTML = "Actualización inválida";
-    	return;
+
+    if (cambio === "") {
+        document.getElementById("error" + id).innerHTML = "Actualización inválida";
+        return;
     }
 
     $.post("ActualizaCatalogo", {
@@ -53,22 +53,22 @@ function actualizaCatalogo(id, catalogo) {
 
 
         if (data) {
-        var padre = document.getElementById("padre" + id);
-        while (padre.childNodes.length >= 1) {
-            padre.removeChild(padre.firstChild);
+            var padre = document.getElementById("padre" + id);
+            while (padre.childNodes.length >= 1) {
+                padre.removeChild(padre.firstChild);
+            }
+            var td = document.createElement(td);
+            td.appendChild(document.createTextNode(cambio));
+            td.id = "hijo" + id;
+            td.setAttribute("onclick", "voyAeditar(" + id + ")");
+            padre.appendChild(td);
+        } else {
+            document.getElementById("error" + id).innerHTML = "No fue posible guardar los cambios";
         }
-        var td = document.createElement(td);
-        td.appendChild(document.createTextNode(cambio));
-        td.id = "hijo" + id;
-        td.setAttribute("onclick", "voyAeditar(" + id + ")");
-        padre.appendChild(td);
-    } else {
-        document.getElementById("error"+id).innerHTML = "No fue posible guardar los cambios";
-    }
 
 
 
     });
 
-    
+
 }

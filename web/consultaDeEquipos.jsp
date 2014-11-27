@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Consulta de equipos</title>
-        
+
         <!--Estilos plantilla-->
         <link rel="stylesheet" href="css/6cols.css">
         <link rel="stylesheet" href="css/5cols.css">
@@ -18,36 +18,36 @@
         <link rel="stylesheet" href="css/3cols.css">
         <link rel="stylesheet" href="css/col.css">
         <link rel="stylesheet" href="css/estilosPlantilla.css">
-        
+
         <script>
-            function consultaEquipos(){
-    
-    var marc = document.getElementById("marcaid").value;
-    var numS = document.getElementById("numeroSerie").value;
-    var fam = document.getElementById("familiaid").value;
-    var ubic = document.getElementById("ubicacionid").value;
-    var res = document.getElementById("responsableid").value;
-    var tipoEqui = document.getElementById("tipoequipoid").value;
-    var depa = document.getElementById("departam").value;
-    var fecha1 = document.getElementById("fecha1").value;
-    var fecha2 = document.getElementById("fecha2").value;
-    var mov = document.getElementById("movimiento").value;
-    
-    $.post("ConsultaEquipo", {
-        marca:<%out.print(request.getParameter("marca"));%>,
-        numeroSerie:numS,
-        familia:fam,
-        ubicacion:ubic,
-        responsable:res,
-        tipoEquipo:tipoEqui,
-        departamento:depa,
-        fechaI:fecha1,
-        fechaF:fecha2,
-        estado:mov
-    }, function (data) {
-        $("#resultadoConsulta").html(data);
-    });
-}
+            function consultaEquipos() {
+
+                var marc = document.getElementById("marcaid").value;
+                var numS = document.getElementById("numeroSerie").value;
+                var fam = document.getElementById("familiaid").value;
+                var ubic = document.getElementById("ubicacionid").value;
+                var res = document.getElementById("responsableid").value;
+                var tipoEqui = document.getElementById("tipoequipoid").value;
+                var depa = document.getElementById("departam").value;
+                var fecha1 = document.getElementById("fecha1").value;
+                var fecha2 = document.getElementById("fecha2").value;
+                var mov = document.getElementById("movimiento").value;
+
+                $.post("ConsultaEquipo", {
+                    marca:<%out.print(request.getParameter("marca"));%>,
+                    numeroSerie: numS,
+                    familia: fam,
+                    ubicacion: ubic,
+                    responsable: res,
+                    tipoEquipo: tipoEqui,
+                    departamento: depa,
+                    fechaI: fecha1,
+                    fechaF: fecha2,
+                    estado: mov
+                }, function (data) {
+                    $("#resultadoConsulta").html(data);
+                });
+            }
         </script>  
     </head>
     <body>
@@ -67,10 +67,10 @@
             <div class="section group" id="barra"><br></div>
         </header>
         <!--Fin encabezado-->
-        
+
         <!--Inicio contenido-->
         <!--Fin contenido-->
-        
+
         <div id="resultadoConsulta">
             <div class="section group" id="main">
                 <div id="resultadoConsulta"></div>
