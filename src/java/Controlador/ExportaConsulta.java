@@ -46,7 +46,8 @@ public class ExportaConsulta extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+ response.setCharacterEncoding("UTF-8");
+ request.setCharacterEncoding("UTF-8");
         String msj_error = "Error al exportar consulta";
         
         HttpSession sesion = request.getSession(true);

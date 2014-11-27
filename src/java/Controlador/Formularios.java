@@ -47,6 +47,9 @@ public class Formularios extends HttpServlet {
         String form = "";
         HttpSession sesion = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
+
+         response.setCharacterEncoding("UTF-8");
+ request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
             /*Formulario solicitado*/

@@ -38,7 +38,8 @@ public class MovimientoEquipo extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+ response.setCharacterEncoding("UTF-8");
+ request.setCharacterEncoding("UTF-8");
         String msj_exito = "El movimiento por  \" <causa_movimiento> \"  se realizó correctamente";
         String msj_error = "Error al realizar el movimiento por  \" <causa_movimiento> \"";
         

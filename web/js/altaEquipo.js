@@ -65,7 +65,7 @@ function consultaEquipos() {
     }, function (data) {
         
     despliegaPestaña(data);
-          
+    // $("#resultadoConsulta").html(data);
     });
 }
 

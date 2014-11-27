@@ -921,7 +921,7 @@ public class ConexionBD {
 //        }
         /// System.out.println(con.eliminaUsuario("rene"));
 //      System.out.println(con.regresaEquipo(1).getClave_area());
-//        System.out.println(con.insertaEquipo(1231 ,
+//        System.out.println(con.insertaEquipo(6666 ,
 //10 ,
 //"Descripcion12",
 //"12hffg",
