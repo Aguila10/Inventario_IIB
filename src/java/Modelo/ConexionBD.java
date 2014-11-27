@@ -482,7 +482,7 @@ public class ConexionBD {
      * @param descrip
      * @return
      */
-    public void insertaCatalogo(String tabla, String descrip) {
+    public boolean insertaCatalogo(String tabla, String descrip) {
         
 
            String id_catalogo_tabla = "";
@@ -547,14 +547,14 @@ public class ConexionBD {
         } catch (SQLException | java.lang.ClassNotFoundException e) {
         
             System.out.println(e.getMessage());
-        
+        return false;
 
         }
 
-      
+      return true;
     }
 
-    public void insertaCatalogoFamilia(String descrip, int id) {
+    public boolean insertaCatalogoFamilia(String descrip, int id) {
         
 
           ConexionBD con1 = new ConexionBD();
@@ -574,10 +574,10 @@ public class ConexionBD {
             
             System.out.println(e.getMessage());
             
-
+            return false;
         }
 
-        
+       return true; 
     }
 
     /**
