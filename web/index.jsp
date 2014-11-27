@@ -22,7 +22,10 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <title>Sistema</title>
+        <title>Inicio Sesión - Inventario IIB</title>
+        
+        <!--Imagen pestaña-->
+        <link rel="shortcut icon" type="image/x-icon" href="img/escudoUnamNegro.png">
 
         <!--JavaScript-->
         <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>

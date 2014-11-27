@@ -109,16 +109,16 @@ public class IniciarSesion extends HttpServlet {
                         break;
 
                     case "Tecnico Academico":
-                        sesion.setAttribute("identidad", "tecnico academico");
+                        sesion.setAttribute("identidad", "tecnicoAcademico");
                         sesion.setAttribute("login", usuario);
                         break;
 
                     case "Jefe de inventario":
-                        sesion.setAttribute("identidad", "jefe de inventario");
+                        sesion.setAttribute("identidad", "jefeDeInventario");
                         sesion.setAttribute("login", usuario);
                         break;
                 }
-                response.sendRedirect("administrador.jsp");
+                response.sendRedirect(sesion.getAttribute("identidad")+".jsp");
             } else {
                 response.sendRedirect("index.jsp");
             }

@@ -6,6 +6,10 @@ var seleccion;
  formulario al servidor (AJAX)
  */
 function obtenerFormulario(f, m) {
+    
+    var myUrl = (""+window.location).replace(/\?[^\b]*/i, "");
+    window.history.pushState("", "Titulo", myUrl);
+    
     mantenSeleccionado(m);
     $("#formulario").html("");
     //$('#formulario').hide(1000);

@@ -7,11 +7,13 @@ package Controlador;
 
 import Modelo.ConexionBD;
 import java.io.IOException;
+import java.net.URLEncoder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,7 +34,19 @@ public class AgregaCatalogo extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        agregaCatalogo(request, response);
+        
+        String msj_exito = "Catálogo agregado exitosamente";
+        String msj_error = "Error al agregar al catálogo";
+        
+        HttpSession sesion = request.getSession(true);
+        String tipo_sesion = (String)sesion.getAttribute("identidad");
+        
+        if (agregaCatalogo(request, response)) {
+            response.sendRedirect(tipo_sesion + ".jsp?mensaje=" + URLEncoder.encode(msj_exito, "UTF-8") + "&exito=true");
+        } else {
+            response.sendRedirect(tipo_sesion + ".jsp?mensaje=" + URLEncoder.encode(msj_error, "UTF-8") + "&exito=false");
+        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -74,38 +88,32 @@ public class AgregaCatalogo extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void agregaCatalogo(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private boolean agregaCatalogo(HttpServletRequest request, HttpServletResponse response) throws IOException {
         ConexionBD con = new ConexionBD();
-        String descripcion = request.getParameter("elegirCatalogo");
-        String catalogo = request.getParameter("descripcion");
+        String descripcion = request.getParameter("descripcion");
+        String catalogo = request.getParameter("elegirCatalogo");
         String tipo_familia = request.getParameter("select_catalogo_tipo_equipo");
         
+      
+        
         if (catalogo.equals("") || descripcion.equals("")) {
-            response.sendRedirect("administrador.jsp?mensaje=Error al agregar al catalogo&exito=false");
+           return false;
         } else {
             
-            if(!catalogo.equals("catalogo_familia")){
+            if(catalogo.equals("catalogo_familia")){
                 
                 if((!tipo_familia.equals("")) && con.insertaCatalogoFamilia(descripcion, Integer.parseInt(tipo_familia))){
-                    
-                    response.sendRedirect("administrador.jsp?mensaje=Catalogo agregado exitosamente&exito=true");
-                    
+                    return true;
                 }else{
-                    
-                    response.sendRedirect("administrador.jsp?mensaje=Error al agregar al catalogo&exito=false");
-                    
-                }
+                    return false;    
+                }     
                 
             }else{
                 
-                if(con.insertaCatalogo(catalogo, descripcion)){
-                    
-                    response.sendRedirect("administrador.jsp?mensaje=Catalogo agregado exitosamente&exito=true");
-                    
+                if(con.insertaCatalogo(catalogo, descripcion)){    
+                    return true;
                 }else{
-                    
-                    response.sendRedirect("administrador.jsp?mensaje=Error al agregar al catalogo&exito=false");
-                    
+                    return false;
                 }
                 
                 

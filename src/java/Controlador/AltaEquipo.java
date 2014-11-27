@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,14 +34,20 @@ public class AltaEquipo extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-response.setContentType("text/html;charset=UTF-8");
-        boolean edo = registraEquipo(request, response);
+        response.setContentType("text/html;charset=UTF-8");
 
-        if (edo) {
-            mandaMensaje("Se registró un equipo correctamente","true", response);
+        String msj_exito = "Se registró el equipo correctamente";
+        String msj_error = "Error al registrar el equipo";
+
+        HttpSession sesion = request.getSession(true);
+        String tipo_sesion = (String) sesion.getAttribute("identidad");
+
+        if (registraEquipo(request, response)) {
+            response.sendRedirect(tipo_sesion + ".jsp?mensaje=" + URLEncoder.encode(msj_exito, "UTF-8") + "&exito=true");
         } else {
-            mandaMensaje("No se pudo registrar el equipo","false", response);
+            response.sendRedirect(tipo_sesion + ".jsp?mensaje=" + URLEncoder.encode(msj_error, "UTF-8") + "&exito=false");
         }
+
     }
 
     /**
@@ -60,40 +67,26 @@ response.setContentType("text/html;charset=UTF-8");
         int numInv = (numInvUNAM.equals("")) ? 0 : Integer.parseInt(numInvUNAM);
 
         int numInvInternoDepto = 0;
-
-        String descripcion = (String) request.getParameter("descripcionExtendida");
-        String modelo = (String) request.getParameter("modelo");
-        String marca = (String) request.getParameter("marca");
-        String numSerie = (String) request.getParameter("numeroSerie");
-        String familia = (String) request.getParameter("familia");
-        System.out.println(familia);
-        String tipoActivoFijo = (String) request.getParameter("tipoActivoFijo");
-        String proveedor = (String) request.getParameter("proveedor");
-        String clase = (String) request.getParameter("clase");
-        String uso = (String) request.getParameter("uso");
-        String nivelObsolencia = (String) request.getParameter("nivelObsolencia");
-        String estadoFisico = (String) request.getParameter("estadoFisico");
-        String ubicacion = (String) request.getParameter("ubicacion");
-        String centroCosto = (String) request.getParameter("centroCosto");
+        
+        String descripcion = request.getParameter("descripcionExtendida");
+        String modelo = request.getParameter("modelo");
+        String marca = request.getParameter("marca");
+        String numSerie = request.getParameter("numeroSerie");
+        String familia =  request.getParameter("familia");
+        String tipoActivoFijo = request.getParameter("tipoActivoFijo");
+        String proveedor =  request.getParameter("proveedor");
+        String clase = request.getParameter("clase");
+        String uso =  request.getParameter("uso");
+        String nivelObsolencia = request.getParameter("nivelObsolencia");
+        String estadoFisico =  request.getParameter("estadoFisico");
+        String ubicacion = request.getParameter("ubicacion");
+        String centroCosto =  request.getParameter("centroCosto");
         // idusuario NULL
-        String fechaResguardo = (String) request.getParameter("fechaResguardo");
+        String fechaResguardo = request.getParameter("fechaResguardo");
         String responsable = request.getParameter("responsable");
 
         return bd.insertaEquipo(actFijo, numInv, descripcion, modelo, marca, numSerie, familia, tipoActivoFijo, proveedor, clase, uso, nivelObsolencia, estadoFisico, ubicacion, centroCosto, fechaResguardo, responsable);
 
-    }
-
-    /**
-     *
-     * @param mensaje
-     * @param response
-     * @throws IOException
-     */
-    public void mandaMensaje(String mensaje, String exito,HttpServletResponse response) throws IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            response.sendRedirect("administrador.jsp?mensaje=" + URLEncoder.encode(mensaje,"UTF-8")+"&exito="+exito);
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

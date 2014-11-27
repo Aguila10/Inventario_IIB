@@ -4,12 +4,29 @@
     Author     : rae
 --%>
 
+<%
+    /*Obtener la sesion ya iniciada*/
+    HttpSession sesion = request.getSession(true);
+
+    if (sesion.getAttribute("identidad") == null){
+        response.sendRedirect("index.jsp");
+    }else{
+        if(!(sesion.getAttribute("identidad").equals("tecnicoAcademico"))){
+         response.sendRedirect(sesion.getAttribute("identidad")+".jsp");   
+        }
+    }
+
+%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <title>Administrador</title>
+        <title>Tecnico Académico - Inventario IIB</title>
+        
+        <!--Imagen pestaña-->
+        <link rel="shortcut icon" type="image/x-icon" href="img/escudoUnamNegro.png">
 
         <!--Estilos plantilla-->
         <link rel="stylesheet" href="css/6cols.css">
@@ -23,6 +40,11 @@
         <script src="js/jquery-1.10.1.min.js"></script>
         <script src="js/ajaxFormularios.js"></script>
         <script src="js/altaEquipo.js"></script>
+        <script src="js/altaUsuario.js"></script>
+        <script src="js/bajaUsuario.js"></script>
+        <script src="js/catalogo.js"></script>
+        <script src="js/agregaCatalogo.js"></script>
+        
     </head>
     <body>
         <!--Inicio encabezado-->
@@ -32,7 +54,7 @@
                     <img src="img/escudoUnam.png" height="40%" width="40%" alt="escudo unam" id="imagenUnam">
                 </div>
                 <div class="col span_4_of_6" id="nombreInstituto">
-                    <span>Intituto de<br>Investigaciones<br>Bibliografícas</span>
+                    <span>Instituto de<br>Investigaciones<br>Bibliográficas</span>
                 </div>
                 <div class="col span_1_of_6">
                     <img src="img/logoBiblioteca.png" height="80%" width="80%" alt="escudo biblioteca" id="imagenBiblioteca">
@@ -42,7 +64,7 @@
                 <div id="login">
                     <p>
                         Conectado como: 
-                        <span id="loginUsuario"></span>
+                        <span id="loginUsuario"><%=sesion.getAttribute("login")%></span>
                         <img src="img/door_out.png" alt="salir">
                         <a href="CerrarSesion">Salir</a>
                     </p>
@@ -82,14 +104,15 @@
                 <!--Caratula con marca de agua-->
 
                 <% 
+            request.setCharacterEncoding("UTF-8");
                 if(request.getParameter("mensaje") != null){
                     out.print("<div id='respuestaServidor'>");
                         if(request.getParameter("exito").equals("true")){
                             out.print("<img src=img/ok.jpg>");
-                        } else{
+                        } else {
                             out.print("<img src=img/error.png>");
                         }
-                    out.print("<h2>"+request.getParameter("mensaje")+"</h2>");
+                    out.print("<h3>"+request.getParameter("mensaje")+"</h3>");
                     out.print("</div>");
                 } else{
                     out.print("<a href='https://www.facebook.com/darktech.enterprise' target='_blank'><img src='img/caratula.jpg' alt='caratula darktech' id='caratula'></a>");

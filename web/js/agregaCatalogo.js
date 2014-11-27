@@ -7,12 +7,12 @@ function agregaCatalogos(){
     var b_descripcion = true;
     
      if(catalogo === ""){
-        document.getElementById("errorElegirCatalogo").innerHTML = "Debes seleccionar un catalogo";
+        document.getElementById("errorElegirCatalogo").innerHTML = "Debes seleccionar un catálogo";
         b_catalogo = false;
     }  
     
       if(descripcion === ""){
-        document.getElementById("errorDescripcion").innerHTML = "No pudes dejar la descripcion vacia";
+        document.getElementById("errorDescripcion").innerHTML = "No pudes dejar la descripción vacía";
         b_descripcion = false;
     }
     

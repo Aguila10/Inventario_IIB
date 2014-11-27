@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,15 +37,24 @@ public class ActualizaEquipo extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-
+   
+        String msj_exito = "La actualización del equipo ha sido exitosa";
+        String msj_error = "Error al actualizar el equipo";
+        
+        HttpSession sesion = request.getSession(true);
+        String tipo_sesion = (String)sesion.getAttribute("identidad");
+        
             if (actualizaEquipo(request, response)) {
-                mandaMensaje("Acttualización exitosa","true", response);
+                
+               response.sendRedirect(tipo_sesion+".jsp?mensaje=" + URLEncoder.encode(msj_exito,"UTF-8") + "&exito=true");
+            
             } else {
-                mandaMensaje("Actualización fallida","false", response);
+                
+               response.sendRedirect(tipo_sesion+".jsp?mensaje=" + URLEncoder.encode(msj_error,"UTF-8") + "&exito=false");
+            
             }
 
-        }
+        
     }
 
     private boolean actualizaEquipo(HttpServletRequest request, HttpServletResponse response)
@@ -75,13 +85,7 @@ public class ActualizaEquipo extends HttpServlet {
 
     }
 
-    public void mandaMensaje(String mensaje, String exito,HttpServletResponse response) throws IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            response.sendRedirect("administrador.jsp?mensaje=" + URLEncoder.encode(mensaje,"UTF-8") + "&exito="+exito);
-        }
-    }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -5,7 +5,8 @@
  */
 function exporta(){
      exportaConsulta();
-     $("#resultadoConsulta").html("<a href='ExportaConsulta'>Descargar excel</a>");
+     $("#resultadoConsulta").html("");
+     $("#exportaConsulta").html("<a href='ExportaConsulta'>Descargar excel</a>");
 }
 function exportaConsulta(){
 
@@ -62,9 +63,18 @@ function consultaEquipos(){
         fechaF:fecha2,
         estado:mov
     }, function (data) {
-        $("#resultadoConsulta").html(data);
+        
+    despliegaPestaña(data);
+          
     });
 }
+
+function despliegaPestaña(data){
+    
+       var nuevaVentana = window.open("about","_blank");        
+       nuevaVentana.document.write(data); 
+}
+
 
 function validaCampos(hayform, form) {
 
@@ -73,6 +83,12 @@ function validaCampos(hayform, form) {
     var numInvUNAM = "";
     var descripcion = "";
     var fecha = "";
+
+    escribeEn("errorAmbos", "");
+    escribeEn("errorDescripcion","");
+    escribeEn("errorActivoFijo","");
+    escribeEn("errorFechaResguardo","");
+    escribeEn("errorDescripcionExtendida","");
 
     if (hayform != null) {
         claveAF = document.forms[form]["activoFijo"].value;
@@ -88,10 +104,9 @@ function validaCampos(hayform, form) {
     if (claveAF == "" || claveAF == null) {
         if (numInvUNAM == "" || numInvUNAM == null) {
             //alert("Debes meter alguno de los campos");
-            escribeEn("errorActivoFijo", "campo inválido");
-            escribeEn("errorDescripcion", "campo inválido");
+            escribeEn("errorAmbos", "Al menos uno de los campos no debe quedar vacío");
             if (descripcion == "") {
-                escribeEn("errorDescripcionExtendida", "Debes llenar este campo");
+                escribeEn("errorDescripcionExtendida", "Este campo no puede quedar vacío");
             } else {
                 oculta("errorDescripcionExtendida");
             }
@@ -100,7 +115,7 @@ function validaCampos(hayform, form) {
         // claveAF = null y numInvUNAM != null
         var con = numInvUNAM.match(reg);
         if (con == null) {
-            escribeEn("errorDescripcion", "Este campo debe ser un numero");
+            escribeEn("errorDescripcion", "Este campo debe ser un número");
             return false;
         }
 
@@ -118,13 +133,13 @@ function validaCampos(hayform, form) {
 
     var con = claveAF.match(reg);
     if (con == null) {
-        escribeEn("errorActivoFijo", "Este campo debe ser un numero");
+        escribeEn("errorActivoFijo", "Este campo debe ser un número");
         return false;
     }
     if (numInvUNAM != "") {
         var r = numInvUNAM.match(reg)
         if (r == null) {
-            escribeEn("errorDescripcion", "Este campo debe ser un numero");
+            escribeEn("errorDescripcion", "Este campo debe ser un número");
             return false;
         }
     }
@@ -148,9 +163,9 @@ function buscaEquipo() {
     var x = document.getElementById("campoBusqueda").value;
     if (x === "" || x === null) {
         if (esVisible("errorBusqueda1")) {
-            escribeEn("errorBusqueda1", "EL campo de búsqueda es vacío");
+            escribeEn("errorBusqueda1", "Este campo no debe ser vacío");
         } else {
-            escribeEn("errorBusqueda1", "EL campo de búsqueda es vacío");
+            escribeEn("errorBusqueda1", "Este campo no debe ser vacío");
             muestra("errorBusqueda1");
         }
         return;
@@ -159,9 +174,9 @@ function buscaEquipo() {
     var con = x.match(reg);
     if (con == null) {
         if (esVisible("errorBusqueda1")) {
-            escribeEn("errorBusqueda1", "La búsqueda no es un número");
+            escribeEn("errorBusqueda1", "Este campo debe ser un número");
         } else {
-            escribeEn("errorBusqueda1", "La búsqueda no es un número");
+            escribeEn("errorBusqueda1", "Este campo debe ser un número");
             muestra("errorBusqueda1");
         }
         return;
@@ -280,7 +295,7 @@ function validaMovimiento() {
         }
     }
     if (id_equipo == null) {
-        escribeEn("errorBusqueda", "No has seleccionado un equipo");
+        escribeEn("errorBusqueda", "Debes seleccionar un equipo");
         return false;
     }
 
@@ -310,12 +325,12 @@ function imprimeTabla() {
     var busqueda = document.getElementById("campoBusqueda").value;
     var reg = "^[0-9]+$";
     if (busqueda === "") {
-        escribeEn("errorBusqueda", "El campo no puede ser nulo");
+        escribeEn("errorBusqueda", "Este campo no debe ser vacío");
         return;
     }
     var con = busqueda.match(reg);
     if (con === null) {
-        escribeEn("errorBusqueda", "Debe ser un número");
+        escribeEn("errorBusqueda", "Este campo debe ser un número");
         return;
     }
     $.post("MovimientoEquipo", {

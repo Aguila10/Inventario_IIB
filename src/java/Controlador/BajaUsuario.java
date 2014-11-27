@@ -8,6 +8,7 @@ package Controlador;
 import Modelo.ConexionBD;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.servlet.ServletException;
@@ -36,7 +37,19 @@ public class BajaUsuario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-           muestra_usuarios(request, response);
+
+        String msj_exito = "Se dio de baja a usuario(s)";
+        String msj_error = "Error al dar de baja a usuario(s)";
+
+        HttpSession sesion = request.getSession(true);
+        String tipo_sesion = (String) sesion.getAttribute("identidad");
+
+        if (bajaUsuarios(request, response)) {
+            response.sendRedirect(tipo_sesion + ".jsp?mensaje=" + URLEncoder.encode(msj_exito, "UTF-8") + "&exito=true");
+        } else {
+            response.sendRedirect(tipo_sesion + ".jsp?mensaje=" + URLEncoder.encode(msj_error, "UTF-8") + "&exito=false");
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -78,20 +91,19 @@ public class BajaUsuario extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void muestra_usuarios(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private boolean bajaUsuarios(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         ConexionBD con = new ConexionBD();
         String[] seleccion = request.getParameterValues("usuarios");
-        
-        if( seleccion != null && seleccion.length > 0){
-            for(int cont=0; cont < seleccion.length; cont++){
-             con.eliminaUsuario(seleccion[cont]);
+
+        if (seleccion != null && seleccion.length > 0) {
+            for (int cont = 0; cont < seleccion.length; cont++) {
+                con.eliminaUsuario(seleccion[cont]);
             }
-        }else{
-            response.sendRedirect("administrador.jsp?mensaje=No se eliminaron exitosamente&exito=true");
+            return true;
+        } else {
+            return false;
         }
-        
-        response.sendRedirect("administrador.jsp?mensaje=Se eliminarion exitosamente&exito=true");
-                
+
     }
 }

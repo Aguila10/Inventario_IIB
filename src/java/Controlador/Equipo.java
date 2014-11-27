@@ -32,52 +32,33 @@ public class Equipo {
     String responsable;
     boolean estado;
 
-    /**
-     *
-     * @param a
-     * @param b
-     * @param c
-     * @param d
-     * @param e
-     * @param f
-     * @param g
-     * @param h
-     * @param i
-     * @param j
-     * @param k
-     * @param l
-     * @param m
-     * @param n
-     * @param ñ
-     * @param o
-     * @param q
-     * @param r
-     * @param s
-     */
-    public Equipo(int a, int b, int c,
-            String d, String e, String f, String g, String h, String i, String j, String k,
-            String l, String m, String n, String ñ, String o, String q, String r, boolean s) {
+ 
+    public Equipo(int id_equipo, int clave_activo_fijo, int num_inv_unam ,
+            String clave_descripcion, String clave_modelo, String clave_marcar, String serie,
+            String clave_familia, String clave_tipo, String clave_proveedor, String clase,
+            String uso, String nivel_de_obsolescencia, String estado_físico, String clave_area,
+            String clave_institucion, String fecha_de_resguardo, String responsable, boolean estado) {
 
-        this.id_equipo = a;
-        this.clave_activo_fijo = b;
-        this.num_inv_unam = c;
-        this.clave_descripcion = d;
-        this.clave_modelo = e;
-        this.clave_marcar = f;
-        this.serie = g;
-        this.clave_familia = h;
-        this.clave_tipo = i;
-        this.clave_proveedor = j;
-        this.clase = k;
-        this.uso = l;
-        this.nivel_de_obsolescencia = m;
-        this.estado_físico = n;
-        this.clave_area = ñ;
-        this.clave_institucion = o;
+        this.id_equipo = id_equipo;
+        this.clave_activo_fijo = clave_activo_fijo;
+        this.num_inv_unam = num_inv_unam ;
+        this.clave_descripcion = clave_descripcion;
+        this.clave_modelo = clave_modelo;
+        this.clave_marcar = clave_marcar;
+        this.serie = serie;
+        this.clave_familia = clave_familia;
+        this.clave_tipo = clave_tipo;
+        this.clave_proveedor = clave_proveedor;
+        this.clase = clase;
+        this.uso = uso;
+        this.nivel_de_obsolescencia = nivel_de_obsolescencia;
+        this.estado_físico = estado_físico;
+        this.clave_area = clave_area;
+        this.clave_institucion = clave_institucion;
 
-        this.fecha_de_resguardo = q;
-        this.responsable = r;
-        this.estado = s;
+        this.fecha_de_resguardo = fecha_de_resguardo;
+        this.responsable = responsable;
+        this.estado = estado;
 
     }
 

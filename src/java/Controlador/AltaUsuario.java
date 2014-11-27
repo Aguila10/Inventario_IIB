@@ -8,6 +8,7 @@ package Controlador;
 import Modelo.ConexionBD;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +35,19 @@ public class AltaUsuario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        registraUsuario(request, response);
+
+        String msj_exito = "Se registro el usuario exitosamente";
+        String msj_error = "Error al registrar usuario";
+
+        HttpSession sesion = request.getSession(true);
+        String tipo_sesion = (String) sesion.getAttribute("identidad");
+
+        if (registraUsuario(request, response)) {
+            response.sendRedirect(tipo_sesion + ".jsp?mensaje=" + URLEncoder.encode(msj_exito, "UTF-8") + "&exito=true");
+        } else {
+            response.sendRedirect(tipo_sesion + ".jsp?mensaje=" + URLEncoder.encode(msj_error, "UTF-8") + "&exito=false");
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -76,7 +89,7 @@ public class AltaUsuario extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void registraUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private boolean registraUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         ConexionBD bd = new ConexionBD();
         String categoria = request.getParameter("categoria");
@@ -85,7 +98,6 @@ public class AltaUsuario extends HttpServlet {
         String correo = request.getParameter("correo");
         String contraseniaUno = request.getParameter("contraseniaUno");
         String contraseniaDos = request.getParameter("contraseniaDos");
-        HttpSession sesion;
 
         Boolean validacion = true;
 
@@ -94,49 +106,12 @@ public class AltaUsuario extends HttpServlet {
         validacion = validacion && Validacion.valida_mail(correo);
         validacion = validacion && Validacion.valida_contrasenia(contraseniaUno, contraseniaDos);
 
-        if (validacion) {
-            bd.insertaUsuario(login, contraseniaUno, nombre, categoria);
-            sesion = request.getSession(true);
-
-            switch (categoria) {
-                case "Administrador":
-                    sesion.setAttribute("identidad", "administrador");
-                    sesion.setAttribute("login", login);
-                  //  response.sendRedirect("administrador.jsp");
-                    break;
-                case "Secretaria":
-                    sesion.setAttribute("identidad", "secretaria");
-                    sesion.setAttribute("login", login);
-                   // response.sendRedirect("administrador.jsp");
-                    break;
-
-                case "Tecnico Academico":
-                    sesion.setAttribute("identidad", "tecnico academico");
-                    sesion.setAttribute("login", login);
-                   // response.sendRedirect("administrador.jsp");
-                    break;
-
-                case "Jefe de inventario":
-                    sesion.setAttribute("identidad", "jefe de inventario");
-                    sesion.setAttribute("login", login);                   
-                    break;
-            }
-            
-            response.sendRedirect("administrador.jsp?mensaje=Se registro usuario exitosamente&exito=true");
-
+        if (validacion && bd.insertaUsuario(login, contraseniaUno, nombre, categoria)) {
+            return true;
         } else {
-
-            response.sendRedirect("administrador.jsp?mensaje=Error al registrar usuario&exito=false");
-
+            return false;
         }
 
-    }
-
-    public void mandaMensaje(String mensaje, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            response.sendRedirect("administrador.jsp?mensaje=" + mensaje);
-        }
     }
 
 }

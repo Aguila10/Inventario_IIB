@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "MovimientoEquipo", urlPatterns = {"/MovimientoEquipo"})
 public class MovimientoEquipo extends HttpServlet {
 
-    ConexionBD bd = new ConexionBD();
+    private ConexionBD bd = new ConexionBD();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,17 +38,26 @@ public class MovimientoEquipo extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        request.setCharacterEncoding("UTF-8");
+
+        String msj_exito = "El movimiento por  \" <causa_movimiento> \"  se realizó correctamente";
+        String msj_error = "Error al realizar el movimiento por  \" <causa_movimiento> \"";
+        
+        HttpSession sesion = request.getSession(true);
+        String tipo_sesion = (String) sesion.getAttribute("identidad");
+        
+        
         try (PrintWriter out = response.getWriter()) {
             String busqueda = request.getParameter("equipo");
             if (busqueda == null) {
                     String mov = request.getParameter("movimiento");
                 if (realizaMovimiento(request)) {
-
-                    mandaMensaje("El movimiento originado por "+mov+" se realizó correctamente","true", response);
+                    
+                    msj_exito = msj_exito.replace("<causa_movimiento>", mov);                    
+                    response.sendRedirect(tipo_sesion + ".jsp?mensaje=" + URLEncoder.encode(msj_exito, "UTF-8") + "&exito=true");          
                 } else {
-                    mandaMensaje("El movimiento originado por "+mov+" no se pudo realizar","false", response);
+          
+                    msj_error = msj_error.replace("<causa_movimiento>", mov);
+                    response.sendRedirect(tipo_sesion + ".jsp?mensaje=" + URLEncoder.encode(msj_error, "UTF-8") + "&exito=false");
                 }
             } else {
                 out.print(generaTabla(busqueda));
@@ -101,14 +110,6 @@ public class MovimientoEquipo extends HttpServlet {
         }
         tabla += tablaFin;
         return tabla;
-    }
-
-    public void mandaMensaje(String mensaje,String exito, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            response.sendRedirect("administrador.jsp?mensaje=" + URLEncoder.encode(mensaje,"UTF-8") + "&exito="+exito);
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

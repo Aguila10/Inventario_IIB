@@ -7,8 +7,12 @@
     /*Obtener la sesion ya iniciada*/
     HttpSession sesion = request.getSession(true);
 
-    if (sesion.getAttribute("identidad") == null) {
+    if (sesion.getAttribute("identidad") == null){
         response.sendRedirect("index.jsp");
+    }else{
+        if(!(sesion.getAttribute("identidad").equals("administrador"))){
+         response.sendRedirect(sesion.getAttribute("identidad")+".jsp");   
+        }
     }
 
 %>
@@ -18,7 +22,10 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <title>Administrador</title>
+        <title>Administrador - Inventario IIB</title>
+        
+        <!--Imagen pestaña-->
+        <link rel="shortcut icon" type="image/x-icon" href="img/escudoUnamNegro.png">
 
         <!--Estilos plantilla-->
         <link rel="stylesheet" href="css/6cols.css">
@@ -47,7 +54,7 @@
                     <img src="img/escudoUnam.png" height="40%" width="40%" alt="escudo unam" id="imagenUnam">
                 </div>
                 <div class="col span_4_of_6" id="nombreInstituto">
-                    <span>Intituto de<br>Investigaciones<br>Bibliográficas</span>
+                    <span>Instituto de<br>Investigaciones<br>Bibliográficas</span>
                 </div>
                 <div class="col span_1_of_6">
                     <img src="img/logoBiblioteca.png" height="80%" width="80%" alt="escudo biblioteca" id="imagenBiblioteca">
@@ -122,6 +129,10 @@
                 } else{
                     out.print("<a href='https://www.facebook.com/darktech.enterprise' target='_blank'><img src='img/caratula.jpg' alt='caratula darktech' id='caratula'></a>");
                 }
+                
+                HttpServletRequest serv_request = (HttpServletRequest) request;
+                
+               serv_request.removeAttribute("mensaje");
                
                 %>     
 

@@ -813,8 +813,10 @@ public class ConexionBD {
 //        System.out.println(a.size());
 //    }
 //        
-//        con.insertaCatalogo("catalogo_area", "reneeeee");
+//          con.insertaCatalogo("catalogo_area", "reneeeee");
 //        con.insertaCatalogoFamilia("daaaaaaaaaaaaaaaaaa0", 1);
 //        System.out.println(con.regresaBuscaLogin("caen"));
+        
+//       System.out.println(con.buscaLogin("rene","aaaaa"));
     }
 }

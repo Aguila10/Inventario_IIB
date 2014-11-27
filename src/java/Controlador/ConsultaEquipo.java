@@ -22,7 +22,69 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ConsultaEquipo", urlPatterns = {"/ConsultaEquipo"})
 public class ConsultaEquipo extends HttpServlet {
-    ConexionBD bd = new ConexionBD();
+    
+    
+    private ConexionBD bd = new ConexionBD();
+    
+    String header = "<!DOCTYPE html>\n" +
+"<html lang=\"es\">\n" +
+"    <head>\n" +
+"        <meta charset=\"UTF-8\">\n" +
+"        <title>Consulta - Inventario IIB</title>\n" +
+"        \n" +
+"        <!--Imagen pestaña-->\n" +
+"        <link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"img/escudoUnamNegro.png\">\n" +
+"\n" +
+"        <!--JavaScript-->\n" +
+"        <script type=\"text/javascript\" src=\"js/jquery-1.10.1.min.js\"></script>\n" +
+"        <script src=\"js/iniciarSesion.js\"></script>\n" +
+"\n" +
+"        <!--Estilos plantilla-->\n" +
+"        <link rel=\"stylesheet\" href=\"css/6cols.css\">\n" +
+"        <link rel=\"stylesheet\" href=\"css/4cols.css\">\n" +
+"        <link rel=\"stylesheet\" href=\"css/2cols.css\">\n" +
+"        <link rel=\"stylesheet\" href=\"css/col.css\">\n" +
+"        <link rel=\"stylesheet\" href=\"css/estilosPlantilla.css\">\n" +
+"        <link rel=\"stylesheet\" href=\"css/formulario.css\">\n" +
+"\n" +
+"        <!--Estilo único página-->\n" +
+"        <link rel=\"stylesheet\" href=\"css/index.css\">\n" +
+"\n" +
+"    </head>\n" +
+"    <body>\n" +
+"        <!--Inicio encabezado-->\n" +
+"        <header>\n" +
+"            <div class=\"section group\" id=\"encabezado\">\n" +
+"                <div class=\"col span_1_of_6\">\n" +
+"                    <img src=\"img/escudoUnam.png\" height=\"40%\" width=\"40%\" alt=\"escudo unam\" id=\"imagenUnam\">\n" +
+"                </div>\n" +
+"                <div class=\"col span_4_of_6\" id=\"nombreInstituto\">\n" +
+"                    <span>Instituto de<br>Investigaciones<br>Bibliográficas</span>\n" +
+"                </div>\n" +
+"                <div class=\"col span_1_of_6\">\n" +
+"                    <img src=\"img/logoBiblioteca.png\" height=\"80%\" width=\"80%\" alt=\"escudo biblioteca\" id=\"imagenBiblioteca\">\n" +
+"                </div>\n" +
+"            </div>\n" +
+"            <div class=\"section group\" id=\"barra\">\n" +
+"                <div id=\"login\">\n" +
+"                   <br>\n" +
+"                </div>\n" +
+"            </div>\n" +
+"        </header>\n"+
+         "<div class=\"smart-blue\">\n";
+    
+    
+    String footer = "</div>\n     <footer>\n" +
+"            <div class=\"section group\" id=\"pie\">\n" +
+"                <p>Hecho en México, todos los derechos reservados 2014. Esta página puede ser reproducida con fines no lucrativos, siempre y cuando no se mutile, se cite la fuente completa y su dirección electrónica. De otra forma requiere permiso previo por escrito de la Institución.</p>\n" +
+"            </div>\n" +
+"        </footer>\n" +
+"        <!--Fin pie-->\n" +
+"    </body>\n" +
+"</html>\n" +
+"";
+    
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,7 +98,7 @@ public class ConsultaEquipo extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            out.print(hazConsulta(request));
+            out.print(header + hazConsulta(request) + footer);
         }
     }
     

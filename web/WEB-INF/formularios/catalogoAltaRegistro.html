@@ -1,8 +1,7 @@
 <form name="agregaCatalogo" action="AgregaCatalogo" class="smart-blue" method="post" onsubmit="return agregaCatalogos()">
     <div id="verCatalogo">
         <h3>Catálogo: Agregar</h3>
-        <label id="errorElegirCatalogo" class="errorFormulario"></label>
-        <label for="elegirCatalogo">Seleccionar Catalogo:</label>
+        <label for="elegirCatalogo">Seleccionar Catálogo:</label>
         <center><select name="elegirCatalogo" id="elegirCatalogo" onchange="agregaFamiliaCatalogo()">
                 <option></option>
                 <option value="catalogo_area">Área</option>
@@ -16,15 +15,13 @@
                 <option value="catalogo_responsable">Responsable</option>
                 <option value="catalogo_tipo_equipo">Tipo de Equipo</option>
                 <option value="catalogo_uso">Uso</option>
-                <option value="persona_asignada">Persona asignada a equipo</option>
             </select></center>
-        
-        <label for="select_catalogo_tipo_equipo" id="msj_catalogo_tipo_equipo" style="display:none">Catalogo Tipo:</label>
+        <label id="errorElegirCatalogo" class="errorFormulario"></label>
+        <label for="select_catalogo_tipo_equipo" id="msj_catalogo_tipo_equipo" style="display:none">Catálogo Tipo:</label>
         <aqui va el catalogo>
-        <label id="errorDescripcion" class="errorFormulario"></label>
-       
-        <label for="descripcion">Descripcion:</label>
+        <label for="descripcion">Descripción:</label>
         <input type="text" name="descripcion" id="descripcion"/>
+        <label id="errorDescripcion" class="errorFormulario"></label>
     </div>
     <input type="submit" value="Aceptar" class="button">
 </form>

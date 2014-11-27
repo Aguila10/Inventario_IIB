@@ -1,19 +1,35 @@
 
 function valida_usuario_alta() {
 
+    document.getElementById("errorCategoria").innerHTML = "";
     document.getElementById("errorNombre").innerHTML = "";
     document.getElementById("errorLogin").innerHTML = "";
     document.getElementById("errorCorreo").innerHTML = "";
     document.getElementById("errorPassword").innerHTML = "";
 
+    var validacion_categoria = revisaCategoria();
     var validacion_nombre = revisaNombre();
     var validacion_login = revisaLogin();
     var validacion_mail = revisaMail();
     var validacion_contrasenia = revisaContrasenia();
 
-    return validacion_nombre && validacion_login && validacion_mail && validacion_contrasenia;
+    return validacion_nombre && validacion_login && validacion_mail && validacion_contrasenia && validacion_categoria;
 
 }
+
+
+function revisaCategoria(){
+    
+    var catalogo = document.getElementById("categoria").value;
+    
+    if(catalogo === ""){
+        document.getElementById("errorCategoria").innerHTML = "Debes seleccionar una categoría";
+        return false;
+    }
+    
+    return true;
+}
+
 
 function revisaNombre() {
 
@@ -29,7 +45,7 @@ function revisaNombre() {
         }
     } else {
         if (nombre === "") {
-            document.getElementById("errorNombre").innerHTML = "Este campo no pude quedar vacio";
+            document.getElementById("errorNombre").innerHTML = "Este campo no puede quedar vacío";
         } else {
             document.getElementById("errorNombre").innerHTML = "El nombre solo puede contener letras y debe tener la estructura: [Nombre] [ApellidoP (opcional)] [ApellidoM (opcional)].";
         }
@@ -52,7 +68,7 @@ function revisaLogin() {
         }
     } else {
         if (login === "") {
-            document.getElementById("errorLogin").innerHTML = "El campo no puede quedar vacio";
+            document.getElementById("errorLogin").innerHTML = "El campo no puede quedar vacío";
         } else {
             document.getElementById("errorLogin").innerHTML = "El login solo puede contener numeros,letras y guiones bajos";
         }
@@ -74,7 +90,7 @@ function revisaMail() {
         }
     } else {
         if (mail === "") {
-            document.getElementById("errorCorreo").innerHTML = "Este campo no puede quedar vacio";
+            document.getElementById("errorCorreo").innerHTML = "Este campo no puede quedar vacío";
         } else {
             document.getElementById("errorCorreo").innerHTML = "El mail debe tener la siguiente estructura:  \n\
                                                                   [nombre]@[dominio].[subdominio (opcional)].com";
@@ -96,7 +112,7 @@ function revisaContrasenia() {
         }
     } else {
         if (contraseniaUno === "") {
-            document.getElementById("errorPassword").innerHTML = "El campo no puede quedar vacio";
+            document.getElementById("errorPassword").innerHTML = "El campo no puede quedar vacío";
         } else {
             document.getElementById("errorPassword").innerHTML = "La contraseña no puede contener comillas simples (') ni comas (;)";
         }
