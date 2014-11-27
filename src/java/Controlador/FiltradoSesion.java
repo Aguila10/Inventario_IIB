@@ -41,7 +41,7 @@ public class FiltradoSesion implements Filter {
             log("FiltradoSesion:DoBeforeProcessing");
         }
 
-	// Write code here to process the request and/or response before
+        // Write code here to process the request and/or response before
         // the rest of the filter chain is invoked.
         // For example, a logging filter might log items on the request object,
         // such as the parameters.

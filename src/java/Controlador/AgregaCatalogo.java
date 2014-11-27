@@ -79,21 +79,19 @@ public class AgregaCatalogo extends HttpServlet {
         String descripcion = request.getParameter("elegirCatalogo");
         String catalogo = request.getParameter("descripcion");
         String tipo_familia = request.getParameter("select_catalogo_tipo_equipo");
-        
+
         if (catalogo.equals("") || descripcion.equals("")) {
             response.sendRedirect("administrador.jsp?mensaje=Error al agregar al catalogo&exito=false");
         } else {
-             
-            if(!catalogo.equals("catalogo_familia")){
+
+            if (!catalogo.equals("catalogo_familia")) {
                 con.insertaCatalogoFamilia(descripcion, Integer.parseInt(tipo_familia));
-                
-                
-               
-            }else{
+
+            } else {
                 con.insertaCatalogo(catalogo, descripcion);
-                
-            } 
-            
+
+            }
+
         }
 
     }

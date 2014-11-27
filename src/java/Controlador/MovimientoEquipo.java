@@ -43,12 +43,12 @@ public class MovimientoEquipo extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String busqueda = request.getParameter("equipo");
             if (busqueda == null) {
-                    String mov = request.getParameter("movimiento");
+                String mov = request.getParameter("movimiento");
                 if (realizaMovimiento(request)) {
 
-                    mandaMensaje("El movimiento originado por "+mov+" se realizó correctamente","true", response);
+                    mandaMensaje("El movimiento originado por " + mov + " se realizó correctamente", "true", response);
                 } else {
-                    mandaMensaje("El movimiento originado por "+mov+" no se pudo realizar","false", response);
+                    mandaMensaje("El movimiento originado por " + mov + " no se pudo realizar", "false", response);
                 }
             } else {
                 out.print(generaTabla(busqueda));
@@ -61,9 +61,9 @@ public class MovimientoEquipo extends HttpServlet {
         String movimiento = request.getParameter("movimiento");
         System.out.println(movimiento);
         String fecha = request.getParameter("fecha");
-        String login = (String)sesion.getAttribute("login");
+        String login = (String) sesion.getAttribute("login");
         String equipo = request.getParameter("seleccion");
-        return Validacion.valida_login(login) && bd.insertaMovimientos(Integer.parseInt(bd.regresaIDNombre(login)),Integer.parseInt(equipo),movimiento, fecha);
+        return Validacion.valida_login(login) && bd.insertaMovimientos(Integer.parseInt(bd.regresaIDNombre(login)), Integer.parseInt(equipo), movimiento, fecha);
     }
 
     public String generaTabla(String busqueda) {
@@ -103,11 +103,11 @@ public class MovimientoEquipo extends HttpServlet {
         return tabla;
     }
 
-    public void mandaMensaje(String mensaje,String exito, HttpServletResponse response) throws IOException {
+    public void mandaMensaje(String mensaje, String exito, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            response.sendRedirect("administrador.jsp?mensaje=" + URLEncoder.encode(mensaje,"UTF-8") + "&exito="+exito);
+            response.sendRedirect("administrador.jsp?mensaje=" + URLEncoder.encode(mensaje, "UTF-8") + "&exito=" + exito);
         }
     }
 

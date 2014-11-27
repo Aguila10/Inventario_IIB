@@ -33,13 +33,13 @@ public class AltaEquipo extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         boolean edo = registraEquipo(request, response);
 
         if (edo) {
-            mandaMensaje("Se registró un equipo correctamente","true", response);
+            mandaMensaje("Se registró un equipo correctamente", "true", response);
         } else {
-            mandaMensaje("No se pudo registrar el equipo","false", response);
+            mandaMensaje("No se pudo registrar el equipo", "false", response);
         }
     }
 
@@ -89,10 +89,10 @@ response.setContentType("text/html;charset=UTF-8");
      * @param response
      * @throws IOException
      */
-    public void mandaMensaje(String mensaje, String exito,HttpServletResponse response) throws IOException {
+    public void mandaMensaje(String mensaje, String exito, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            response.sendRedirect("administrador.jsp?mensaje=" + URLEncoder.encode(mensaje,"UTF-8")+"&exito="+exito);
+            response.sendRedirect("administrador.jsp?mensaje=" + URLEncoder.encode(mensaje, "UTF-8") + "&exito=" + exito);
         }
     }
 

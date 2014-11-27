@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Controlador;
 
 import Modelo.ConexionBD;
@@ -22,16 +21,18 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ExportaConsulta", urlPatterns = {"/ExportaConsulta"})
 public class ExportaConsulta extends HttpServlet {
-        private String marca;
-        private String numero;
-        private String familia;
-        private String ubicacion;
-        private String responsable;
-        private String tipoEquipo;
-        private String departamento;
-        private String fechai;
-        private String fechaf;
-        private String estado;
+
+    private String marca;
+    private String numero;
+    private String familia;
+    private String ubicacion;
+    private String responsable;
+    private String tipoEquipo;
+    private String departamento;
+    private String fechai;
+    private String fechaf;
+    private String estado;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -44,13 +45,13 @@ public class ExportaConsulta extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String genera = request.getParameter("genera");
-        if(genera == null){ // si apretado el link de descarga            
+        if (genera == null) { // si apretado el link de descarga            
             try {
                 creaXLS(response);
-            
-            } catch (Exception e){
+
+            } catch (Exception e) {
                 e.printStackTrace();
-            }    
+            }
         } else {
             marca = request.getParameter("marca");
             numero = request.getParameter("numeroSerie");
@@ -61,16 +62,17 @@ public class ExportaConsulta extends HttpServlet {
             departamento = request.getParameter("departamento");
             fechai = request.getParameter("fechaI");
             fechaf = request.getParameter("fechaF");
-            estado = request.getParameter("estado"); 
-        
+            estado = request.getParameter("estado");
+
         }
     }
-    public void creaXLS(HttpServletResponse response)throws ServletException, IOException{
+
+    public void creaXLS(HttpServletResponse response) throws ServletException, IOException {
         ConexionBD bd = new ConexionBD();
         ArrayList<Equipo> equipos = bd.reportes(marca, numero, familia, tipoEquipo, fechai, fechaf, departamento, ubicacion, responsable, estado);
         response.setContentType("application/vnd.ms-excel;charset=UTF-8");
         response.setHeader("Content-Disposition", "attachment; filename=Reporte.xls");
-        
+
         response.getWriter().write("Num. Inv. Interno");
         response.getWriter().write(",");
         response.getWriter().write("Num. Inv. UNAM");
@@ -93,7 +95,7 @@ public class ExportaConsulta extends HttpServlet {
         response.getWriter().write(",");
         response.getWriter().write("Responsable");
         response.getWriter().write("\n");
-        for(Equipo e:equipos) {
+        for (Equipo e : equipos) {
             response.getWriter().write(new Integer(e.getClave_activo_fijo()).toString());
             response.getWriter().write(",");
             response.getWriter().write(new Integer(e.getNum_inv_unam()).toString());
@@ -116,10 +118,9 @@ public class ExportaConsulta extends HttpServlet {
             response.getWriter().write(",");
             response.getWriter().write(e.getResponsable());
             response.getWriter().write("\n");
-          
-    
+
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

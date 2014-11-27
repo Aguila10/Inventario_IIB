@@ -36,7 +36,7 @@ public class BajaUsuario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-           muestra_usuarios(request, response);
+        muestra_usuarios(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -82,16 +82,16 @@ public class BajaUsuario extends HttpServlet {
 
         ConexionBD con = new ConexionBD();
         String[] seleccion = request.getParameterValues("usuarios");
-        
-        if( seleccion != null && seleccion.length > 0){
-            for(int cont=0; cont < seleccion.length; cont++){
-             con.eliminaUsuario(seleccion[cont]);
+
+        if (seleccion != null && seleccion.length > 0) {
+            for (int cont = 0; cont < seleccion.length; cont++) {
+                con.eliminaUsuario(seleccion[cont]);
             }
-        }else{
+        } else {
             response.sendRedirect("administrador.jsp?mensaje=No se eliminaron exitosamente&exito=true");
         }
-        
+
         response.sendRedirect("administrador.jsp?mensaje=Se eliminarion exitosamente&exito=true");
-                
+
     }
 }

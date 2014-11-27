@@ -65,7 +65,7 @@ public class Formularios extends HttpServlet {
                 } else {
                     if (formulario.equals("catalogoAltaRegistro")) {
                         form = obtenFormulario(formulario);
-                        form = form.replace("<aqui va el catalogo>",obten_select_catalogo("catalogo_tipo_equipo"));
+                        form = form.replace("<aqui va el catalogo>", obten_select_catalogo("catalogo_tipo_equipo"));
                         out.print(form);
                     } else {
                         out.print(obtenFormulario(formulario));
@@ -76,24 +76,23 @@ public class Formularios extends HttpServlet {
         }
     }
 
-    
-    private String obten_select_catalogo(String nombre_catalogo){
-    
-    ConexionBD con = new ConexionBD();
-    ArrayList<String[]> elementos = con.regresaCatalogoConId(nombre_catalogo);
-    String select = "";
+    private String obten_select_catalogo(String nombre_catalogo) {
 
-    //datalist = "<input type=\"text\" list=\"list_"+nombre_catalogo+"\" id=\"input_"+ nombre_catalogo+"\" name=\"input_"+ nombre_catalogo+"\" style=\"display:none\"/>\n" +
-     select =  "<select id=\"select_"+ nombre_catalogo  +"\" name=\"select_"+ nombre_catalogo +"\" style=\"display:none\">\n";
-    
-    for(String[] elemento : elementos){
-        select += "<option value=\""+ elemento[0] +"\">" + elemento[1]  + "</option>\n";
+        ConexionBD con = new ConexionBD();
+        ArrayList<String[]> elementos = con.regresaCatalogoConId(nombre_catalogo);
+        String select = "";
+
+        //datalist = "<input type=\"text\" list=\"list_"+nombre_catalogo+"\" id=\"input_"+ nombre_catalogo+"\" name=\"input_"+ nombre_catalogo+"\" style=\"display:none\"/>\n" +
+        select = "<select id=\"select_" + nombre_catalogo + "\" name=\"select_" + nombre_catalogo + "\" style=\"display:none\">\n";
+
+        for (String[] elemento : elementos) {
+            select += "<option value=\"" + elemento[0] + "\">" + elemento[1] + "</option>\n";
+        }
+        select += "</select>\n";
+
+        return select;
     }
-    select += "</select>\n";
-    
-    return select;
-    }
-    
+
     private String obten_tabla_usuarios(String login) {
 
         ConexionBD con = new ConexionBD();
@@ -253,10 +252,10 @@ public class Formularios extends HttpServlet {
         return form;
     }
 
-    public String obtenFormularioConCatalogos(String formulario){
+    public String obtenFormularioConCatalogos(String formulario) {
         String form = "";
         ServletContext context = getServletContext();
-        InputStream is = context.getResourceAsStream("/WEB-INF/formularios/"+formulario+".html");
+        InputStream is = context.getResourceAsStream("/WEB-INF/formularios/" + formulario + ".html");
         if (is != null) {
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader reader = new BufferedReader(isr);
@@ -340,6 +339,7 @@ public class Formularios extends HttpServlet {
         }
         return form;
     }
+
     /**
      *
      * @param formulario

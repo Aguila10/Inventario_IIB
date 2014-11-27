@@ -56,7 +56,7 @@
             </div>
             <div class="section group" id="barra">
                 <div id="login">
-                   <br>
+                    <br>
                 </div>
             </div>
         </header>
@@ -95,8 +95,8 @@
                 <!--Inicio error-->
                 <div class="section group" id="error">
                     <p>
-                       
-    
+
+
                         <!--Mensaje error-->
                         <span>Login o contraseña incorrecta</span>
                     </p>

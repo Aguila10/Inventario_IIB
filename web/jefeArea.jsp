@@ -21,7 +21,7 @@
         <!--Scripts página-->
         <script src="js/jquery-1.10.1.min.js"></script>
         <script src="js/ajaxFormularios.js"></script>
-  
+
     </head>
     <body>
         <!--Inicio encabezado-->
