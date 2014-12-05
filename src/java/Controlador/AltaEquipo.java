@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Clase que hace un registro de un equipo nuevo y manda la respuesta al jsp.
  * @author jpachecov
  */
 @WebServlet(name = "altaEquipo", urlPatterns = {"/altaEquipo"})

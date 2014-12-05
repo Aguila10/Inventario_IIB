@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Clase que contiene metodos para obtener los formularios
  * @author mphb
  */
 @WebServlet(name = "Formularios", urlPatterns = {"/Formularios"})

@@ -17,7 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Clase que actualiza un equipo en la base de datos y manda mensajes de exito 
+ * o fracaso.
  * @author jpachecov
  */
 @WebServlet(name = "ActualizaEquipo", urlPatterns = {"/ActualizaEquipo"})
