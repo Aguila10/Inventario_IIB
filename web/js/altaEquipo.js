@@ -108,9 +108,15 @@ function validaCampos(hayform, form) {
             } else {
                 oculta("errorDescripcionExtendida");
             }
+            if (fecha == "") {
+                escribeEn("errorFechaResguardo","Debes escribir una fecha");
+            } else {
+                oculta("errorFechaResguardo");
+            }
             return false;
         }
         // claveAF = null y numInvUNAM != null
+        
         var con = numInvUNAM.match(reg);
         if (con == null) {
             escribeEn("errorDescripcion", "Este campo debe ser un número");
@@ -123,7 +129,10 @@ function validaCampos(hayform, form) {
         if (descripcion == null || descripcion == "") {
             escribeEn("errorDescripcionExtendida", "Este campo no debe ser vacío");
             return false;
-
+        }
+        if (fecha == "") {
+                escribeEn("errorFechaResguardo","Debes escribir una fecha");
+                return false;
         }
         return true;
     }
