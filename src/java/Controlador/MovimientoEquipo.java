@@ -65,7 +65,11 @@ public class MovimientoEquipo extends HttpServlet {
             }
         }
     }
-
+    /**
+     * Metodo que registra un movimiento en la base de datos
+     * @param request El objeto con los detalles del movimiento a registrar.
+     * @return True si el movimiento se relizó correctamente, False en otro caso.
+     */
     public boolean realizaMovimiento(HttpServletRequest request) {
         HttpSession sesion = request.getSession();
         String movimiento = request.getParameter("movimiento");
@@ -75,7 +79,12 @@ public class MovimientoEquipo extends HttpServlet {
         String equipo = request.getParameter("seleccion");
         return Validacion.valida_login(login) && bd.insertaMovimientos(Integer.parseInt(bd.regresaIDNombre(login)), Integer.parseInt(equipo), movimiento, fecha);
     }
-
+    /**
+     * Metodo que genera una tabla en HTML con informacion
+     * de marca, serie y departamento de un equipo.
+     * @param busqueda El num de inv interno o el num de inv unam del equipo a buscar.
+     * @return 
+     */
     public String generaTabla(String busqueda) {
         ArrayList<String[]> equipos = bd.regresaMarcaSerieDeparta(Integer.parseInt(busqueda));
         String tablaIn = "<table style=\"width:100%\" id=\"tablaResultado\">";

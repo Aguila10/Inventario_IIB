@@ -48,8 +48,8 @@ public class BuscaEquipo extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         response.setCharacterEncoding("UTF-8");
- request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String campoDeBusqueda = request.getParameter("campoBusqueda");
 
@@ -65,9 +65,11 @@ public class BuscaEquipo extends HttpServlet {
     }
 
     /**
-     *
-     * @param busqueda
-     * @return
+     * Metodo que devuelve una tabla en sintaxis HTML que contiene los
+     * equipos que cazan con el patron de busqueda
+     * @param busqueda El numero de inventario unam, o el numero de departamento
+     * interno.
+     * @return La tabla en sintaxis HTML
      */
     public String obtenTabla(String busqueda) {
 
@@ -121,7 +123,11 @@ public class BuscaEquipo extends HttpServlet {
         tabla += boton;
         return tabla;
     }
-
+    /**
+     * Metodo que regresa una formulario en sintaxis HTML mostrando la informacion de un equipo.
+     * @param id La llave primaria en la base de datos de algun equipo.
+     * @return El formulario en sintaxis HTML que contiene la informacion del equipo.
+     */
     public String obtenFormulario(int id) {
 
         Equipo equipo = bd.regresaEquipo(id);

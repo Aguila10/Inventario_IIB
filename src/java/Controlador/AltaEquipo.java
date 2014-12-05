@@ -35,8 +35,8 @@ public class AltaEquipo extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
- response.setCharacterEncoding("UTF-8");
- request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String msj_exito = "Se registró el equipo correctamente";
         String msj_error = "Error al registrar el equipo";
 
@@ -52,10 +52,11 @@ public class AltaEquipo extends HttpServlet {
     }
 
     /**
-     *
-     * @param request
+     * Medoto que realiza una insercion a la base de datos usando un objeto ConexionBD
+     * @param request Objeto que contiene los datos mandados desde el cliente para
+     * para el registro de un equipo nuevo.
      * @param response
-     * @return
+     * @return True si el registro tuvo exito, False en otro caso.
      * @throws IOException
      */
     public boolean registraEquipo(HttpServletRequest request, HttpServletResponse response) throws IOException {

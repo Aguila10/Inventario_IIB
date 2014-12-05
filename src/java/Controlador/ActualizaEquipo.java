@@ -57,7 +57,15 @@ public class ActualizaEquipo extends HttpServlet {
 
         
     }
-
+/**
+ * 
+ * @param request Metodo que contiene los datos para la solcitud de actualizacion
+ * de equipo.
+ * @param response
+ * @return
+ * @throws ServletException
+ * @throws IOException 
+ */
     private boolean actualizaEquipo(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");

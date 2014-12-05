@@ -48,7 +48,7 @@ public class MuestraCatalogos extends HttpServlet {
     }
 
     /**
-     *
+     * Metodo que genera una tabla en HTML con los elementos de un arreglo
      * @param cat. Un arraylist con los elementos de un catalogo
      * @return tabla. La tabla en html.
      */
