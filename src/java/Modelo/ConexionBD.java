@@ -10,8 +10,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- *
- * @author daemoncc
+ *Clase donde se encunetra todo lo relacionado a la base de datos
+ * encontramos metodos para insertar , actualizar y dar de baja.
+ * @author CaenHiro
  */
 public class ConexionBD {
 
@@ -21,11 +22,10 @@ public class ConexionBD {
     String password = "darktech";
 
     /**
-     * Metodo que recibe
-     *
+     * Metodo que recibe el login y la contraseña
      * @param login
      * @param pass
-     * @return la categoria de la persoan en otro caso regresa error
+     * @return La categoria de la persoan en otro caso regresa error
      */
     public String buscaLogin(String login, String pass) {
         String res = "error";
@@ -48,6 +48,11 @@ public class ConexionBD {
         return res;
     }
 
+    /**
+     *Metodo que recibe  el login
+     * @param login
+     * @return un boolean true si esta false en otro caso
+     */
     public boolean regresaBuscaLogin(String login) {
         boolean res = true;
         Statement statement;
@@ -71,9 +76,8 @@ public class ConexionBD {
     /**
      * Metodo que regresa un arreglo de string con todos los nombres y login de
      * todos los usuarios MENOS del nombre o login que recibe
-     *
      * @param login_nombre
-     * @return en la posicion 0 esta el login en la posicion 1 esta el nombre
+     * @return una lista d arreglos en la posicion 0 esta el login en la posicion 1 esta el nombre
      */
     public ArrayList<String[]> buscaNombreLogin(String login_nombre) {
         String res = "error";
@@ -104,13 +108,13 @@ public class ConexionBD {
     }
 
     /**
-     * Metodo que inserta un usuario
-     *
-     * @param login
+     * Metodo que inserta un usuario recibe el login , la contraseña , 
+     * el nombre y la categoria
+     *@param login
      * @param pass
      * @param nombre
      * @param categoria
-     * @return un boolean
+     * @return un boolean true si fue exitoso , false en otro caso
      */
     public boolean insertaUsuario(String login, String pass, String nombre, String categoria) {
         boolean res = false;
@@ -134,8 +138,8 @@ public class ConexionBD {
     }
 
     /**
-     * Metodo que inserta un equipo
-     *
+     * Metodo que inserta un equipo recibe los parametros necesarios para
+     * insertar un equipo si no pone nada si ponen con la descripcion S/N
      * @param numeroInveInterInfo
      * @param numInvUnam
      * @param descrip
@@ -153,7 +157,7 @@ public class ConexionBD {
      * @param institu
      * @param fecha
      * @param responsable
-     * @return un boolean
+     * @return un boolean true si fue exitoso , false en otro caso
      */
     public boolean insertaEquipo(int numeroInveInterInfo, int numInvUnam, String descrip,
             String modelo, String marca, String serie, String familia, String tipo, String prove, String clase, String uso,
@@ -181,7 +185,7 @@ public class ConexionBD {
     }
 
     /**
-     *
+     *Metodo que actualiza un equipo
      * @param id_equipo
      * @param numeroInveInterInfo
      * @param numInvUnam
@@ -200,7 +204,7 @@ public class ConexionBD {
      * @param institu
      * @param fecha
      * @param responsable
-     * @return
+     * @return un boolean true si fue exitoso , false en otro caso
      */
     public boolean actualizaEquipo(int id_equipo, int numeroInveInterInfo, int numInvUnam, String descrip,
             String modelo, String marca, String serie, String familia, String tipo, String prove, String clase, String uso,
@@ -230,7 +234,6 @@ public class ConexionBD {
     /**
      * Metodo que busca Todos los quipos que concida el numero inventario unam o
      * el tipo activo fijo
-     *
      * @param clave
      * @return lista de equipos con todos los resultados
      */
@@ -288,9 +291,8 @@ public class ConexionBD {
 
     /**
      * Metodo que solo nos regresa la descripcion de los catalogos
-     *
      * @param catalogo
-     * @return lista con las descripciones
+     * @return lista con las descripciones de los catalogos
      */
     public ArrayList regresaCatalogo(String catalogo) {
         String res = "";
@@ -313,12 +315,12 @@ public class ConexionBD {
     }
 
     /**
-     * 
-     *
+     * Metodo que actualiza catalogos recibe el nombre de la tabla, 
+     * el identificador de la tubla y la nueva descripcion 
      * @param tabla
      * @param id_catalogo
      * @param descrip
-     * @return
+     * @return un boolean true si fue exitoso , false en otro caso
      */
     public boolean actualizaCatalogo(String tabla, int id_catalogo, String descrip) {
         boolean res = true;
@@ -378,9 +380,6 @@ public class ConexionBD {
 
             ResultSet rset = query.executeQuery();
 
-            
-            
-            
         } catch (SQLException | java.lang.ClassNotFoundException e) {
             res = false;
             System.out.println(e.getMessage());
@@ -391,13 +390,11 @@ public class ConexionBD {
         return res;
     }
 
-    
-    
-    
-    
-    
-    
-    
+    /**
+     *Metodo que nos regresa el identificador maximo de un catalogo
+     * @param tabla
+     * @return el numero del identificador del catalogo dado
+     */
     public int regresaMaxCatalogo(String tabla) {
       int res = 0;
     
@@ -448,8 +445,6 @@ public class ConexionBD {
             id_catalogo_tabla = "clave_responsable";
         }
 
-        
-
         try {
             Class.forName(driver);
             Connection con = DriverManager.getConnection(connectString, user, password);
@@ -470,17 +465,12 @@ public class ConexionBD {
     }
 
     
-    
-    
-    
-    
-    
     /**
-     * REALIZAR PROCEDIMIENTO MAS FACIL !!!! QUE ONDA CON EL CATALOG RELACIONADO
-     *
+     * Metodo que inserta a los catalogos recibe un nombre de la tabla y la
+     * descripcion 
      * @param tabla
      * @param descrip
-     * @return
+     * @return un boolean false si fue exitoso , true en otro caso
      */
     public boolean insertaCatalogo(String tabla, String descrip) {
         
@@ -554,6 +544,13 @@ public class ConexionBD {
       return true;
     }
 
+    /**
+     *Metodo para insertar un catalogo_familia 
+     * este fue diferente ya que tenia asociado otro catalogo
+     * @param descrip
+     * @param id
+     * @return un boolean false si fue exitoso , true en otro caso
+     */
     public boolean insertaCatalogoFamilia(String descrip, int id) {
         
 
@@ -581,8 +578,7 @@ public class ConexionBD {
     }
 
     /**
-     * Metodo que solo nos regresa los catalogos
-     *
+     * Metodo que solo nos regresa los catalogos con su identificador
      * @param catalogo
      * @return lista de arreglos donde en la primera posicion esta el id en la
      * posicion 2 esta la descripcion
@@ -613,12 +609,12 @@ public class ConexionBD {
     }
 
     /**
-     *
+     *Metodo que nos regresa un equipo recibe el identificar del equipo
      * @param id_equipo
-     * @return
+     * @return un objeto equipo con todos los valores de id que se pide
      */
     public Equipo regresaEquipo(int id_equipo) {
-        String res = "";
+
         int id_equipo1, clave_activo_fijo, num_inv_unam;
         String clave_descripcion, clave_modelo, clave_marcar, serie,
                 clave_familia, clave_tipo, clave_proveedor, clase,
@@ -626,7 +622,7 @@ public class ConexionBD {
                 clave_area, clave_institucion, id_usuario_asignado,
                 fecha_de_resguardo, responsable;
         boolean estado;
-        Equipo a = null;
+        Equipo equipoResultado = null;
         try {
             Class.forName(driver);
             Connection con = DriverManager.getConnection(connectString, user, password);
@@ -668,7 +664,7 @@ public class ConexionBD {
                 responsable = resultSet.getString(18);
                 estado = resultSet.getBoolean(19);
 
-                a = new Equipo(id_equipo1, clave_activo_fijo, num_inv_unam,
+                equipoResultado = new Equipo(id_equipo1, clave_activo_fijo, num_inv_unam,
                         clave_descripcion, clave_modelo, clave_marcar, serie, clave_familia, clave_tipo, clave_proveedor, clase,
                         uso, nivel_de_obsolescencia, estado_físico, clave_area, clave_institucion,
                         fecha_de_resguardo, responsable, estado);
@@ -677,14 +673,13 @@ public class ConexionBD {
             System.out.println(e.getMessage());
         }
 
-        return a;
+        return equipoResultado;
     }
 
     /**
-     * Metodo que elimina un usuario
-     *
+     * Metodo que elimina un usuario recibe el login de usuario a eliminar
      * @param login
-     * @return un boolean
+     * @return un boolean true si fue exitoso , false en otro caso
      */
     public boolean eliminaUsuario(String login) {
         boolean res = true;
@@ -706,12 +701,13 @@ public class ConexionBD {
     }
 
     /**
-     *
+     *Metodo que inserta un movimiento recibe id del usuario
+     * id del equipo , la descripcion y la fecha
      * @param id_usuario
      * @param id_equipo
      * @param descripcion
      * @param fecha
-     * @return
+     * @return un boolean true si fue exitoso , false en otro caso
      */
     public boolean insertaMovimientos(int id_usuario, int id_equipo, String descripcion, String fecha) {
         boolean res = true;
@@ -735,11 +731,13 @@ public class ConexionBD {
     }
 
     /**
-     *
-     * @param numero
-     * @return
+     *Metodo que regresa la marca , serie y departamento de un  equipo
+     * @param id_equipo
+     * @return una lista de arreglos en la posicion 0 esta la marca ,
+     * en la posicion 1 esta la serie , en la posicon 2 esta departamento , 
+     * en la posicion 3 esta el id del equipo
      */
-    public ArrayList<String[]> regresaMarcaSerieDeparta(int numero) {
+    public ArrayList<String[]> regresaMarcaSerieDeparta(int id_equipo) {
         String res = "";
         ArrayList<String[]> resultado = new ArrayList<>();
         String[] nombre = new String[4];
@@ -758,7 +756,7 @@ public class ConexionBD {
                     + "join catalogo_area on equipo.clave_area = catalogo_area.clave_area "
                     + "join catalogo_institucion on equipo.clave_institucion = catalogo_institucion.clave_institucion "
                     + "join catalogo_responsable on equipo.responsable = catalogo_responsable.clave_responsable "
-                    + "where num_inv_unam =  " + numero + "or" + " clave_activo_fijo = " + numero);
+                    + "where num_inv_unam =  " + id_equipo + "or" + " clave_activo_fijo = " + id_equipo);
 
             ResultSet resultSet = query.executeQuery();
             while (resultSet.next()) {
@@ -782,9 +780,9 @@ public class ConexionBD {
     }
 
     /**
-     *
+     *Metodo que recibe
      * @param login
-     * @return
+     * @return regresa el nombre del login recibido 
      */
     public String regresaNombre(String login) {
         String res = "";
@@ -806,9 +804,9 @@ public class ConexionBD {
     }
 
     /**
-     *
+     *Metodo que recibe el 
      * @param login
-     * @return
+     * @return no regresa el idenificador del login recibido 
      */
     public String regresaIDNombre(String login) {
         String res = "";
@@ -829,6 +827,20 @@ public class ConexionBD {
         return res;
     }
 
+    /**
+     *Metodo que genera los reportes recibe
+     * @param marca
+     * @param serie
+     * @param familia
+     * @param tipo_equipo
+     * @param fechaInicio
+     * @param fechaFin
+     * @param institucion
+     * @param area
+     * @param responsable
+     * @param estado
+     * @return nos regresa una lista d quipos con todas las coincidencia pedidas
+     */
     public ArrayList<Equipo> reportes(String marca, String serie, String familia, String tipo_equipo,
             String fechaInicio, String fechaFin, String institucion, String area, String responsable,
             String estado) {
@@ -901,65 +913,5 @@ public class ConexionBD {
         return resultado;
     }
 
-    /**
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-
-        ConexionBD con = new ConexionBD();
-//   
-
-//        con.insertaUsuario("rene", "holamundo","rene","Administrador");
-//        System.out.println(con.buscaLogin("rene", "holamundo"));
-//       ArrayList<String[]> lista =  con.buscaNombreLogin("caen");
-//        
-//        for (int i = 0; i < lista.size(); i++) {
-//         
-//        System.out.println(lista.get(i)[0] + " , " + lista.get(i)[1] );
-//           
-//        }
-        /// System.out.println(con.eliminaUsuario("rene"));
-//      System.out.println(con.regresaEquipo(1).getClave_area());
-//        System.out.println(con.insertaEquipo(6666 ,
-//10 ,
-//"Descripcion12",
-//"12hffg",
-//"ACTECK" , 
-//"12345",
-//"INTEL PENTIUM D|COREDUO|CORE2DU| AMD ATHLON| X2DUAL| CR2QUAD| CR2 Y EQUIVALENTE",
-//"Computadora portátil",
-//"FOTO DEL RECUERDO" ,
-//"Equipo en prestamo de proveedor",
-//"Bajo (Personal Académico y/o investigadores)",
-//"Seminuevo (Windows Server | MAC y linux)" ,
-//"Malo (equipo requiere incrementos | memoria |disco)",
-//"CATALOGACIÓN FR-BNM" ,
-//"CENTRO CERRADO DE TELEVICION Y MONITOREO" ,
-//"12/12/12" ,
-//"ALFREDO HIDALGO"));
-//        
-//        for (int i = 0; i < con.regresaMarcaSerieDeparta(123).size(); i++) {
-//            
-//        
-//        
-//        System.out.println(con.regresaMarcaSerieDeparta(123).get(1)[0]);
-//    
-//        }
-//        System.out.println(con.regresaNombre("caen"));
-        // System.out.println(con.actualizaCatalogo("catalogo_marca",1,"hola"));
-        //       System.out.println(con.actualizaCatalogo("catalogo_marca",1,"ACER"));
-        //System.out.println(con.insertaCatalogo("catalogo_marca","ACERRRRRR"));
-        //System.out.println(con.regresaIDNombre("caen"));
-//        System.out.println(con.insertaMovimientos(1, 1,"Baja", "12/12/1999"));
-//     ArrayList<Equipo> a=   con.reportes("", "", "", "", "12/12/12", "", "", "", "", "");
-//        System.out.println(a.size());
-//    }
-//        
-//System.out.println(con.insertaCatalogo("catalogo_area", "kjakjnkjankj") + "s");
-//        con.insertaCatalogoFamilia("daaaaaaaaaaaaaaaaaa0", 1);
-//        System.out.println(con.regresaBuscaLogin("caen"));
-        
-//       System.out.println(con.buscaLogin("rene","aaaaa"));
-    }
+   
 }

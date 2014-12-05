@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Clase que consulta equipos y genera una tabla en sintaxis HTML
  * @author jpachecov
  */
 @WebServlet(name = "ConsultaEquipo", urlPatterns = {"/ConsultaEquipo"})
@@ -102,7 +102,14 @@ public class ConsultaEquipo extends HttpServlet {
             out.print(header + hazConsulta(request) + footer);
         }
     }
-
+    /**
+     * Metodo que hace una consulta de equipos para la base de datos y 
+     * regresa una tabla en sintaxis HTML que contien los equipos devueltos 
+     * por la consulta.
+     * @param request Objeto que contiene los datos necesarios para consultar
+     * en la base de datos.
+     * @return Una tabla en sintaxis HTML.
+     */
     public String hazConsulta(HttpServletRequest request) {
         String marca = request.getParameter("marca");
         String numero = request.getParameter("numeroSerie");
@@ -118,7 +125,11 @@ public class ConsultaEquipo extends HttpServlet {
         return generaTabla(bd.reportes(marca, numero, familia, tipoEquipo, fechai, fechaf, departamento, ubicacion, responsable, estado));
         
     }
-
+    /**
+     * Genera una tabla en HTML
+     * @param equipos Un arreglo de objetos equipo para llenar la tabla.
+     * @return  La tabla en HTML lista para incrustarse en la pagina.
+     */
     public String generaTabla(ArrayList<Equipo> equipos) {
 
         String tabla = "<table id='tablaResultado'>\n";

@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Clase encargada de crear una xls con datos obtenidos del objeto request
  * @author jpachecov
  */
 @WebServlet(name = "ExportaConsulta", urlPatterns = {"/ExportaConsulta"})
@@ -38,7 +38,9 @@ public class ExportaConsulta extends HttpServlet {
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
-     *
+     * Crea el xls de los datos, o inicializa los datos
+     * Inicializa los datos si el parametro genera es nulo
+     * Genera el xls si el parametro genera no es nulo
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -78,7 +80,12 @@ public class ExportaConsulta extends HttpServlet {
         }
 
     }
-
+    /**
+     * Metodo que genera un archivo XLS a partir de los atributos ya inicializados de la clase.
+     * @param response Objeto que usamos para responder.
+     * @throws ServletException
+     * @throws IOException 
+     */
     public void creaXLS(HttpServletResponse response) throws ServletException, IOException {
         ConexionBD bd = new ConexionBD();
         ArrayList<Equipo> equipos = bd.reportes(marca, numero, familia, tipoEquipo, fechai, fechaf, departamento, ubicacion, responsable, estado);

@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Clase que contiene metodos para obtener los formularios
  * @author mphb
  */
 @WebServlet(name = "Formularios", urlPatterns = {"/Formularios"})
@@ -251,7 +251,12 @@ public class Formularios extends HttpServlet {
         }
         return form;
     }
-
+    /**
+     * MEtodo que lee un formulario, llena los campos que sean catalogos y lo
+     * regresa como una cadena.
+     * @param formulario EL nombre del formulario que se va a regresar
+     * @return La cadena que representa al formulario en HTML.
+     */
     public String obtenFormularioConCatalogos(String formulario) {
         String form = "";
         ServletContext context = getServletContext();
@@ -341,9 +346,10 @@ public class Formularios extends HttpServlet {
     }
 
     /**
-     *
-     * @param formulario
-     * @return
+     * MEtodo que simplemente lee el formulario y lo regresa, el formulario 
+     * no tiene catalogos
+     * @param formulario El nombre del formulario.
+     * @return La cadena que representa al formulario.
      */
     public String obtenFormularioSinCatalogos(String formulario) {
         String form = "";
@@ -399,9 +405,9 @@ public class Formularios extends HttpServlet {
     }
 
     /**
-     *
-     * @param ruta
-     * @param out
+     * Metodo que imprime un formulario HTML
+     * @param ruta Ruta del formulario a imprimir
+     * @param out Objeto que se usará para la escritura.
      */
     protected void getFormulario(String ruta, PrintWriter out) {
         ServletContext context = getServletContext();
@@ -413,7 +419,6 @@ public class Formularios extends HttpServlet {
             try {
                 while ((text = reader.readLine()) != null) {
                     out.println(text);
-                    System.out.println(text);
                 }
             } catch (IOException ex) {
                 Logger.getLogger(Formularios.class.getName()).log(Level.SEVERE, null, ex);

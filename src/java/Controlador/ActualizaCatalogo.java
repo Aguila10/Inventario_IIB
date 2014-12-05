@@ -39,7 +39,6 @@ public class ActualizaCatalogo extends HttpServlet {
          response.setCharacterEncoding("UTF-8");
 
         try (PrintWriter out = response.getWriter()) {
-
             String id = request.getParameter("id");
             int idB = Integer.parseInt(id);
             String tabla = request.getParameter("tabla");

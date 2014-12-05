@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Clase que regresa los elementos de un catalogo en la base de datos
+ * como una tabla en HTML
  * @author jpachecov
  */
 @WebServlet(name = "MuestraCatalogos", urlPatterns = {"/MuestraCatalogos"})
@@ -48,7 +49,7 @@ public class MuestraCatalogos extends HttpServlet {
     }
 
     /**
-     *
+     * Metodo que genera una tabla en HTML con los elementos de un arreglo
      * @param cat. Un arraylist con los elementos de un catalogo
      * @return tabla. La tabla en html.
      */

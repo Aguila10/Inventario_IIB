@@ -17,7 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Clase que actualiza un equipo en la base de datos y manda mensajes de exito 
+ * o fracaso.
  * @author jpachecov
  */
 @WebServlet(name = "ActualizaEquipo", urlPatterns = {"/ActualizaEquipo"})
@@ -57,7 +58,15 @@ public class ActualizaEquipo extends HttpServlet {
 
         
     }
-
+/**
+ * 
+ * @param request Metodo que contiene los datos para la solcitud de actualizacion
+ * de equipo.
+ * @param response
+ * @return
+ * @throws ServletException
+ * @throws IOException 
+ */
     private boolean actualizaEquipo(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
