@@ -7,10 +7,7 @@ package Controlador;
 
 import Modelo.ConexionBD;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Arrays;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +17,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author caenhiro
+ * Servelet que nos permite dar de baja uno o mas usuarios dentro del sistema.
+ * 
+ * @author rae
  */
 @WebServlet(name = "BajaUsuario", urlPatterns = {"/BajaUsuario"})
 public class BajaUsuario extends HttpServlet {
@@ -91,6 +90,22 @@ public class BajaUsuario extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
+    /**
+     * 
+     * Metodo que obtiene los usuarios a ser dados de baja desde el lado del cliente
+     * y los da de baja.
+     * 
+     * @param request servlet request
+     * @param response servlet response
+     * @return true - si el proceso se dio exitosamente.
+     *         false - si el proceso no se dio exitosamente.
+     * 
+     * Aunque el proceso haya fracasadp dando de baja varios usuarios puede que algunos
+     * si se hayan dado de baja antes que el proceso fracasara.
+     * 
+     * @throws IOException if an I/O error occurs
+     */
 
     private boolean bajaUsuarios(HttpServletRequest request, HttpServletResponse response) throws IOException {
 

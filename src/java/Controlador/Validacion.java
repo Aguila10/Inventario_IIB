@@ -1,13 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Controlador;
 
-import java.io.File;
-import java.io.IOException;
-import javax.servlet.http.HttpSession;
+package Controlador;
 
 /**
  *
@@ -17,14 +9,22 @@ public class Validacion {
 
     /**
      *
+     * Clase que sirve para validar las entradas de los diferentes formularios
+     * desde el lado del servidor.
+     * 
      */
     public Validacion() {
     }
 
     /**
      *
-     * @param login
+     * Metodo que nos ayuda a validar un login.
+     * 
+     * @param login login que queremos validar.
      * @return
+     *          true - si el login es valido.
+     *          false - si el login no es valido.
+     * 
      */
     public static boolean valida_login(String login) {
 
@@ -37,12 +37,19 @@ public class Validacion {
         return login.matches(login_pat) && login.length() >= 4 && login.length() <= 15;
     }
 
-    /**
-     *
-     * @param contraseniaUno
-     * @param contraseniaDos
-     * @return
-     */
+     /**
+      * 
+      * Metodo que nos ayuda a validar contraseñas, se le piden al usuario dos veces la contraseña
+      * en este metodo se verificaran las dos.
+      * 
+      * @param contraseniaUno la primera contraseña ( la que el usuario escribe la primera vez ).
+      * @param contraseniaDos la segunda contraseña ( la que el usuario escribe la segunda vez ).
+      * @return 
+      * 
+      *     true - si ambas contraseñas son validas y coinciden.
+      *     fasle - si alguna de las contraseñas no es valida o no coinciden.
+      * 
+      */
     public static boolean valida_contrasenia(String contraseniaUno, String contraseniaDos) {
 
         String contrasenia_pat = "^[^';]+$";
@@ -57,12 +64,18 @@ public class Validacion {
 
     /**
      *
-     * @param nombre
+     * Metodo que valida el nombre de un usuario.
+     * 
+     * @param nombre el nombre del usuario a validar.
      * @return
+     * 
+     *     true - si el nombre de usuario es valido.   
+     *     false - si el nombre de usuario no es valido.
+     * 
      */
     public static boolean valida_nombre(String nombre) {
 
-        String nombre_pat = "^([A-Za-zñ])+([\\s]{1}[A-Za-zñ]+)?([\\s]{1}[A-Za-zñ]+)?$"; //Nombres de 2 hasta hasta 70
+        String nombre_pat = "^([A-Za-zñáéíóú])+([\\s]{1}[A-Za-zñáéíóú]+)?([\\s]{1}[A-Za-zñáéíóú]+)?$"; //Nombres de 2 hasta hasta 70
 
         if (nombre == null) {
             return false;
@@ -73,8 +86,15 @@ public class Validacion {
 
     /**
      *
-     * @param email
+     * Metodo que valida el correo del usuario.
+     * 
+     * 
+     * @param  email el correo a ser validado.
      * @return
+     *     
+     *     true - si el correo es valido.
+     *     false - si el correo no es valido.
+     * 
      */
     public static boolean valida_mail(String email) {
         String mail_pat = "^[A-Za-z0-9_](\\.?[\\w-]+)*@[a-zA-Z]+(\\.[a-zA-z]+){1,2}$";
@@ -84,16 +104,6 @@ public class Validacion {
         }
 
         return email.matches(mail_pat) && email.length() <= 70;
-    }
-
-    /**
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-
-        System.out.println(valida_contrasenia("holamundo", "holamundo"));
-
     }
 
 }

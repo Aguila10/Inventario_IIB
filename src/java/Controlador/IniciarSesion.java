@@ -19,6 +19,8 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
+ * Servelt que implementa el inicio de sesion del usuario.
+ * 
  * @author rae
  */
 @WebServlet(name = "IniciarSesion", urlPatterns = {"/IniciarSesion"})
@@ -78,6 +80,16 @@ public class IniciarSesion extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    /**
+     * 
+     * Metodo que obtiene los datos necesarios del lado del cliente para iniciar sesion
+     * en el tipo de sesion asociada al usuario. 
+     * 
+     * @param request servlet request
+     * @param response servlet response
+     * @throws IOException if an I/O error occurs
+     */
+    
     private void revisarSesion(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         ConexionBD bd = new ConexionBD();
@@ -128,18 +140,5 @@ public class IniciarSesion extends HttpServlet {
 
     }
 
-    /**
-     *
-     * @param mensaje
-     * @param response
-     * @throws IOException
-     */
-    public void mandaMensaje(String mensaje, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            //response.sendRedirect("administrador.jsp?mensaje=" + mensaje);
-            response.sendRedirect("index.jsp");
-        }
-    }
 
 }

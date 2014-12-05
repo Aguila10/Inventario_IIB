@@ -16,7 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author mphb
+ * Servlet que permite actualizar un catalogo ya existente dentro del sistema.
+ * 
+ * @author rae
  */
 @WebServlet(name = "ActualizaCatalogo", urlPatterns = {"/ActualizaCatalogo"})
 public class ActualizaCatalogo extends HttpServlet {

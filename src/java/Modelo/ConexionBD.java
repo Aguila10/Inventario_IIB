@@ -10,7 +10,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- *
+ *Clase donde se encunetra todo lo relacionado a la base de datos
+ * encontramos metodos para insertar , actualizar y dar de baja.
  * @author CaenHiro
  */
 public class ConexionBD {
@@ -21,7 +22,7 @@ public class ConexionBD {
     String password = "darktech";
 
     /**
-     * Metodo que recibe
+     * Metodo que recibe el login y la contraseña
      * @param login
      * @param pass
      * @return La categoria de la persoan en otro caso regresa error
@@ -48,7 +49,7 @@ public class ConexionBD {
     }
 
     /**
-     *Metodo que recibe 
+     *Metodo que recibe  el login
      * @param login
      * @return un boolean true si esta false en otro caso
      */
@@ -107,7 +108,8 @@ public class ConexionBD {
     }
 
     /**
-     * Metodo que inserta un usuario recibe 
+     * Metodo que inserta un usuario recibe el login , la contraseña , 
+     * el nombre y la categoria
      *@param login
      * @param pass
      * @param nombre
@@ -136,7 +138,8 @@ public class ConexionBD {
     }
 
     /**
-     * Metodo que inserta un equipo recibe 
+     * Metodo que inserta un equipo recibe los parametros necesarios para
+     * insertar un equipo si no pone nada si ponen con la descripcion S/N
      * @param numeroInveInterInfo
      * @param numInvUnam
      * @param descrip
@@ -312,7 +315,8 @@ public class ConexionBD {
     }
 
     /**
-     * Metodo que actualiza catalogos recibe 
+     * Metodo que actualiza catalogos recibe el nombre de la tabla, 
+     * el identificador de la tubla y la nueva descripcion 
      * @param tabla
      * @param id_catalogo
      * @param descrip
@@ -462,7 +466,8 @@ public class ConexionBD {
 
     
     /**
-     * Metodo que inserta a los catalogos
+     * Metodo que inserta a los catalogos recibe un nombre de la tabla y la
+     * descripcion 
      * @param tabla
      * @param descrip
      * @return un boolean false si fue exitoso , true en otro caso
@@ -532,7 +537,7 @@ public class ConexionBD {
         } catch (SQLException | java.lang.ClassNotFoundException e) {
         
             System.out.println(e.getMessage());
-//        return false;
+        return false;
 
         }
 
@@ -566,7 +571,7 @@ public class ConexionBD {
             
             System.out.println(e.getMessage());
             
-//            return false;
+            return false;
         }
 
        return true; 
@@ -604,12 +609,12 @@ public class ConexionBD {
     }
 
     /**
-     *metodo que nos regresa un equipo recibe
+     *Metodo que nos regresa un equipo recibe el identificar del equipo
      * @param id_equipo
      * @return un objeto equipo con todos los valores de id que se pide
      */
     public Equipo regresaEquipo(int id_equipo) {
-//        String res = "";
+
         int id_equipo1, clave_activo_fijo, num_inv_unam;
         String clave_descripcion, clave_modelo, clave_marcar, serie,
                 clave_familia, clave_tipo, clave_proveedor, clase,
@@ -672,7 +677,7 @@ public class ConexionBD {
     }
 
     /**
-     * Metodo que elimina un usuario recibe
+     * Metodo que elimina un usuario recibe el login de usuario a eliminar
      * @param login
      * @return un boolean true si fue exitoso , false en otro caso
      */
@@ -696,7 +701,8 @@ public class ConexionBD {
     }
 
     /**
-     *Metodo que inserta un movimiento
+     *Metodo que inserta un movimiento recibe id del usuario
+     * id del equipo , la descripcion y la fecha
      * @param id_usuario
      * @param id_equipo
      * @param descripcion

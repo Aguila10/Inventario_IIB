@@ -16,11 +16,15 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
+ * Este filtro lo usamos para obligar a recargar la pagina cada vez que se solicita
+ * evitando que del lado del cliente se usen versiones almacenadas en cache que permitan
+ * el uso de la sesion despues de que fue cerrada.
+ * 
+ * 
  * @author rae
  */
 @WebFilter(filterName = "FiltradoSesion", urlPatterns = {"/*"})
