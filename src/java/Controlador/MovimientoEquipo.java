@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Clase encargada de registrar un movimiento de equipo en la base de datos
  * @author jpachecov
  */
 @WebServlet(name = "MovimientoEquipo", urlPatterns = {"/MovimientoEquipo"})

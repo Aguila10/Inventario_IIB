@@ -22,7 +22,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Clase que regresa una tabla con equipos o muestra un formulario con datos de un
+ * equipo en especifico.
  * @author jpachecov
  */
 @WebServlet(name = "BuscaEquipo", urlPatterns = {"/BuscaEquipo"})

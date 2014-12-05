@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Clase que consulta equipos y genera una tabla en sintaxis HTML
  * @author jpachecov
  */
 @WebServlet(name = "ConsultaEquipo", urlPatterns = {"/ConsultaEquipo"})

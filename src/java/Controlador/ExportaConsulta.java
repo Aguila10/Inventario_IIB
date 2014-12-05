@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Clase encargada de crear una xls con datos obtenidos del objeto request
  * @author jpachecov
  */
 @WebServlet(name = "ExportaConsulta", urlPatterns = {"/ExportaConsulta"})
