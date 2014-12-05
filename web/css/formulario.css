@@ -41,11 +41,14 @@
 #errorBusqueda1{font-size: 70%;}
 #errorBusqueda1{font-size: 80%;margin-left: 25%;}
 #errorBusqueda{margin: 3% auto 3% auto; width: 40%;}
+#errorBusquedaNueva{margin-top: 20%; margin-bottom:30%; width: 70%; margin-left: 45%;font-size: 170%;}
 
 /*Estilos para las tablas*/
-#tablaResultado{text-align: center;}
-#tablaResultado th{border-bottom: solid; border-top: solid; margin-bottom: 10%; padding-bottom: 3%; padding-top: 3%;}
-#tablaResultado td{padding-bottom: 3%; padding-top: 3%;}
+#tablaResultado,#tablaNueva{text-align: center;}
+#tablaResultado th, #tablaNueva th{border-bottom: solid; border-top: solid; margin-bottom: 10%; padding-bottom: 3%; padding-top: 3%;}
+#tablaResultado td, #tablaNueva td{padding-bottom: 3%; padding-top: 3%;}
+#tablaNueva{width:95%; margin-left: 15%; margin-top: -7%;}
+.nuevo{min-height: 70%;}
 
 /*Estilos para editar catálogos*/
 #resultadoBusqueda table{margin-top: 5%;}
