@@ -96,8 +96,8 @@ public class ConsultaEquipo extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         response.setCharacterEncoding("UTF-8");
- request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             out.print(header + hazConsulta(request) + footer);
         }
@@ -115,8 +115,8 @@ public class ConsultaEquipo extends HttpServlet {
         String fechaf = request.getParameter("fechaF");
         String estado = request.getParameter("estado");
 
-        return generaTabla(bd.reportes(marca, numero, familia, tipoEquipo, fechai, fechaf, departamento, ubicacion, responsable, estado));//marca+" "+numero+" "+familia+" "+ubicacion+" "+responsable+" "+tipoEquipo+" "+departamento+
-        // " "+fechai+" "+fechaf+" "+estado;                
+        return generaTabla(bd.reportes(marca, numero, familia, tipoEquipo, fechai, fechaf, departamento, ubicacion, responsable, estado));
+        
     }
 
     public String generaTabla(ArrayList<Equipo> equipos) {

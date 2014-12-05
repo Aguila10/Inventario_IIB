@@ -63,12 +63,8 @@ public class AltaEquipo extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String activoFijo = (String) request.getParameter("activoFijo");
         int actFijo = (activoFijo.equals("")) ? 0 : Integer.parseInt(activoFijo);
-
         String numInvUNAM = (String) request.getParameter("descripcion");
-        int numInv = (numInvUNAM.equals("")) ? 0 : Integer.parseInt(numInvUNAM);
-
-        int numInvInternoDepto = 0;
-        
+        int numInv = (numInvUNAM.equals("")) ? 0 : Integer.parseInt(numInvUNAM);        
         String descripcion = request.getParameter("descripcionExtendida");
         String modelo = request.getParameter("modelo");
         String marca = request.getParameter("marca");
@@ -82,7 +78,6 @@ public class AltaEquipo extends HttpServlet {
         String estadoFisico =  request.getParameter("estadoFisico");
         String ubicacion = request.getParameter("ubicacion");
         String centroCosto =  request.getParameter("centroCosto");
-        // idusuario NULL
         String fechaResguardo = request.getParameter("fechaResguardo");
         String responsable = request.getParameter("responsable");
 

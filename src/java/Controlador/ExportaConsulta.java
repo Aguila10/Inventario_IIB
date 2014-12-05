@@ -46,18 +46,16 @@ public class ExportaConsulta extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
- response.setCharacterEncoding("UTF-8");
- request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String msj_error = "Error al exportar consulta";
         
         HttpSession sesion = request.getSession(true);
         String tipo_sesion = (String) sesion.getAttribute("identidad");
         
         String genera = request.getParameter("genera");
-        if (genera == null) { // si apretado el link de descarga  
-
+        if (genera == null) { 
             try {
-                
                 creaXLS(response);
 
             } catch (ServletException | IOException e) {

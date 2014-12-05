@@ -65,7 +65,6 @@ function consultaEquipos() {
     }, function (data) {
         
     despliegaPestaña(data);
-    // $("#resultadoConsulta").html(data);
     });
 }
 
@@ -103,7 +102,6 @@ function validaCampos(hayform, form) {
     }
     if (claveAF == "" || claveAF == null) {
         if (numInvUNAM == "" || numInvUNAM == null) {
-            //alert("Debes meter alguno de los campos");
             escribeEn("errorAmbos", "Al menos uno de los campos no debe quedar vacío");
             if (descripcion == "") {
                 escribeEn("errorDescripcionExtendida", "Este campo no puede quedar vacío");
@@ -260,7 +258,7 @@ function validaMovimiento() {
                 escribeEn("errorFecha", "Debes introducir una fecha");
                 muestra("errorFecha");
             } else {
-                escribeEn("errorFecha", "debes introducir una fecha");
+                escribeEn("errorFecha", "Debes introducir una fecha");
             }
 
         } else {

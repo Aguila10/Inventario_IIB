@@ -128,12 +128,7 @@ public class BuscaEquipo extends HttpServlet {
         String form = "";
 
         form = llenaFormularioAltaEquipo();
-        /*
-         form = form.replace("action=\"altaEquipo\"","action=\"\"");
-         form = form.replace("method=\"post\" onsubmit=\"return validaCampos()\"","method=\"post\"");
-         */
         form = form.replace("<form name=\"alta\" action=\"altaEquipo\" class=\"smart-blue\" method=\"post\" onsubmit=\"return validaCampos('true', 'alta')\">", "<form name=\"actualiza\" action=\"ActualizaEquipo\" method=\"post\" onsubmit=\"return actualizaEquipo()\">");
-        //form = form.replace("</form>","");
         form = form.replace("<div style=\"margin-top: 12%;\">", "<div style=\"margin-top: 5%;\"> \n"
                 + " ");
         form = form.replace("<h3>Equipo: Dar alta</h3>", "");

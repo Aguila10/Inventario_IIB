@@ -47,9 +47,8 @@ public class Formularios extends HttpServlet {
         String form = "";
         HttpSession sesion = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
-
-         response.setCharacterEncoding("UTF-8");
- request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
             /*Formulario solicitado*/
@@ -84,8 +83,6 @@ public class Formularios extends HttpServlet {
         ConexionBD con = new ConexionBD();
         ArrayList<String[]> elementos = con.regresaCatalogoConId(nombre_catalogo);
         String select = "";
-
-        //datalist = "<input type=\"text\" list=\"list_"+nombre_catalogo+"\" id=\"input_"+ nombre_catalogo+"\" name=\"input_"+ nombre_catalogo+"\" style=\"display:none\"/>\n" +
         select = "<select id=\"select_" + nombre_catalogo + "\" name=\"select_" + nombre_catalogo + "\" style=\"display:none\">\n";
 
         for (String[] elemento : elementos) {
@@ -407,8 +404,6 @@ public class Formularios extends HttpServlet {
      * @param out
      */
     protected void getFormulario(String ruta, PrintWriter out) {
-        //    ConexionBD bd = new ConexionBD();
-
         ServletContext context = getServletContext();
         InputStream is = context.getResourceAsStream(ruta);
         if (is != null) {
@@ -426,7 +421,6 @@ public class Formularios extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -452,7 +446,7 @@ public class Formularios extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            processRequest(request, response);
     }
 
     /**
