@@ -29,6 +29,10 @@ import javax.servlet.http.HttpServletResponse;
 public class BuscaEquipo extends HttpServlet {
 
     ConexionBD bd = new ConexionBD();
+
+    /**
+     *
+     */
     public static int id_equipo;
 
     /**
@@ -122,6 +126,11 @@ public class BuscaEquipo extends HttpServlet {
         return tabla;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public String obtenFormulario(int id) {
 
         Equipo equipo = bd.regresaEquipo(id);

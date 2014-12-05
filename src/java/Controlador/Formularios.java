@@ -255,6 +255,11 @@ public class Formularios extends HttpServlet {
         return form;
     }
 
+    /**
+     *
+     * @param formulario
+     * @return
+     */
     public String obtenFormularioConCatalogos(String formulario) {
         String form = "";
         ServletContext context = getServletContext();

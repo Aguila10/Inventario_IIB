@@ -81,6 +81,12 @@ public class ExportaConsulta extends HttpServlet {
 
     }
 
+    /**
+     *
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     public void creaXLS(HttpServletResponse response) throws ServletException, IOException {
         ConexionBD bd = new ConexionBD();
         ArrayList<Equipo> equipos = bd.reportes(marca, numero, familia, tipoEquipo, fechai, fechaf, departamento, ubicacion, responsable, estado);

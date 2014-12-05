@@ -66,6 +66,11 @@ public class MovimientoEquipo extends HttpServlet {
         }
     }
 
+    /**
+     *
+     * @param request
+     * @return
+     */
     public boolean realizaMovimiento(HttpServletRequest request) {
         HttpSession sesion = request.getSession();
         String movimiento = request.getParameter("movimiento");
@@ -76,6 +81,11 @@ public class MovimientoEquipo extends HttpServlet {
         return Validacion.valida_login(login) && bd.insertaMovimientos(Integer.parseInt(bd.regresaIDNombre(login)), Integer.parseInt(equipo), movimiento, fecha);
     }
 
+    /**
+     *
+     * @param busqueda
+     * @return
+     */
     public String generaTabla(String busqueda) {
         ArrayList<String[]> equipos = bd.regresaMarcaSerieDeparta(Integer.parseInt(busqueda));
         String tablaIn = "<table style=\"width:100%\" id=\"tablaResultado\">";

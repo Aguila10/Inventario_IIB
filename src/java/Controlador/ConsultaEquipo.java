@@ -103,6 +103,11 @@ public class ConsultaEquipo extends HttpServlet {
         }
     }
 
+    /**
+     *
+     * @param request
+     * @return
+     */
     public String hazConsulta(HttpServletRequest request) {
         String marca = request.getParameter("marca");
         String numero = request.getParameter("numeroSerie");
@@ -119,6 +124,11 @@ public class ConsultaEquipo extends HttpServlet {
         // " "+fechai+" "+fechaf+" "+estado;                
     }
 
+    /**
+     *
+     * @param equipos
+     * @return
+     */
     public String generaTabla(ArrayList<Equipo> equipos) {
 
         String tabla = "<table id='tablaResultado'>\n";
