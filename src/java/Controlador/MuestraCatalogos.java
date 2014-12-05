@@ -34,8 +34,8 @@ public class MuestraCatalogos extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         response.setCharacterEncoding("UTF-8");
- request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String catalogo = request.getParameter("catalogo");
             Formularios f = new Formularios();
@@ -48,7 +48,7 @@ public class MuestraCatalogos extends HttpServlet {
     }
 
     /**
-     *
+     * Metodo que genera una tabla en HTML con los elementos de un arreglo
      * @param cat. Un arraylist con los elementos de un catalogo
      * @return tabla. La tabla en html.
      */

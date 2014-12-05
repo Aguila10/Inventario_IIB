@@ -37,8 +37,8 @@ public class ActualizaEquipo extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-    response.setCharacterEncoding("UTF-8");
- request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String msj_exito = "La actualización del equipo ha sido exitosa";
         String msj_error = "Error al actualizar el equipo";
         
@@ -57,7 +57,15 @@ public class ActualizaEquipo extends HttpServlet {
 
         
     }
-
+/**
+ * 
+ * @param request Metodo que contiene los datos para la solcitud de actualizacion
+ * de equipo.
+ * @param response
+ * @return
+ * @throws ServletException
+ * @throws IOException 
+ */
     private boolean actualizaEquipo(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");

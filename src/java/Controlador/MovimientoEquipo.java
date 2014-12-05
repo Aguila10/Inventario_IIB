@@ -38,8 +38,8 @@ public class MovimientoEquipo extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
- response.setCharacterEncoding("UTF-8");
- request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String msj_exito = "El movimiento por  \" <causa_movimiento> \"  se realizó correctamente";
         String msj_error = "Error al realizar el movimiento por  \" <causa_movimiento> \"";
         
@@ -65,11 +65,10 @@ public class MovimientoEquipo extends HttpServlet {
             }
         }
     }
-
     /**
-     *
-     * @param request
-     * @return
+     * Metodo que registra un movimiento en la base de datos
+     * @param request El objeto con los detalles del movimiento a registrar.
+     * @return True si el movimiento se relizó correctamente, False en otro caso.
      */
     public boolean realizaMovimiento(HttpServletRequest request) {
         HttpSession sesion = request.getSession();
@@ -80,11 +79,11 @@ public class MovimientoEquipo extends HttpServlet {
         String equipo = request.getParameter("seleccion");
         return Validacion.valida_login(login) && bd.insertaMovimientos(Integer.parseInt(bd.regresaIDNombre(login)), Integer.parseInt(equipo), movimiento, fecha);
     }
-
     /**
-     *
-     * @param busqueda
-     * @return
+     * Metodo que genera una tabla en HTML con informacion
+     * de marca, serie y departamento de un equipo.
+     * @param busqueda El num de inv interno o el num de inv unam del equipo a buscar.
+     * @return 
      */
     public String generaTabla(String busqueda) {
         ArrayList<String[]> equipos = bd.regresaMarcaSerieDeparta(Integer.parseInt(busqueda));

@@ -96,17 +96,19 @@ public class ConsultaEquipo extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         response.setCharacterEncoding("UTF-8");
- request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             out.print(header + hazConsulta(request) + footer);
         }
     }
-
     /**
-     *
-     * @param request
-     * @return
+     * Metodo que hace una consulta de equipos para la base de datos y 
+     * regresa una tabla en sintaxis HTML que contien los equipos devueltos 
+     * por la consulta.
+     * @param request Objeto que contiene los datos necesarios para consultar
+     * en la base de datos.
+     * @return Una tabla en sintaxis HTML.
      */
     public String hazConsulta(HttpServletRequest request) {
         String marca = request.getParameter("marca");
@@ -120,14 +122,13 @@ public class ConsultaEquipo extends HttpServlet {
         String fechaf = request.getParameter("fechaF");
         String estado = request.getParameter("estado");
 
-        return generaTabla(bd.reportes(marca, numero, familia, tipoEquipo, fechai, fechaf, departamento, ubicacion, responsable, estado));//marca+" "+numero+" "+familia+" "+ubicacion+" "+responsable+" "+tipoEquipo+" "+departamento+
-        // " "+fechai+" "+fechaf+" "+estado;                
+        return generaTabla(bd.reportes(marca, numero, familia, tipoEquipo, fechai, fechaf, departamento, ubicacion, responsable, estado));
+        
     }
-
     /**
-     *
-     * @param equipos
-     * @return
+     * Genera una tabla en HTML
+     * @param equipos Un arreglo de objetos equipo para llenar la tabla.
+     * @return  La tabla en HTML lista para incrustarse en la pagina.
      */
     public String generaTabla(ArrayList<Equipo> equipos) {
 

@@ -38,7 +38,9 @@ public class ExportaConsulta extends HttpServlet {
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
-     *
+     * Crea el xls de los datos, o inicializa los datos
+     * Inicializa los datos si el parametro genera es nulo
+     * Genera el xls si el parametro genera no es nulo
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -46,18 +48,16 @@ public class ExportaConsulta extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
- response.setCharacterEncoding("UTF-8");
- request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String msj_error = "Error al exportar consulta";
         
         HttpSession sesion = request.getSession(true);
         String tipo_sesion = (String) sesion.getAttribute("identidad");
         
         String genera = request.getParameter("genera");
-        if (genera == null) { // si apretado el link de descarga  
-
+        if (genera == null) { 
             try {
-                
                 creaXLS(response);
 
             } catch (ServletException | IOException e) {
@@ -80,12 +80,11 @@ public class ExportaConsulta extends HttpServlet {
         }
 
     }
-
     /**
-     *
-     * @param response
+     * Metodo que genera un archivo XLS a partir de los atributos ya inicializados de la clase.
+     * @param response Objeto que usamos para responder.
      * @throws ServletException
-     * @throws IOException
+     * @throws IOException 
      */
     public void creaXLS(HttpServletResponse response) throws ServletException, IOException {
         ConexionBD bd = new ConexionBD();

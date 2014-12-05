@@ -47,9 +47,8 @@ public class Formularios extends HttpServlet {
         String form = "";
         HttpSession sesion = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
-
-         response.setCharacterEncoding("UTF-8");
- request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
             /*Formulario solicitado*/
@@ -84,8 +83,6 @@ public class Formularios extends HttpServlet {
         ConexionBD con = new ConexionBD();
         ArrayList<String[]> elementos = con.regresaCatalogoConId(nombre_catalogo);
         String select = "";
-
-        //datalist = "<input type=\"text\" list=\"list_"+nombre_catalogo+"\" id=\"input_"+ nombre_catalogo+"\" name=\"input_"+ nombre_catalogo+"\" style=\"display:none\"/>\n" +
         select = "<select id=\"select_" + nombre_catalogo + "\" name=\"select_" + nombre_catalogo + "\" style=\"display:none\">\n";
 
         for (String[] elemento : elementos) {
@@ -254,11 +251,11 @@ public class Formularios extends HttpServlet {
         }
         return form;
     }
-
     /**
-     *
-     * @param formulario
-     * @return
+     * MEtodo que lee un formulario, llena los campos que sean catalogos y lo
+     * regresa como una cadena.
+     * @param formulario EL nombre del formulario que se va a regresar
+     * @return La cadena que representa al formulario en HTML.
      */
     public String obtenFormularioConCatalogos(String formulario) {
         String form = "";
@@ -349,9 +346,10 @@ public class Formularios extends HttpServlet {
     }
 
     /**
-     *
-     * @param formulario
-     * @return
+     * MEtodo que simplemente lee el formulario y lo regresa, el formulario 
+     * no tiene catalogos
+     * @param formulario El nombre del formulario.
+     * @return La cadena que representa al formulario.
      */
     public String obtenFormularioSinCatalogos(String formulario) {
         String form = "";
@@ -407,13 +405,11 @@ public class Formularios extends HttpServlet {
     }
 
     /**
-     *
-     * @param ruta
-     * @param out
+     * Metodo que imprime un formulario HTML
+     * @param ruta Ruta del formulario a imprimir
+     * @param out Objeto que se usará para la escritura.
      */
     protected void getFormulario(String ruta, PrintWriter out) {
-        //    ConexionBD bd = new ConexionBD();
-
         ServletContext context = getServletContext();
         InputStream is = context.getResourceAsStream(ruta);
         if (is != null) {
@@ -423,7 +419,6 @@ public class Formularios extends HttpServlet {
             try {
                 while ((text = reader.readLine()) != null) {
                     out.println(text);
-                    System.out.println(text);
                 }
             } catch (IOException ex) {
                 Logger.getLogger(Formularios.class.getName()).log(Level.SEVERE, null, ex);
@@ -431,7 +426,6 @@ public class Formularios extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -457,7 +451,7 @@ public class Formularios extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            processRequest(request, response);
     }
 
     /**
