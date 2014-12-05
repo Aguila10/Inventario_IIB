@@ -32,7 +32,28 @@ public class Equipo {
     String responsable;
     boolean estado;
 
- 
+    /**
+     *Constructor de la clase
+     * @param id_equipo
+     * @param clave_activo_fijo
+     * @param num_inv_unam
+     * @param clave_descripcion
+     * @param clave_modelo
+     * @param clave_marcar
+     * @param serie
+     * @param clave_familia
+     * @param clave_tipo
+     * @param clave_proveedor
+     * @param clase
+     * @param uso
+     * @param nivel_de_obsolescencia
+     * @param estado_físico
+     * @param clave_area
+     * @param clave_institucion
+     * @param fecha_de_resguardo
+     * @param responsable
+     * @param estado
+     */
     public Equipo(int id_equipo, int clave_activo_fijo, int num_inv_unam ,
             String clave_descripcion, String clave_modelo, String clave_marcar, String serie,
             String clave_familia, String clave_tipo, String clave_proveedor, String clase,
@@ -62,21 +83,35 @@ public class Equipo {
 
     }
 
-    public Equipo(int b, int c,
-            String e, String f, String g, String h, String i,
-            String ñ, String o, String q, String r) {
+    /**
+     *constructor de la clase
+     * @param clave_activo_fijo
+     * @param num_inv_unam
+     * @param marca
+     * @param modelo
+     * @param serie
+     * @param familia
+     * @param tipo
+     * @param resguardo
+     * @param institucion
+     * @param area
+     * @param responsable
+     */
+    public Equipo(int clave_activo_fijo, int num_inv_unam,
+            String marca, String modelo, String serie, String familia, String tipo,
+            String resguardo, String institucion, String area, String responsable) {
 
-        this.clave_activo_fijo = b;
-        this.num_inv_unam = c;
-        this.clave_marcar = e;
-        this.clave_modelo = f;
-        this.serie = g;
-        this.clave_familia = h;
-        this.clave_tipo = i;
-        this.fecha_de_resguardo = ñ;
-        this.clave_institucion = o;
-        this.clave_area = q;
-        this.responsable = r;
+        this.clave_activo_fijo = clave_activo_fijo;
+        this.num_inv_unam = num_inv_unam;
+        this.clave_marcar = marca;
+        this.clave_modelo = modelo;
+        this.serie = serie;
+        this.clave_familia = familia;
+        this.clave_tipo = tipo;
+        this.fecha_de_resguardo = resguardo;
+        this.clave_institucion = institucion;
+        this.clave_area = area;
+        this.responsable = responsable;
 
     }
 

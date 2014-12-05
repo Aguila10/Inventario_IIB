@@ -30,6 +30,10 @@ import javax.servlet.http.HttpServletResponse;
 public class BuscaEquipo extends HttpServlet {
 
     ConexionBD bd = new ConexionBD();
+
+    /**
+     *
+     */
     public static int id_equipo;
 
     /**
