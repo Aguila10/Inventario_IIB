@@ -116,7 +116,10 @@ function validaCampos(hayform, form) {
             escribeEn("errorDescripcion", "Este campo debe ser un número");
             return false;
         }
-
+        if(numInvUNAM.length > 9){
+            escribeEn("errorDescripcion","Este número no puede tener más de 9 digitos");
+            return false;
+        }
         if (descripcion == null || descripcion == "") {
             escribeEn("errorDescripcionExtendida", "Este campo no debe ser vacío");
             return false;
@@ -134,11 +137,18 @@ function validaCampos(hayform, form) {
         escribeEn("errorActivoFijo", "Este campo debe ser un número");
         return false;
     }
+    if ( claveAF.length > 9){
+        escribeEn("errorActivoFijo","Este número no puede tener más de 9 digitos");
+        return false;
+    }
     if (numInvUNAM != "") {
         var r = numInvUNAM.match(reg)
         if (r == null) {
             escribeEn("errorDescripcion", "Este campo debe ser un número");
             return false;
+        }
+        if(numInvUNAM.length > 9){
+            escribeEn("errorDescripcion","Este número no puede tener más de 9 digitos");
         }
     }
 
