@@ -33,7 +33,7 @@ public class Equipo {
     boolean estado;
 
     /**
-     *
+     *Constructor de la clase
      * @param id_equipo
      * @param clave_activo_fijo
      * @param num_inv_unam
@@ -84,7 +84,7 @@ public class Equipo {
     }
 
     /**
-     *
+     *constructor de la clase
      * @param clave_activo_fijo
      * @param num_inv_unam
      * @param marca
