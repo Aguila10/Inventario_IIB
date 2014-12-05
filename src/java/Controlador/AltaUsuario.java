@@ -7,7 +7,6 @@ package Controlador;
 
 import Modelo.ConexionBD;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.URLEncoder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +17,8 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
+ * Servlet que nos permite dar de alta un usuario dentro del sistema. 
+ * 
  * @author rae
  */
 @WebServlet(name = "AltaUsuario", urlPatterns = {"/AltaUsuario"})
@@ -89,6 +90,20 @@ public class AltaUsuario extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
+    /**
+     * 
+     * Metodo que obtiene los datos del formulario para registrar usuario y da de alta el 
+     * usuario en el sistema.
+     * 
+     * 
+     * @param request servlet request
+     * @param response servlet response
+     * @return
+     *      true - si el usuario fue dado de alta con exito.
+     *      false - si el usuario no fue dado de alta con exito.
+     * @throws IOException  if an I/O error occurs
+     */
 
     private boolean registraUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException {
 

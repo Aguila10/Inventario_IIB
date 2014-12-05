@@ -16,7 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author mphb
+ * Servlet que permite actualizar un catalogo ya existente dentro del sistema.
+ * 
+ * @author rae
  */
 @WebServlet(name = "ActualizaCatalogo", urlPatterns = {"/ActualizaCatalogo"})
 public class ActualizaCatalogo extends HttpServlet {
@@ -37,16 +39,6 @@ public class ActualizaCatalogo extends HttpServlet {
          response.setCharacterEncoding("UTF-8");
 
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet ActualizaCatalogo</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>Servlet ActualizaCatalogo at " + request.getContextPath() + "</h1>");
-//            out.println("</body>");
-//            out.println("</html>");
 
             String id = request.getParameter("id");
             int idB = Integer.parseInt(id);

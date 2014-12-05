@@ -17,6 +17,8 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
+ * Servlet que permite agregar catalogos dentro del sistema.
+ * 
  * @author rae
  */
 @WebServlet(name = "AgregaCatalogo", urlPatterns = {"/AgregaCatalogo"})
@@ -89,6 +91,20 @@ public class AgregaCatalogo extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    /**
+     * 
+     * Metodo que obtiene los datos del formulario de agregar catalogo y lo agrega al sistema
+     * 
+     * @param request servlet request
+     * @param response servlet response
+     * @return 
+     *        true - si el catalogo fue dado de alta exitosamente.
+     *        false - si el catalogo no fue dado de alta exitosamente. 
+     * 
+     * @throws IOException if an I/O error occurs
+     */
+    
+    
     private boolean agregaCatalogo(HttpServletRequest request, HttpServletResponse response) throws IOException {
         ConexionBD con = new ConexionBD();
         String descripcion = request.getParameter("descripcion");
