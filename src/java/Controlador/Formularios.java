@@ -24,6 +24,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Clase que contiene metodos para obtener los formularios
+ *
  * @author mphb
  */
 @WebServlet(name = "Formularios", urlPatterns = {"/Formularios"})
@@ -106,14 +107,24 @@ public class Formularios extends HttpServlet {
                 + "    			<th>Seleccionar</th>\n"
                 + "    		</tr>\n";
 
-        for (String[] usuario : usuarios) {
+        if (usuarios.size() != 0) {
+            for (String[] usuario : usuarios) {
 
-            tabla += "<tr>\n"
-                    + "    			<td>" + usuario[0] + "</td>\n"
-                    + "    			<td class=\"campoNombre\">" + usuario[1] + "</td>\n"
-                    + "    			<td><input type=\"checkbox\" value=\"" + usuario[0] + "\" name=\"usuarios\"></td>\n"
-                    + "    		</tr>\n";
+                tabla += "<tr>\n"
+                        + "    			<td>" + usuario[0] + "</td>\n"
+                        + "    			<td class=\"campoNombre\">" + usuario[1] + "</td>\n"
+                        + "    			<td><input type=\"checkbox\" value=\"" + usuario[0] + "\" name=\"usuarios\"></td>\n"
+                        + "    		</tr>\n";
 
+            }
+        }else{
+            
+                tabla += "<tr style=\"display:none\">\n"
+                        + "    			<td>" + "empty" + "</td>\n"
+                        + "    			<td class=\"campoNombre\">" + "empty" + "</td>\n"
+                        + "    			<td><input type=\"checkbox\" value=\"" + "empty" + "\" name=\"usuarios\"></td>\n"
+                        + "    		</tr>\n";
+            
         }
 
         tabla += "</table></center>";
@@ -251,9 +262,11 @@ public class Formularios extends HttpServlet {
         }
         return form;
     }
+
     /**
      * MEtodo que lee un formulario, llena los campos que sean catalogos y lo
      * regresa como una cadena.
+     *
      * @param formulario EL nombre del formulario que se va a regresar
      * @return La cadena que representa al formulario en HTML.
      */
@@ -346,8 +359,9 @@ public class Formularios extends HttpServlet {
     }
 
     /**
-     * MEtodo que simplemente lee el formulario y lo regresa, el formulario 
-     * no tiene catalogos
+     * Metodo que simplemente lee el formulario y lo regresa, el formulario no
+     * tiene catalogos
+     *
      * @param formulario El nombre del formulario.
      * @return La cadena que representa al formulario.
      */
@@ -406,6 +420,7 @@ public class Formularios extends HttpServlet {
 
     /**
      * Metodo que imprime un formulario HTML
+     *
      * @param ruta Ruta del formulario a imprimir
      * @param out Objeto que se usará para la escritura.
      */
@@ -451,7 +466,7 @@ public class Formularios extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            processRequest(request, response);
+        processRequest(request, response);
     }
 
     /**
